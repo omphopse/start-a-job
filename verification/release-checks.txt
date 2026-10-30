@@ -1,0 +1,9 @@
+DeskJobs v0.1.0 release verification - 2026-10-30
+Clean reinstall: removed workspace node_modules and .next; npm ci PASS (0 audit vulnerabilities).
+Verification order: lint PASS; next typegen + tsc PASS; unit/database 11/11 PASS; Playwright 33/33 PASS; production build PASS.
+Production SEO: five no-JS job pages and JSON-LD PASS; named robots rules PASS; four sitemap documents and all URLs PASS; public API schema PASS.
+Mobile Lighthouse production/demo: home 100/96/100, listing 98/100/100, job 99/95/100 (performance/accessibility/SEO); CLS 0, LCP <0.8s.
+Screenshots: 15 final PNG references visually reviewed and losslessly compressed.
+Source fix: 79617d4; documentation: ef7f1bf.
+Manual staging checks: real Supabase migrations/sessions/CRUD, SMTP, deployed domain, indexing-provider acceptance and advertising configuration require owner accounts/credentials.
+No remote push or deployment. Local production preview stopped after checks.
