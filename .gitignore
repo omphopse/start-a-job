@@ -13,3 +13,8 @@ test-results/
 *service-account*.json
 screenshots/
 *.tsbuildinfo
+verification/lighthouse-*.html
+verification/lighthouse-home.json
+verification/lighthouse-listing.json
+verification/lighthouse-job.json
+verification/*.html.snapshot

@@ -1,4 +1,37 @@
 'use client';
-import {useActionState} from 'react';
-import {reportJob} from '@/app/jobs/[slug]/report/actions';
-export function ReportForm({slug}:{slug:string}){const [state,action,pending]=useActionState(reportJob,{message:'',success:false});return <form action={action} className="report-form"><input type="hidden" name="slug" value={slug}/><div className="honeypot" aria-hidden="true"><label>Leave blank<input name="website" tabIndex={-1} autoComplete="off" defaultValue=""/></label></div><label>What seems wrong with this job?<textarea name="reason" rows={6} minLength={5} maxLength={1000} required placeholder="For example: the official page has a different deadline, or someone is requesting payment."/></label><p>Please do not include your name, email, phone number or identity documents.</p><button className="button" disabled={pending||state.success}>{pending?'Sending…':'Send report →'}</button>{state.message&&<p role="status" className="form-message">{state.message}</p>}</form>}
+import { useActionState } from 'react';
+import { reportJob } from '@/app/jobs/[slug]/report/actions';
+export function ReportForm({ slug }: { slug: string }) {
+  const [state, action, pending] = useActionState(reportJob, { message: '', success: false });
+  return (
+    <form action={action} className="report-form">
+      <input type="hidden" name="slug" value={slug} />
+      <div className="honeypot" aria-hidden="true">
+        <label>
+          Leave blank
+          <input name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
+      <label>
+        What seems wrong with this job?
+        <textarea
+          name="reason"
+          rows={6}
+          minLength={5}
+          maxLength={1000}
+          required
+          placeholder="For example: the official page has a different deadline, or someone is requesting payment."
+        />
+      </label>
+      <p>Please do not include your name, email, phone number or identity documents.</p>
+      <button className="button" disabled={pending || state.success}>
+        {pending ? 'Sending…' : 'Send report →'}
+      </button>
+      {state.message && (
+        <p role="status" className="form-message">
+          {state.message}
+        </p>
+      )}
+    </form>
+  );
+}

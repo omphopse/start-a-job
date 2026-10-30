@@ -1,10 +1,81 @@
-import {createSign} from 'node:crypto';
-import {z} from 'zod';
-import {site} from '../config';
-export async function notify(url:string,type:'URL_UPDATED'|'URL_DELETED',fetcher:typeof fetch=fetch){
- if(new URL(url).origin!==new URL(site.url).origin)return;
- const tasks:Promise<void>[]=[];
- if(process.env.INDEXNOW_KEY)tasks.push((async()=>{try{const response=await fetcher('https://api.indexnow.org/indexnow',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({host:new URL(site.url).hostname,key:process.env.INDEXNOW_KEY,keyLocation:`${site.url}/indexnow-key.txt`,urlList:[url]}),signal:AbortSignal.timeout(5000)});if(!response.ok)throw new Error(`HTTP ${response.status}`);}catch(error){console.error('IndexNow notification failed:',error instanceof Error?error.message:'request failed');}})());
- if(process.env.GOOGLE_INDEXING_SA_JSON)tasks.push((async()=>{try{const sa=z.object({client_email:z.email(),private_key:z.string().min(50)}).parse(JSON.parse(process.env.GOOGLE_INDEXING_SA_JSON!));const now=Math.floor(Date.now()/1000);const encode=(v:unknown)=>Buffer.from(JSON.stringify(v)).toString('base64url');const body=`${encode({alg:'RS256',typ:'JWT'})}.${encode({iss:sa.client_email,scope:'https://www.googleapis.com/auth/indexing',aud:'https://oauth2.googleapis.com/token',iat:now,exp:now+300})}`;const signer=createSign('RSA-SHA256');signer.update(body);const assertion=`${body}.${signer.sign(sa.private_key,'base64url')}`;const tokenResponse=await fetcher('https://oauth2.googleapis.com/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',assertion}),signal:AbortSignal.timeout(5000)});if(!tokenResponse.ok)throw new Error(`OAuth HTTP ${tokenResponse.status}`);const token=z.object({access_token:z.string()}).parse(await tokenResponse.json());const response=await fetcher('https://indexing.googleapis.com/v3/urlNotifications:publish',{method:'POST',headers:{Authorization:`Bearer ${token.access_token}`,'Content-Type':'application/json'},body:JSON.stringify({url,type}),signal:AbortSignal.timeout(5000)});if(!response.ok)throw new Error(`HTTP ${response.status}`);}catch(error){console.error('Google indexing notification failed:',error instanceof Error?error.message:'request failed');}})());
- await Promise.allSettled(tasks);
+import { createSign } from 'node:crypto';
+import { z } from 'zod';
+import { site } from '../config';
+export async function notify(
+  url: string,
+  type: 'URL_UPDATED' | 'URL_DELETED',
+  fetcher: typeof fetch = fetch,
+) {
+  if (new URL(url).origin !== new URL(site.url).origin) return;
+  const tasks: Promise<void>[] = [];
+  if (process.env.INDEXNOW_KEY)
+    tasks.push(
+      (async () => {
+        try {
+          const response = await fetcher('https://api.indexnow.org/indexnow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              host: new URL(site.url).hostname,
+              key: process.env.INDEXNOW_KEY,
+              keyLocation: `${site.url}/indexnow-key.txt`,
+              urlList: [url],
+            }),
+            signal: AbortSignal.timeout(5000),
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        } catch (error) {
+          console.error(
+            'IndexNow notification failed:',
+            error instanceof Error ? error.message : 'request failed',
+          );
+        }
+      })(),
+    );
+  if (process.env.GOOGLE_INDEXING_SA_JSON)
+    tasks.push(
+      (async () => {
+        try {
+          const sa = z
+            .object({ client_email: z.email(), private_key: z.string().min(50) })
+            .parse(JSON.parse(process.env.GOOGLE_INDEXING_SA_JSON!));
+          const now = Math.floor(Date.now() / 1000);
+          const encode = (v: unknown) => Buffer.from(JSON.stringify(v)).toString('base64url');
+          const body = `${encode({ alg: 'RS256', typ: 'JWT' })}.${encode({ iss: sa.client_email, scope: 'https://www.googleapis.com/auth/indexing', aud: 'https://oauth2.googleapis.com/token', iat: now, exp: now + 300 })}`;
+          const signer = createSign('RSA-SHA256');
+          signer.update(body);
+          const assertion = `${body}.${signer.sign(sa.private_key, 'base64url')}`;
+          const tokenResponse = await fetcher('https://oauth2.googleapis.com/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+              grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+              assertion,
+            }),
+            signal: AbortSignal.timeout(5000),
+          });
+          if (!tokenResponse.ok) throw new Error(`OAuth HTTP ${tokenResponse.status}`);
+          const token = z.object({ access_token: z.string() }).parse(await tokenResponse.json());
+          const response = await fetcher(
+            'https://indexing.googleapis.com/v3/urlNotifications:publish',
+            {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${token.access_token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ url, type }),
+              signal: AbortSignal.timeout(5000),
+            },
+          );
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        } catch (error) {
+          console.error(
+            'Google indexing notification failed:',
+            error instanceof Error ? error.message : 'request failed',
+          );
+        }
+      })(),
+    );
+  await Promise.allSettled(tasks);
 }

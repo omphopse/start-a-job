@@ -1,9 +1,73 @@
 'use client';
-import {useEffect,useState} from 'react';
-export function ApplyPanel({url,jobId,delay}:{url:string;jobId:string;delay:number}){
- const [remaining,setRemaining]=useState(delay);
- useEffect(()=>{const end=Date.now()+delay*1000;const timer=setInterval(()=>setRemaining(Math.max(0,Math.ceil((end-Date.now())/1000))),200);return()=>clearInterval(timer);},[delay]);
- const label=remaining>0?`Apply on official site (available in ${remaining}s)`:'Apply on official site ↗';
- const link=(sticky=false)=><a className={`button apply-link ${remaining?'waiting':''}`} href={url} target="_blank" rel="noopener noreferrer nofollow" aria-disabled={remaining>0} onClick={e=>{if(remaining>0){e.preventDefault();return;}void fetch('/api/apply-click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({job_id:jobId}),keepalive:true}).catch(()=>{});}}>{sticky&&remaining?`Apply on official site · ${remaining}s`:label}</a>;
- return <><section className="apply-panel" aria-labelledby="apply-heading"><div className="apply-symbol">↗</div><div><p className="eyebrow">READY FOR YOUR NEXT STEP?</p><h2 id="apply-heading">Apply with confidence.</h2><p>You will go to <strong>{new URL(url).host}</strong>.</p><p className="safety-note">Official page. Never pay money to apply.</p><p className="countdown-message" aria-live="polite" aria-atomic="true">{remaining>0?`Take a moment to review the requirements. Available in ${remaining} seconds.`:'Ready when you are. The official application opens in a new tab.'}</p><progress max={Math.max(1,delay)} value={delay-remaining} aria-label="Application link countdown"/>{link()}<noscript><p>JavaScript is off. You can follow the application link immediately.</p></noscript></div></section><div className="mobile-apply"><span>Apply directly. Always free.</span>{link(true)}</div></>;
+import { useEffect, useState } from 'react';
+export function ApplyPanel({ url, jobId, delay }: { url: string; jobId: string; delay: number }) {
+  const [remaining, setRemaining] = useState(delay);
+  useEffect(() => {
+    const end = Date.now() + delay * 1000;
+    const timer = setInterval(
+      () => setRemaining(Math.max(0, Math.ceil((end - Date.now()) / 1000))),
+      200,
+    );
+    return () => clearInterval(timer);
+  }, [delay]);
+  const label =
+    remaining > 0
+      ? `Apply on official site (available in ${remaining}s)`
+      : 'Apply on official site ↗';
+  const link = (sticky = false) => (
+    <a
+      className={`button apply-link ${remaining ? 'waiting' : ''}`}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      aria-disabled={remaining > 0}
+      onClick={(e) => {
+        if (remaining > 0) {
+          e.preventDefault();
+          return;
+        }
+        void fetch('/api/apply-click', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ job_id: jobId }),
+          keepalive: true,
+        }).catch(() => {});
+      }}
+    >
+      {sticky && remaining ? `Apply on official site · ${remaining}s` : label}
+    </a>
+  );
+  return (
+    <>
+      <section className="apply-panel" aria-labelledby="apply-heading">
+        <div className="apply-symbol">↗</div>
+        <div>
+          <p className="eyebrow">READY FOR YOUR NEXT STEP?</p>
+          <h2 id="apply-heading">Apply with confidence.</h2>
+          <p>
+            You will go to <strong>{new URL(url).host}</strong>.
+          </p>
+          <p className="safety-note">Official page. Never pay money to apply.</p>
+          <p className="countdown-message" aria-live="polite" aria-atomic="true">
+            {remaining > 0
+              ? `Take a moment to review the requirements. Available in ${remaining} seconds.`
+              : 'Ready when you are. The official application opens in a new tab.'}
+          </p>
+          <progress
+            max={Math.max(1, delay)}
+            value={delay - remaining}
+            aria-label="Application link countdown"
+          />
+          {link()}
+          <noscript>
+            <p>JavaScript is off. You can follow the application link immediately.</p>
+          </noscript>
+        </div>
+      </section>
+      <div className="mobile-apply">
+        <span>Apply directly. Always free.</span>
+        {link(true)}
+      </div>
+    </>
+  );
 }

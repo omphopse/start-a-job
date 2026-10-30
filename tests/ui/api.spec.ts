@@ -1,2 +1,17 @@
-import {test,expect} from '@playwright/test';
-test('public API and discovery feeds expose current public fields only',async({request})=>{const response=await request.get('/api/public/jobs.json?limit=5');expect(response.status()).toBe(200);expect(response.headers()['access-control-allow-origin']).toBe('*');const body=await response.json();expect(body.jobs).toHaveLength(5);expect(body.attribution).toBe('Source: DeskJobs');expect(body.jobs[0]).not.toHaveProperty('created_by');const job=await request.get(`/api/public/jobs/${body.jobs[0].slug}.json`);expect(job.status()).toBe(200);expect((await request.get('/api/public/jobs/expired-sample-job.json')).status()).toBe(404);expect((await request.get('/api/public/jobs.json?limit=101')).status()).toBe(400);expect((await request.post('/api/public/jobs.json',{data:{}})).status()).toBe(405);for(const route of ['/feed.xml','/openapi.json','/llms.txt'])expect((await request.get(route)).status()).toBe(200);});
+import { test, expect } from '@playwright/test';
+test('public API and discovery feeds expose current public fields only', async ({ request }) => {
+  const response = await request.get('/api/public/jobs.json?limit=5');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['access-control-allow-origin']).toBe('*');
+  const body = await response.json();
+  expect(body.jobs).toHaveLength(5);
+  expect(body.attribution).toBe('Source: DeskJobs');
+  expect(body.jobs[0]).not.toHaveProperty('created_by');
+  const job = await request.get(`/api/public/jobs/${body.jobs[0].slug}.json`);
+  expect(job.status()).toBe(200);
+  expect((await request.get('/api/public/jobs/expired-sample-job.json')).status()).toBe(404);
+  expect((await request.get('/api/public/jobs.json?limit=101')).status()).toBe(400);
+  expect((await request.post('/api/public/jobs.json', { data: {} })).status()).toBe(405);
+  for (const route of ['/feed.xml', '/openapi.json', '/llms.txt'])
+    expect((await request.get(route)).status()).toBe(200);
+});

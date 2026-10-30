@@ -1,2 +1,19 @@
-import {test,expect} from '@playwright/test';
-test('landing pages have counts, matching jobs, breadcrumbs and empty-page noindex',async({page,request},info)=>{await page.goto('/jobs/category/accounts/location/pune');await expect(page.getByRole('heading',{level:1})).toHaveText('Accounts jobs in Pune');await expect(page.getByRole('heading',{name:'Junior Accounts Assistant'})).toBeVisible();await page.screenshot({path:`screenshots/landing-${info.project.name}.png`,fullPage:true,caret:'initial'});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);const html=await (await request.get('/jobs/category/accounts/location/unknown-city')).text();expect(html).toContain('noindex');expect(html).not.toContain('"@type":"JobPosting"');expect((await request.post('/api/internal/expire')).status()).toBe(401);});
+import { test, expect } from '@playwright/test';
+test('landing pages have counts, matching jobs, breadcrumbs and empty-page noindex', async ({
+  page,
+  request,
+}, info) => {
+  await page.goto('/jobs/category/accounts/location/pune');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Accounts jobs in Pune');
+  await expect(page.getByRole('heading', { name: 'Junior Accounts Assistant' })).toBeVisible();
+  await page.screenshot({
+    path: `screenshots/landing-${info.project.name}.png`,
+    fullPage: true,
+    caret: 'initial',
+  });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const html = await (await request.get('/jobs/category/accounts/location/unknown-city')).text();
+  expect(html).toContain('noindex');
+  expect(html).not.toContain('"@type":"JobPosting"');
+  expect((await request.post('/api/internal/expire')).status()).toBe(401);
+});

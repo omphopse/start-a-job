@@ -1,4 +1,64 @@
 import Link from 'next/link';
-import type {Job} from '@/lib/jobs';
-import {reviewJob} from '@/app/admin/review/actions';
-export function ReviewQueue({jobs,preview=false}:{jobs:Job[];preview?:boolean}){return <section className="review-queue"><div className="dashboard-section-heading"><h2>Pending approval</h2><span>{jobs.length} awaiting a careful review</span></div>{jobs.length?jobs.map(j=><article key={j.id} className="review-card"><h3>{j.title}</h3><p>{j.company_name} · {j.location}</p><p className="plain-text">{j.summary}</p><p><a className="text-link" href={j.apply_url} target="_blank" rel="noopener noreferrer">Review official source: {new URL(j.apply_url).host} ↗</a></p><form action={reviewJob}><fieldset disabled={preview}><input type="hidden" name="id" value={j.id}/><label className="checkbox-label"><input type="checkbox" name="official_confirmed"/>I verified the official source and listing details.</label><label className="checkbox-label"><input type="checkbox" name="no_fees"/>I verified that this opportunity does not request fees.</label><label>Rejection reason (required when rejecting)<textarea name="reason" rows={2} maxLength={1000}/></label><div className="form-actions"><button className="button" name="intent" value="approve">Approve & publish</button><button className="button secondary" name="intent" value="reject">Reject with reason</button>{!preview&&<Link className="button secondary" href={`/admin/jobs/${j.id}`}>Edit details</Link>}</div></fieldset></form></article>):<div className="empty-state"><h3>You’re all caught up.</h3><p>New poster submissions will appear here for review.</p></div>}</section>}
+import type { Job } from '@/lib/jobs';
+import { reviewJob } from '@/app/admin/review/actions';
+export function ReviewQueue({ jobs, preview = false }: { jobs: Job[]; preview?: boolean }) {
+  return (
+    <section className="review-queue">
+      <div className="dashboard-section-heading">
+        <h2>Pending approval</h2>
+        <span>{jobs.length} awaiting a careful review</span>
+      </div>
+      {jobs.length ? (
+        jobs.map((j) => (
+          <article key={j.id} className="review-card">
+            <h3>{j.title}</h3>
+            <p>
+              {j.company_name} · {j.location}
+            </p>
+            <p className="plain-text">{j.summary}</p>
+            <p>
+              <a className="text-link" href={j.apply_url} target="_blank" rel="noopener noreferrer">
+                Review official source: {new URL(j.apply_url).host} ↗
+              </a>
+            </p>
+            <form action={reviewJob}>
+              <fieldset disabled={preview}>
+                <input type="hidden" name="id" value={j.id} />
+                <label className="checkbox-label">
+                  <input type="checkbox" name="official_confirmed" />I verified the official source
+                  and listing details.
+                </label>
+                <label className="checkbox-label">
+                  <input type="checkbox" name="no_fees" />I verified that this opportunity does not
+                  request fees.
+                </label>
+                <label>
+                  Rejection reason (required when rejecting)
+                  <textarea name="reason" rows={2} maxLength={1000} />
+                </label>
+                <div className="form-actions">
+                  <button className="button" name="intent" value="approve">
+                    Approve & publish
+                  </button>
+                  <button className="button secondary" name="intent" value="reject">
+                    Reject with reason
+                  </button>
+                  {!preview && (
+                    <Link className="button secondary" href={`/admin/jobs/${j.id}`}>
+                      Edit details
+                    </Link>
+                  )}
+                </div>
+              </fieldset>
+            </form>
+          </article>
+        ))
+      ) : (
+        <div className="empty-state">
+          <h3>You’re all caught up.</h3>
+          <p>New poster submissions will appear here for review.</p>
+        </div>
+      )}
+    </section>
+  );
+}

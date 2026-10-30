@@ -12,7 +12,10 @@
     "seo:check": "tsx scripts/seo-check.ts",
     "test:unit": "tsx --test tests/unit/*.test.ts",
     "prepare": "husky",
-    "start": "next start"
+    "start": "next start",
+    "seed": "tsx scripts/seed.ts",
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -30,11 +33,13 @@
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "chrome-launcher": "^1.2.2",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.3",
     "husky": "^9.1.7",
     "lighthouse": "^13.6.0",
     "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"
