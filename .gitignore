@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+.turbo/
+coverage/
+playwright-report/
+test-results/
+.netlify/
+.DS_Store
+*.pem
+*service-account*.json
+screenshots/
