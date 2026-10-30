@@ -12,3 +12,4 @@ test-results/
 *.pem
 *service-account*.json
 screenshots/
+*.tsbuildinfo

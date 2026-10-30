@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Home(){return <div className="container section"><p className="eyebrow">YOUR CAREER STARTS HERE</p><h1>Your first job.<br/><em>A world of possibilities.</em></h1><p className="lead">Fresh opportunities for fresh talent. Find desk and office jobs across India, and take your next step with confidence.</p><Link className="button" href="/jobs">Explore jobs →</Link></div>}
