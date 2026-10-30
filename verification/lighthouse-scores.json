@@ -1,0 +1,26 @@
+[
+  {
+    "page": "home",
+    "performance": 100,
+    "accessibility": 96,
+    "seo": 100,
+    "LCP": 759.432,
+    "CLS": 0
+  },
+  {
+    "page": "listing",
+    "performance": 98,
+    "accessibility": 100,
+    "seo": 100,
+    "LCP": 768.5228,
+    "CLS": 0
+  },
+  {
+    "page": "job",
+    "performance": 99,
+    "accessibility": 95,
+    "seo": 100,
+    "LCP": 762.3688,
+    "CLS": 0
+  }
+]
