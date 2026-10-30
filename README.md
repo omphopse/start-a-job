@@ -33,7 +33,7 @@ npm run seed
 npm run format
 ```
 
-`seo:check` and Lighthouse need a running server with at least five current jobs for the five-page SEO check. Use a separate staging database or local demo data. `SEO_BASE_URL` overrides localhost. Playwright starts a demo development server, uses a two-second apply delay, and captures screenshots in `/screenshots` at 390×844, 768×1024 and 1440×900. Overflow checks additionally cover 360 and 1024px. Stop another running localhost server before tests so the test environment is deterministic.
+`seo:check` and Lighthouse need a running server with at least five current jobs for the five-page SEO check. Use a separate staging database or local demo data. `SEO_BASE_URL` overrides localhost. Playwright starts an isolated demo development server on port 3100 with Supabase credentials cleared, uses a two-second apply delay, and captures screenshots in `/screenshots` at 390×844, 768×1024 and 1440×900. Overflow checks additionally cover 360 and 1024px. Your normal localhost:3000 development server can remain running during browser tests.
 
 The feature verification sequence is `scripts/verify.ps1` on Windows. CI runs the equivalent commands on Linux. Husky runs lint-staged and a project-wide typecheck before commits. Tests use PGlite (real embedded PostgreSQL) for RLS and trigger assertions; it supplies a minimal Supabase Auth schema. Staging tests must also verify real Supabase sessions and email delivery.
 
@@ -62,3 +62,4 @@ Use the daily expiry endpoint and maintenance checklist in SETUP.md. Keep report
 ## Verification records
 
 Screenshots are saved in `screenshots/`; final reference PNGs are committed in the documentation commit. Production Lighthouse JSON/HTML and the final verification summary are in `verification/`. Lab Lighthouse scores do not establish field INP or guarantee performance on a deployed host. No remote push or deployment is performed by this build.
+

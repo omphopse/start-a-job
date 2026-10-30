@@ -6,17 +6,21 @@ import { configured } from '@/lib/config';
 import { serverDb } from '@/lib/supabase/server';
 import { rateLimit, requestIdentity } from '@/lib/rate-limit';
 export async function login(_state: { message: string; sent: boolean }, form: FormData) {
+  const intent = form.get('intent');
+  if (intent === 'change') return { message: '', sent: false };
+  if (intent !== 'send' && intent !== 'verify')
+    return { message: 'Choose Send OTP or Verify code.', sent: _state.sent };
   const parsed = z
     .object({
       email: z.email().max(254),
-      token: z
-        .string()
-        .regex(/^\d{6}$/)
-        .or(z.literal('')),
+      token: z.string().regex(intent === 'verify' ? /^\d{6}$/ : /^$/),
     })
-    .safeParse({ email: form.get('email'), token: form.get('token') || '' });
+    .safeParse({ email: form.get('email'), token: intent === 'verify' ? form.get('token') : '' });
   if (!parsed.success)
-    return { message: 'Enter a valid email and a six-digit code if provided.', sent: false };
+    return {
+      message: 'Enter a valid email and, when verifying, a six-digit code.',
+      sent: _state.sent,
+    };
   if (!configured)
     return {
       message: 'Sign-in is not configured yet. Connect Supabase using SETUP.md.',
@@ -36,7 +40,7 @@ export async function login(_state: { message: string; sent: boolean }, form: Fo
     )
       return {
         message: 'Too many attempts. Please wait ten minutes before trying again.',
-        sent: !token,
+        sent: _state.sent,
       };
     const db = await serverDb();
     if (!token) {
@@ -55,7 +59,7 @@ export async function login(_state: { message: string; sent: boolean }, form: Fo
   } catch {
     return {
       message: 'Sign-in is temporarily unavailable. Please try again shortly.',
-      sent: false,
+      sent: _state.sent,
     };
   }
   redirect('/admin');

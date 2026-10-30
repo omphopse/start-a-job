@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next';
 const config: NextConfig = {
+  distDir: process.env.PLAYWRIGHT_TEST === 'true' ? '.next-test' : '.next',
   devIndicators: false,
   poweredByHeader: false,
   async headers() {

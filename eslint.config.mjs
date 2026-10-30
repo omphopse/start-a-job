@@ -4,5 +4,11 @@ import ts from 'eslint-config-next/typescript';
 export default defineConfig([
   ...next,
   ...ts,
-  globalIgnores(['.next/**', 'screenshots/**', 'test-results/**', 'playwright-report/**']),
+  globalIgnores([
+    '.next/**',
+    '.next-test/**',
+    'screenshots/**',
+    'test-results/**',
+    'playwright-report/**',
+  ]),
 ]);
