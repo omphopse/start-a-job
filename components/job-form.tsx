@@ -92,7 +92,8 @@ export function JobForm({
               />
               {name === 'application' && (
                 <small id="application-help">
-                  Enter one official HTTPS URL or one email address.
+                  Enter one official HTTPS URL or one email address. If you enter an email, this
+                  email is visible to everyone; use a role address, never a personal email.
                 </small>
               )}
             </label>
