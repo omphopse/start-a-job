@@ -2,6 +2,38 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import type { AxeResults } from 'axe-core';
 
+test('maximum-length unbroken job details wrap within the viewport', async ({ page }) => {
+  await page.goto('/jobs/customer-support-associate-northstar-services-bengaluru-s1');
+  await page.waitForLoadState('networkidle');
+  for (const selector of ['h1', '.detail-company', '.facts-grid dd']) {
+    await page
+      .locator(selector)
+      .first()
+      .evaluate((element) => {
+        element.textContent = 'X'.repeat(120);
+      });
+  }
+  await page
+    .locator('.detail-header .job-meta span')
+    .first()
+    .evaluate((element) => {
+      element.textContent = 'Y'.repeat(100);
+    });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('compact header keeps the brand on one line without horizontal overflow', async ({ page }) => {
+  for (const width of [360, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto('/');
+    const brand = await page.locator('header .brand').boundingBox();
+    expect(brand!.height).toBeLessThanOrEqual(45);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  }
+});
+
 test('public pages pass automated WCAG A and AA checks', async ({ page }) => {
   test.setTimeout(60_000);
   for (const path of [

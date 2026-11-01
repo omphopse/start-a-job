@@ -11,6 +11,7 @@
 }
 body {
   margin: 0;
+  overflow-wrap: anywhere;
   color: var(--ink);
   background: #fff;
   font:
@@ -79,6 +80,8 @@ button,
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .brand-icon {
   background: var(--green);
@@ -92,6 +95,18 @@ button,
 .brand-dot {
   color: var(--green);
   font-size: 24px;
+}
+@media (max-width: 380px) {
+  .site-header .nav {
+    gap: 10px;
+  }
+  .site-header .brand {
+    font-size: 21px;
+    gap: 6px;
+  }
+  .site-header nav {
+    gap: 10px;
+  }
 }
 nav {
   display: flex;
@@ -772,6 +787,10 @@ footer {
   border-bottom: 1px solid var(--line);
 }
 .breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 8px;
   font-size: 12px;
   color: var(--muted);
   margin-bottom: 26px;
