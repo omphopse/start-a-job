@@ -13,7 +13,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ fil
   else if (file === 'jobs.xml')
     urls = (await allCurrentJobs()).map((j) => ({
       path: `/jobs/${j.slug}`,
-      updated: j.updated_at,
+      updated: j.published_at || undefined,
     }));
   else if (file === 'categories.xml') {
     const paths = new Map<string, string>();
@@ -24,7 +24,8 @@ export async function GET(_request: Request, { params }: { params: Promise<{ fil
         `/jobs/location/${slugify(j.state)}`,
         `/jobs/category/${slugify(j.category)}/location/${slugify(j.location)}`,
       ])
-        if (!paths.has(path) || paths.get(path)! < j.updated_at) paths.set(path, j.updated_at);
+        if (j.published_at && (!paths.has(path) || paths.get(path)! < j.published_at))
+          paths.set(path, j.published_at);
     urls = [...paths].map(([path, updated]) => ({ path, updated }));
   } else return new Response('Not found', { status: 404 });
   return new Response(

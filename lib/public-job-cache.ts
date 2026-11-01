@@ -4,6 +4,7 @@ import { publicDb } from './supabase/public';
 import { today } from './jobs';
 import {
   PUBLIC_JOB_COLUMNS,
+  publicJobRow,
   publicJobsTag,
   type PublicJob,
   type JobCardData,
@@ -19,25 +20,20 @@ export const cachedPublicJob = unstable_cache(
     const timing = createPerformanceTrace('public-job-cache-fill');
     const db = publicDb(timing.fetch);
     const { data, error } = await timing.measure('query.publicJob', () =>
-      db
-        .from('jobs')
-        .select(PUBLIC_JOB_COLUMNS)
-        .eq('slug', slug)
-        .eq('status', 'published')
-        .maybeSingle(),
+      db.rpc('get_public_job', { p_slug: slug }).select(PUBLIC_JOB_COLUMNS).maybeSingle(),
     );
     if (error) throw error;
-    if (data) return data as unknown as PublicJob;
+    if (data) return publicJobRow(data);
     // Preserve the existing noindex expired page, using the narrowly scoped
     // existing RPC which returns only published jobs whose deadline has passed.
     const expired = await timing.measure('query.expiredPublicJob', () =>
       db.rpc('get_expired_job', { p_slug: slug }).select(PUBLIC_JOB_COLUMNS),
     );
     if (expired.error) throw expired.error;
-    if (expired.data?.[0]) return expired.data[0] as unknown as PublicJob;
+    if (expired.data?.[0]) return publicJobRow(expired.data[0]);
     throw new MissingPublicJob();
   },
-  ['public-job-v2-application-email', process.env.NEXT_PUBLIC_SUPABASE_URL || 'unconfigured'],
+  ['public-job-v3-private-metadata', process.env.NEXT_PUBLIC_SUPABASE_URL || 'unconfigured'],
   {
     revalidate: 60,
     tags: [publicJobsTag],
@@ -49,9 +45,8 @@ export const cachedSimilarJobs = unstable_cache(
     const timing = createPerformanceTrace('similar-jobs-cache-fill');
     const { data, error } = await timing.measure('query.similarJobs', () =>
       publicDb(timing.fetch)
-        .from('jobs')
+        .rpc('search_public_jobs', { p_query: null })
         .select(PUBLIC_JOB_COLUMNS)
-        .eq('status', 'published')
         .eq('category', category)
         .or(`last_date.is.null,last_date.gte.${date || today()}`)
         .order('published_at', { ascending: false })
@@ -60,7 +55,10 @@ export const cachedSimilarJobs = unstable_cache(
     if (error) throw error;
     return data as unknown as JobCardData[];
   },
-  ['public-similar-jobs-v1', process.env.NEXT_PUBLIC_SUPABASE_URL || 'unconfigured'],
+  [
+    'public-similar-jobs-v2-private-metadata',
+    process.env.NEXT_PUBLIC_SUPABASE_URL || 'unconfigured',
+  ],
   {
     revalidate: 60,
     tags: [publicJobsTag],

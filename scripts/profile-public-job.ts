@@ -31,7 +31,7 @@ async function main() {
     // single attempt rather than measure retry backoff as database latency.
     const deleted = await db
       .from('deleted_jobs')
-      .select(PUBLIC_JOB_COLUMNS)
+      .select('slug')
       .eq('slug', slug)
       .abortSignal(AbortSignal.timeout(10_000))
       .maybeSingle()
@@ -46,10 +46,9 @@ async function main() {
     if (deleted.error) break;
     start = performance.now();
     const job = await db
-      .from('jobs')
+      .rpc('search_public_jobs', { p_query: null })
       .select(PUBLIC_JOB_COLUMNS)
       .eq('slug', slug)
-      .eq('status', 'published')
       .abortSignal(AbortSignal.timeout(10_000))
       .maybeSingle()
       .retry(false);
@@ -64,9 +63,8 @@ async function main() {
     if (!job.data) continue;
     start = performance.now();
     const similar = await db
-      .from('jobs')
+      .rpc('search_public_jobs', { p_query: null })
       .select(PUBLIC_JOB_COLUMNS)
-      .eq('status', 'published')
       .eq('category', (job.data as unknown as PublicJob).category)
       .or(`last_date.is.null,last_date.gte.${today()}`)
       .order('published_at', { ascending: false })

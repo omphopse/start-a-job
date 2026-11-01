@@ -6,7 +6,12 @@ import { publicDb } from './supabase/public';
 import { isCurrent, today, type Job } from './jobs';
 import { sampleJobs, expiredSample, emailSample } from './sample-jobs';
 import { cachedPublicJob, cachedSimilarJobs, MissingPublicJob } from './public-job-cache';
-import { PUBLIC_JOB_COLUMNS, type PublicJob, type JobCardData } from './public-job-fields';
+import {
+  publicJobRow,
+  PUBLIC_JOB_COLUMNS,
+  type PublicJob,
+  type JobCardData,
+} from './public-job-fields';
 import { requestPerformance } from './request-performance';
 export type Filters = {
   q?: string;
@@ -54,19 +59,16 @@ export async function listJobs(
   const page = Math.max(1, Math.min(10000, Number(f.page) || 1));
   if (demo()) {
     const jobs = filterJobs([...sampleJobs, expiredSample], f);
-    return { jobs: jobs.slice((page - 1) * pageSize, page * pageSize), count: jobs.length };
+    return {
+      jobs: jobs.slice((page - 1) * pageSize, page * pageSize).map(publicJobRow),
+      count: jobs.length,
+    };
   }
   if (!configured) return { jobs: [], count: 0 };
   const db = publicDb();
-  let query = (
-    f.q
-      ? db
-          .rpc('search_public_jobs', { p_query: f.q }, { count: 'exact' })
-          .select(PUBLIC_JOB_COLUMNS)
-      : db.from('jobs').select(PUBLIC_JOB_COLUMNS, { count: 'exact' })
-  )
-    .eq('status', 'published')
-    .or(`last_date.is.null,last_date.gte.${today()}`);
+  let query = db
+    .rpc('search_public_jobs', { p_query: f.q || null }, { count: 'exact' })
+    .select(PUBLIC_JOB_COLUMNS);
   for (const key of [
     'state',
     'location',
@@ -89,11 +91,13 @@ export async function listJobs(
     return { jobs: [], count: firstPage.count };
   }
   if (error) throw error;
-  return { jobs: data as unknown as PublicJob[], count: count || 0 };
+  return { jobs: ((data as unknown as unknown[]) || []).map(publicJobRow), count: count || 0 };
 }
 export const getJob = cache(async (slug: string): Promise<PublicJob | null> => {
-  if (demo())
-    return [...sampleJobs, expiredSample, emailSample].find((j) => j.slug === slug) || null;
+  if (demo()) {
+    const job = [...sampleJobs, expiredSample, emailSample].find((j) => j.slug === slug);
+    return job ? publicJobRow(job) : null;
+  }
   if (!configured) return null;
   try {
     return await requestPerformance().measure('public.job.read', () => cachedPublicJob(slug));

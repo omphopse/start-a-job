@@ -86,6 +86,10 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
       [job.title],
     );
     assert.equal(searched.rows.length, 1);
+    const detail = await db.query<Record<string, unknown>>('select * from get_public_job($1)', [
+      job.slug,
+    ]);
+    assert.deepEqual(Object.keys(detail.rows[0]).sort(), [...PUBLIC_JOB_COLUMN_NAMES].sort());
     assert.deepEqual(Object.keys(searched.rows[0]).sort(), [...PUBLIC_JOB_COLUMN_NAMES].sort());
     await db.exec('reset role');
     await db.exec(
@@ -123,12 +127,21 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
       0,
       'the definer search function must exclude expired jobs even though it bypasses RLS',
     );
+    assert.equal((await db.query('select * from get_public_job($1)', [job.slug])).rows.length, 0);
     const expired = await db.query<Record<string, unknown>>('select * from get_expired_job($1)', [
       job.slug,
     ]);
     assert.equal(expired.rows.length, 1);
     assert.equal(expired.rows[0].title, job.title);
-    for (const column of ['created_by', 'approved_by', 'rejection_reason', 'search_document'])
+    for (const column of [
+      'created_by',
+      'approved_by',
+      'rejection_reason',
+      'search_document',
+      'created_at',
+      'updated_at',
+      'status',
+    ])
       assert.equal(column in expired.rows[0], false);
     await db.exec('reset role');
     await db.exec(
@@ -141,8 +154,12 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
     await db.exec(
       readFileSync('supabase/migrations/202611010008_public_search_boundary.sql', 'utf8'),
     );
+    await db.exec(
+      readFileSync('supabase/migrations/202611010008_public_search_boundary.sql', 'utf8'),
+    );
     await db.exec('set role anon');
-    await assert.rejects(db.query('select search_document from jobs'), /permission denied/);
+    for (const field of ['search_document', 'created_at', 'updated_at', 'status'])
+      await assert.rejects(db.query(`select ${field} from jobs`), /permission denied/);
   } finally {
     await db.close();
   }

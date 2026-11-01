@@ -2,7 +2,18 @@ import type { Job } from './jobs';
 
 // Explicit projections keep creator IDs, moderation notes and search vectors
 // out of shared public caches and serialized page props.
-export type PublicJob = Omit<Job, 'created_by' | 'approved_by' | 'rejection_reason'>;
+export type PublicJob = Omit<
+  Job,
+  'created_by' | 'approved_by' | 'rejection_reason' | 'created_at' | 'updated_at'
+>;
+// Every public RPC enforces published visibility; status is derived, never selected.
+export const publicJobRow = (row: unknown): PublicJob =>
+  ({
+    ...Object.fromEntries(
+      PUBLIC_JOB_COLUMN_NAMES.map((column) => [column, (row as Record<string, unknown>)[column]]),
+    ),
+    status: 'published',
+  }) as PublicJob;
 export type JobCardData = Pick<
   Job,
   | 'id'
@@ -40,10 +51,7 @@ export const PUBLIC_JOB_COLUMN_NAMES = [
   'eligibility',
   'documents_needed',
   'how_to_apply',
-  'status',
   'published_at',
-  'created_at',
-  'updated_at',
 ] as const;
 export const PUBLIC_JOB_COLUMNS = PUBLIC_JOB_COLUMN_NAMES.join(',');
 export const publicJobColumns = PUBLIC_JOB_COLUMNS;

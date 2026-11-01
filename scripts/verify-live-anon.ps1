@@ -8,7 +8,7 @@ $source = Get-Content -Raw (Join-Path $PSScriptRoot '../lib/public-job-fields.ts
 $block = [regex]::Match($source, 'PUBLIC_JOB_COLUMN_NAMES = \[([\s\S]*?)\] as const').Groups[1].Value
 $publicColumns = @([regex]::Matches($block, "'([a-z_]+)'") | ForEach-Object { $_.Groups[1].Value })
 if ($publicColumns.Count -eq 0) { throw 'Cannot read public column allow-list.' }
-$internalColumns = @('created_by', 'approved_by', 'rejection_reason', 'search_document', '*')
+$internalColumns = @('created_by', 'approved_by', 'rejection_reason', 'search_document', 'created_at', 'updated_at', 'status', '*')
 $failed = $false
 foreach ($col in ($internalColumns + $publicColumns)) {
   try {

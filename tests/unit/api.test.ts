@@ -21,6 +21,9 @@ test('shared public query projections exclude private moderation and identity fi
       'approved_by',
       'rejection_reason',
       'search_document',
+      'created_at',
+      'updated_at',
+      'status',
       'email',
     ])
       assert.equal(selected.has(field), false, `${field} must not enter a public cache`);

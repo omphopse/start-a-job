@@ -20,7 +20,7 @@ export function jobSchema(job: PublicJob) {
         .filter(([, text]) => text?.trim())
         .map(([title, text]) => `<h2>${title}</h2><p>${escapeHtml(text)}</p>`)
         .join(''),
-    datePosted: job.published_at || job.created_at,
+    ...(job.published_at ? { datePosted: job.published_at } : {}),
     ...(job.last_date ? { validThrough: `${job.last_date}T23:59:59+05:30` } : {}),
     employmentType: (
       {

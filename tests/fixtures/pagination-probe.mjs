@@ -5,9 +5,16 @@ process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'audit-only-anon-key';
 process.env.DEMO_MODE = 'false';
 process.env.PERF_REQUESTS = '0';
 const requests = [];
-globalThis.fetch = async (input) => {
+globalThis.fetch = async (input, init) => {
   const url = new URL(String(input));
   requests.push(url);
+  assert.equal(url.pathname, '/rest/v1/rpc/search_public_jobs');
+  assert.equal(new Headers(init?.headers).get('Prefer')?.includes('count=exact'), true);
+  for (const field of ['status', 'created_at', 'updated_at', 'search_document']) {
+    assert.equal(url.searchParams.has(field), false);
+    assert.equal(url.searchParams.get('select').split(',').includes(field), false);
+    assert.equal(url.searchParams.get('order')?.includes(field) || false, false);
+  }
   if (url.searchParams.get('offset') === '199980')
     return Response.json(
       { code: 'PGRST103', message: 'Requested range not satisfiable' },

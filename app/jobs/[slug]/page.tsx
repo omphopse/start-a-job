@@ -173,7 +173,6 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
           <section className="full-details">
             <h2>About this opportunity</h2>
             <p className="plain-text">{job.summary}</p>
-            <p className="updated">Last updated {job.updated_at.slice(0, 10)}</p>
           </section>
           {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
             <>
