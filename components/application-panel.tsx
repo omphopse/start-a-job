@@ -24,6 +24,7 @@ export function ApplicationPanel({
   return (
     <EmailApplyPanel
       key={job.id}
+      jobId={job.id}
       email={method.email}
       title={job.title}
       company={job.company_name}

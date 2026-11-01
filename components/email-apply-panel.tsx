@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 import { applicationMailto } from '@/lib/application-method';
 
 export function EmailApplyPanel({
+  jobId,
   email,
   title,
   company,
   delay,
 }: {
+  jobId: string;
   email: string;
   title: string;
   company: string;
@@ -53,7 +55,18 @@ export function EmailApplyPanel({
             Send Application (available in {remaining}s)
           </button>
         ) : (
-          <a className="button apply-link" href={applicationMailto(email, title, company)}>
+          <a
+            className="button apply-link"
+            href={applicationMailto(email, title, company)}
+            onClick={() => {
+              void fetch('/api/apply-click', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ job_id: jobId }),
+                keepalive: true,
+              }).catch(() => {});
+            }}
+          >
             Send Application
           </a>
         )}

@@ -1,5 +1,25 @@
 import { test, expect } from '@playwright/test';
 
+test('email applications log only the job ID after the countdown', async ({ page }) => {
+  const clicks: unknown[] = [];
+  await page.route('**/api/apply-click', async (route) => {
+    clicks.push(route.request().postDataJSON());
+    await route.fulfill({ json: { recorded: true } });
+  });
+  await page.clock.install();
+  await page.goto('/jobs/email-application-sample-job');
+  await expect(page.getByRole('button', { name: /Send Application/ })).toBeDisabled();
+  expect(clicks).toEqual([]);
+  await page.clock.fastForward(2100);
+  const send = page.getByRole('link', { name: 'Send Application', exact: true });
+  // Avoid launching an external mail application in the browser test.
+  await send.evaluate((element) =>
+    element.addEventListener('click', (event) => event.preventDefault()),
+  );
+  await send.click();
+  await expect.poll(() => clicks).toEqual([{ job_id: '00000000-0000-4000-8000-000000000100' }]);
+});
+
 test('email applications reveal the address and mail link after the configured countdown', async ({
   page,
   request,
