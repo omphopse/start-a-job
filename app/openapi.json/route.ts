@@ -55,7 +55,7 @@ export function GET() {
     info: {
       title: `${site.name} public jobs`,
       version: '0.1.0',
-      description: `Published, non-expired jobs only. Attribute as Source: ${site.name}. No authentication required.`,
+      description: `Published, non-expired jobs only. Content must be attributed as Source: ${site.name} and linked to each job’s canonical_url. No authentication required.`,
     },
     servers: [{ url: site.url }],
     paths: {

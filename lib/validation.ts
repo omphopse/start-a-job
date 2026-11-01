@@ -49,8 +49,17 @@ export const jobInput = z
   });
 // A single form input produces both columns, explicitly clearing the old method.
 export const jobFormInput = z
-  .object({ ...jobFields, application: applicationInput })
-  .transform(({ application, ...fields }) => ({ ...fields, ...application }));
+  .object({
+    ...jobFields,
+    original_summary: z.literal('on', {
+      error: 'Confirm that you wrote the summary in your own words.',
+    }),
+    application: applicationInput,
+  })
+  .transform(({ application, original_summary, ...fields }) => {
+    void original_summary;
+    return { ...fields, ...application };
+  });
 export const slugify = (text: string) =>
   text
     .toLowerCase()

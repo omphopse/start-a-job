@@ -46,7 +46,12 @@ test('application input trims URLs and normalizes only the email domain', () => 
     assert.equal(applicationInput.safeParse(input).success, false, input);
 });
 test('create/edit form values always replace both application columns', () => {
-  const fields = { ...sampleJobs[0], official_confirmed: 'on', no_fees: 'on' };
+  const fields = {
+    ...sampleJobs[0],
+    original_summary: 'on',
+    official_confirmed: 'on',
+    no_fees: 'on',
+  };
   const url = jobFormInput.parse({ ...fields, application: 'https://company.com/jobs' });
   const email = jobFormInput.parse({ ...fields, application: 'Jobs@COMPANY.COM' });
   assert.equal(url.apply_url, 'https://company.com/jobs');

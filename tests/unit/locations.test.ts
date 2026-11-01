@@ -11,6 +11,7 @@ test('job form accepts a country with blank city and state', () => {
     state: '',
     country: 'Canada',
     application: 'jobs@example.com',
+    original_summary: 'on',
     official_confirmed: 'on',
     no_fees: 'on',
   };

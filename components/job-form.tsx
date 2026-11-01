@@ -63,6 +63,7 @@ export function JobForm({
         String(job?.[name as keyof Job] || ''),
       ]),
     ),
+    original_summary: '',
     official_confirmed: '',
     no_fees: '',
   }));
@@ -155,7 +156,9 @@ export function JobForm({
           >
             AI summary (coming soon)
           </button>
-          <p id="ai-summary-help">Write or paste the job details below.</p>
+          <p id="ai-summary-help">
+            Write the summary in your own words. Do not paste the employer&apos;s text.
+          </p>
         </div>
         {[
           ['summary', 'Summary / full details'],
@@ -174,6 +177,16 @@ export function JobForm({
             />
           </label>
         ))}
+        <label className="checkbox-label">
+          <input
+            type="checkbox"
+            name="original_summary"
+            checked={values.original_summary === 'on'}
+            onChange={(event) => update('original_summary', event.target.checked ? 'on' : '')}
+            required
+          />
+          I wrote this summary in my own words
+        </label>
         <label className="checkbox-label">
           <input
             type="checkbox"
