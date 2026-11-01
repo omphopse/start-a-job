@@ -62,3 +62,6 @@ Use the daily expiry endpoint and maintenance checklist in SETUP.md. Keep report
 ## Verification records
 
 Screenshots are saved in `screenshots/`; final reference PNGs are committed in the documentation commit. Production Lighthouse JSON/HTML and the final verification summary are in `verification/`. Lab Lighthouse scores do not establish field INP or guarantee performance on a deployed host. No remote push or deployment is performed by this build.
+
+### Anonymous boundary verification (Windows PowerShell 5.1)
+Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in the current process, then run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-live-anon.ps1`. This explicitly contacts that project; check the printed project ref first. Never use a service-role key. The script prints only fixed probe names, HTTP status, sanitized error codes and a bounded summary, never row values or credentials. HTTP 200 (including `[]`) is readable; 401/403 or SQLSTATE 42501 is denied; configuration/network failures stop the run immediately. Application emails are public by design. List and similar jobs share the search RPC; the probes exercise their filters plus detail and expired detail, long/special input and pagination abuse. The PostgREST project maximum is expected to be at most 1,000 rows; no row contents are printed.

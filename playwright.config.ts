@@ -9,7 +9,10 @@ export default defineConfig({
     { name: 'desktop', use: { viewport: { width: 1440, height: 900 } } },
   ],
   webServer: {
-    command: 'npm run dev -- --port 3100',
+    command:
+      process.env.TEST_WEBPACK === 'true'
+        ? 'npm run dev -- --webpack --port 3100'
+        : 'npm run dev -- --port 3100',
     url: 'http://localhost:3100',
     reuseExistingServer: false,
     env: {
