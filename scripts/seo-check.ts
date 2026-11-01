@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { z } from 'zod';
-import { applicationMailto } from '../lib/application-method';
+import { verifyApplicationHtml, verifyLocationSchema } from '../lib/seo/verify-job-html';
 const base = process.env.SEO_BASE_URL || 'http://localhost:3000';
 const jobSchema = z.object({
   id: z.uuid(),
@@ -40,15 +40,7 @@ async function main() {
           html.includes(text.replaceAll('&', '&amp;')),
           `${path} missing ${text.slice(0, 35)} in no-JS HTML`,
         );
-    const applicationHref =
-      job.source_apply_url ||
-      (job.application_email ? applicationMailto(job.application_email) : null);
-    assert.ok(applicationHref, 'An application method is required');
-    assert.ok(
-      html.includes(`href="${applicationHref.replaceAll('&', '&amp;').replaceAll("'", '&#x27;')}"`),
-      'Real apply anchor missing',
-    );
-    if (job.source_apply_url) assert.ok(html.includes('noopener noreferrer nofollow'));
+    verifyApplicationHtml(job, html);
     const json = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
       .map((m) => JSON.parse(m[1]))
       .find((s) => s['@type'] === 'JobPosting');
@@ -67,7 +59,7 @@ async function main() {
       assert.ok(field in json, `${field} missing`);
     assert.equal(json.title, job.title);
     assert.equal(json.hiringOrganization.name, job.company);
-    assert.equal(json.jobLocation.address.addressLocality, job.location);
+    verifyLocationSchema(job.location, json.jobLocation.address);
     if (job.last_date) assert.ok(json.validThrough.startsWith(job.last_date));
     console.log(`PASS no-JS HTML + JSON-LD: ${path}`);
   }
