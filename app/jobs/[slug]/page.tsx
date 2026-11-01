@@ -1,3 +1,4 @@
+import { jobDefaultValidDays } from '@/lib/closing-date';
 import { AdSlot } from '@/components/ad-slot';
 import { metadata } from '@/lib/seo/metadata';
 import { JsonLd } from '@/components/json-ld';
@@ -111,6 +112,7 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
           </p>
         )}
       </div>
+      {!job.last_date && jobDefaultValidDays() === 0 && <p>No closing date has been specified.</p>}
       {!current && (
         <section className="expired-notice">
           <h2>This job has expired</h2>

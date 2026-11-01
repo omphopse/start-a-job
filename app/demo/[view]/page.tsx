@@ -1,9 +1,10 @@
+import { jobDefaultValidDays } from '@/lib/closing-date';
 import { CategoryForm } from '@/components/category-form';
 import { ReviewQueue } from '@/components/review-queue';
 import { UsersPanel } from '@/components/users-panel';
 import { notFound } from 'next/navigation';
 import { demo } from '@/lib/data';
-import { sampleJobs } from '@/lib/sample-jobs';
+import { sampleJobs, expiredSample } from '@/lib/sample-jobs';
 import { Dashboard } from '@/components/dashboard';
 import { JobForm } from '@/components/job-form';
 export const dynamic = 'force-dynamic';
@@ -49,7 +50,7 @@ export default async function Demo({ params }: { params: Promise<{ view: string 
             role: 'admin',
             is_active: true,
           }}
-          jobs={sampleJobs.map((j, i) => ({
+          jobs={[...sampleJobs, expiredSample].map((j, i) => ({
             ...j,
             status: i < 3 ? 'pending' : i === 3 ? 'draft' : j.status,
           }))}
@@ -59,7 +60,7 @@ export default async function Demo({ params }: { params: Promise<{ view: string 
           <h1>Job form preview</h1>
           <p className="demo-notice">Read-only sample. Sign in to create a real submission.</p>
           <CategoryForm preview />
-          <JobForm job={sampleJobs[0]} preview />
+          <JobForm defaultValidDays={jobDefaultValidDays()} job={sampleJobs[0]} preview />
         </>
       )}
     </div>

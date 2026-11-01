@@ -82,3 +82,8 @@ Do not rename previously applied files to manufacture sequential version numbers
 10. `202611010009_published_required`
 
 There is no `202611010002`; the first two migrations precede the November sequence. This is ten files ending at 009, rather than nine files numbered 001..009. On an isolated local Supabase stack, `supabase start` then `supabase db reset --local` verifies the full chain. Never substitute `--linked` for this test.
+
+### Closing dates and expired/deleted pages
+An empty closing date is saved as today's India calendar date plus `JOB_DEFAULT_VALID_DAYS` (default 30). Set `JOB_DEFAULT_VALID_DAYS=0` to disable the fallback; only then does an undated detail show “No closing date”. The form displays the fallback and lets posters/admins select another date. Past dates trigger a visible warning and remain saveable. Admin approval also supplies a fallback for undated older submissions. Expired badges and the Expired filter apply to both admin and poster dashboards independently of moderation status.
+
+An expired published job's slug returns **HTTP 200**, with a friendly notice, current similar jobs, `noindex`, no active Apply control and no JobPosting JSON-LD. Keeping the page readable preserves useful context for old links. Current listing/search/sitemap/feed/API queries exclude it. A known deletion of a previously public job returns **410** through the tombstone proxy; an unknown slug returns **404**. Demo mode includes the fictional `deleted-sample-job` tombstone so the HTTP contract is testable without a remote project.

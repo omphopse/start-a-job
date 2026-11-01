@@ -1,3 +1,4 @@
+import { jobDefaultValidDays } from '@/lib/closing-date';
 import { listCategories } from '@/lib/categories';
 import { CategoryForm } from '@/components/category-form';
 import { AdminJobControls } from '@/components/admin-job-controls';
@@ -57,7 +58,12 @@ export default async function Edit({ params }: { params: Promise<{ id: string }>
       )}
       {profile.role === 'admin' && job && <AdminJobControls id={job.id} />}
       {profile.role === 'admin' && <CategoryForm />}
-      <JobForm job={job} admin={profile.role === 'admin'} categories={categories} />
+      <JobForm
+        defaultValidDays={jobDefaultValidDays()}
+        job={job}
+        admin={profile.role === 'admin'}
+        categories={categories}
+      />
     </div>
   );
 }

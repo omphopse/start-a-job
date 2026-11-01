@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { requireProfile } from '@/lib/auth';
 import { serverDb } from '@/lib/supabase/server';
+import { resolveClosingDate } from '@/lib/closing-date';
 import { applicationUrl } from '@/lib/application-method';
 import { jobInput } from '@/lib/validation';
 import { refreshJobs } from '@/lib/revalidate';
@@ -51,6 +52,7 @@ export async function reviewJob(form: FormData) {
             intent === 'approve'
               ? {
                   status: 'published',
+                  last_date: resolveClosingDate(job.last_date),
                   approved_by: profile.id,
                   rejection_reason: null,
                   apply_url: job.apply_url ? applicationUrl.parse(job.apply_url) : null,

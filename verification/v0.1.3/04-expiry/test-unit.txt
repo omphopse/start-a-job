@@ -1,0 +1,51 @@
+
+> desk-jobs@0.1.0 test:unit
+> tsx --test tests/unit/*.test.ts
+
+✔ anonymous probe classifies responses in Windows PowerShell 5.1 (1379.5143ms)
+✔ API limits and field allowlist protect private data (17.9588ms)
+✔ shared public query projections exclude private moderation and identity fields (1.0194ms)
+✔ application input trims URLs and normalizes only the email domain (10.4932ms)
+✔ create/edit form values always replace both application columns (17.3778ms)
+✔ email links encode recipient and subject without prefilled private data (3.4286ms)
+✔ email and URL applications render their configured countdown (29.6846ms)
+✔ malformed and malicious application URLs return validation errors without throwing (14.7246ms)
+✔ URL validation cleans tracking but preserves functional IDs, signed parameters and anchors (9.254ms)
+✔ aggregator warnings include subdomains without blocking otherwise valid URLs (1.5386ms)
+✔ closing defaults use calendar arithmetic, preserve chosen dates, and can be disabled (41.2709ms)
+✔ site URL is absolute (1.2638ms)
+✔ out-of-range PostgREST results preserve the requested filters and public total (5056.2147ms)
+✔ public filter boundaries match the accepted page cap and job location lengths (29.2613ms)
+✔ current visibility excludes expired and unpublished jobs (49.1129ms)
+✔ sample data is visibly fictional and uses example.com (0.7523ms)
+✔ migration includes DB-level poster guard and RLS on every table (0.6684ms)
+✔ job form accepts a country with blank city and state (7.922ms)
+✔ location API validates requests, normalizes provider options and handles failures (79.1691ms)
+✔ SEO notifications do nothing without configuration and tolerate failure (40.2428ms)
+✔ performance tracing is opt-in and never logs request secrets (47.4695ms)
+✔ migration 009 stays synchronized with the shared publishing definition (12.3143ms)
+✔ fresh PostgreSQL schema and direct publishing enforce required fields and keep optional text optional (8457.0354ms)
+✔ common private-key containers and service accounts are ignored while the env template is trackable (181.6941ms)
+✔ PostgreSQL RLS: anonymous cannot read drafts; poster cannot publish (8510.9049ms)
+✔ click logging can only be executed by the rate-limited server role (7478.6428ms)
+✔ anonymous table and expired RPC reads cannot select private job metadata (2380.843ms)
+✔ SEO verifier accepts a real server-rendered URL apply anchor (42.5976ms)
+✔ SEO verifier accepts delayed email disclosure without demanding an immediate mailto link (5.2732ms)
+✔ SEO verifier accepts an omitted optional city in actual JobPosting markup (1.6352ms)
+✔ JobPosting exactly matches visible job fields and excludes invented salary (8.7408ms)
+✔ empty optional sections and deadline are omitted from structured data (0.9626ms)
+✔ public tombstone cache coalesces concurrent reads, expires and evicts (2.9152ms)
+✔ failed tombstone reads are retried rather than cached as public access (2.5416ms)
+✔ deletion tombstones expose only jobs known to have been public, never drafts or unclassified history (7663.974ms)
+✔ job inputs reject unsafe URLs and missing safety confirmations (35.1827ms)
+✔ slug is lowercase and includes role, company, city, short id (1.5045ms)
+✔ public filter validation handles duplicate/oversized inputs (3.7242ms)
+✔ optional job fields accept blanks; expanded experience and custom category are valid (1.856ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14356.1988

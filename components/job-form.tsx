@@ -1,4 +1,6 @@
 'use client';
+import { defaultClosingDate } from '@/lib/closing-date';
+import { today } from '@/lib/jobs';
 import { applicationUrl } from '@/lib/application-method';
 import { isJobAggregator } from '@/lib/apply-url-hygiene';
 import { defaultCategories, experienceLevels } from '@/lib/job-options';
@@ -11,11 +13,13 @@ export function JobForm({
   admin = false,
   preview = false,
   categories = defaultCategories,
+  defaultValidDays = 30,
 }: {
   job?: Job;
   admin?: boolean;
   preview?: boolean;
   categories?: string[];
+  defaultValidDays?: number;
 }) {
   const [state, action, pending] = useActionState(saveJob, { message: '' });
   const fields = [
@@ -40,9 +44,11 @@ export function JobForm({
     ...Object.fromEntries(
       fields.map(([name]) => [
         name,
-        name === 'application'
-          ? job?.application_email || job?.apply_url || ''
-          : String(job?.[name as keyof Job] ?? (name === 'salary_text' ? 'Not disclosed' : '')),
+        name === 'last_date'
+          ? job?.last_date || defaultClosingDate(defaultValidDays) || ''
+          : name === 'application'
+            ? job?.application_email || job?.apply_url || ''
+            : String(job?.[name as keyof Job] ?? (name === 'salary_text' ? 'Not disclosed' : '')),
       ]),
     ),
     ...Object.fromEntries(
@@ -62,6 +68,7 @@ export function JobForm({
   }));
   const update = (name: string, value: string) =>
     setValues((current) => ({ ...current, [name]: value }));
+  const fallbackDate = defaultClosingDate(defaultValidDays);
   const cleanedApplication = applicationUrl.safeParse(values.application);
   return (
     <form action={action} className="job-form" onReset={(event) => event.preventDefault()}>
@@ -93,6 +100,15 @@ export function JobForm({
                 required={!['last_date', 'vacancies'].includes(name)}
                 min={name === 'vacancies' ? 1 : undefined}
               />
+              {name === 'last_date' && (
+                <small role="status">
+                  {values.last_date && values.last_date < today()
+                    ? 'Warning: this closing date is in the past. This job will be hidden from public listings.'
+                    : fallbackDate
+                      ? `If left empty, the closing date defaults to ${fallbackDate} (${defaultValidDays} days from today). You can change it.`
+                      : 'No closing date. Automatic closing dates are disabled.'}
+                </small>
+              )}
               {name === 'application' && (
                 <small id="application-help">
                   Enter one official HTTPS URL or one email address. If you enter an email, this

@@ -120,7 +120,7 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
       'the owning poster retains access to their own job',
     );
     await db.exec(
-      "reset role; select set_config('request.jwt.claim.role','service_role',false); update jobs set last_date='2000-01-01'; set role anon; select set_config('request.jwt.claim.role','anon',false)",
+      "reset role; select set_config('request.jwt.claim.role','service_role',false); update jobs set last_date='2000-01-01'; select set_config('request.jwt.claim.sub','',false); set role anon; select set_config('request.jwt.claim.role','anon',false)",
     );
     assert.equal(
       (await db.query('select * from search_public_jobs($1)', [job.title])).rows.length,
@@ -128,6 +128,11 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
       'the definer search function must exclude expired jobs even though it bypasses RLS',
     );
     assert.equal((await db.query('select * from get_public_job($1)', [job.slug])).rows.length, 0);
+    assert.equal(
+      (await db.query(`select ${PUBLIC_JOB_COLUMNS} from jobs`)).rows.length,
+      0,
+      'anonymous REST projection excludes expired rows',
+    );
     const expired = await db.query<Record<string, unknown>>('select * from get_expired_job($1)', [
       job.slug,
     ]);

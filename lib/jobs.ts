@@ -38,3 +38,6 @@ export const today = () =>
   }).format(new Date());
 export const isCurrent = (job: Pick<Job, 'status' | 'last_date'>) =>
   job.status === 'published' && (!job.last_date || job.last_date >= today());
+
+export const isExpired = (job: Pick<Job, 'last_date'>, date = today()) =>
+  Boolean(job.last_date && job.last_date < date);

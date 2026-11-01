@@ -1,3 +1,6 @@
+'use client';
+import { useState } from 'react';
+import { isExpired } from '@/lib/jobs';
 import Link from 'next/link';
 import type { Job } from '@/lib/jobs';
 import type { Profile } from '@/lib/auth';
@@ -10,6 +13,10 @@ export function Dashboard({
   profile: Profile;
   preview?: boolean;
 }) {
+  const [filter, setFilter] = useState('all');
+  const visible = jobs.filter(
+    (job) => filter === 'all' || (filter === 'expired' ? isExpired(job) : job.status === filter),
+  );
   return (
     <>
       <div className="dashboard-heading">
@@ -46,12 +53,25 @@ export function Dashboard({
         <h2>{profile.role === 'admin' ? 'Job overview' : 'Your jobs'}</h2>
         <span>{jobs.length} opportunities</span>
       </div>
+      <label>
+        Filter jobs by status
+        <select value={filter} onChange={(event) => setFilter(event.target.value)}>
+          {['all', 'draft', 'pending', 'published', 'rejected', 'unpublished', 'expired'].map(
+            (value) => (
+              <option key={value} value={value}>
+                {value === 'expired' ? 'Expired' : value}
+              </option>
+            ),
+          )}
+        </select>
+      </label>
       <div className="dashboard-jobs">
-        {jobs.length ? (
-          jobs.map((j) => (
+        {visible.length ? (
+          visible.map((j) => (
             <article key={j.id} className="dashboard-job">
               <div>
                 <span className={`tag status-${j.status}`}>{j.status}</span>
+                {isExpired(j) && <span className="tag expired-badge">Expired</span>}
                 <h3>{j.title}</h3>
                 <p>
                   {j.company_name} · {j.location}
@@ -74,7 +94,11 @@ export function Dashboard({
           ))
         ) : (
           <div className="empty-state">
-            <h3>Your first opportunity starts here.</h3>
+            <h3>
+              {filter === 'all'
+                ? 'Your first opportunity starts here.'
+                : 'No jobs match this filter.'}
+            </h3>
             <p>Create a draft, check the official source and submit it for review.</p>
             <Link className="button" href="/admin/jobs/new">
               Create a job →

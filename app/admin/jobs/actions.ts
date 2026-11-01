@@ -3,6 +3,7 @@ import { after } from 'next/server';
 import { notify } from '@/lib/seo/notify';
 import { site } from '@/lib/config';
 
+import { resolveClosingDate } from '@/lib/closing-date';
 import { randomUUID } from 'node:crypto';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
@@ -46,6 +47,7 @@ export async function saveJob(_state: { message: string }, form: FormData) {
   void no_fees;
   const values = {
     ...fields,
+    last_date: resolveClosingDate(fields.last_date),
     status: intent.data,
     ...(!row
       ? {
