@@ -4,6 +4,44 @@ import { PGlite } from '@electric-sql/pglite';
 import { readFileSync, readdirSync } from 'node:fs';
 import { sampleJobs } from '../../lib/sample-jobs';
 
+test('click logging can only be executed by the rate-limited server role', async () => {
+  const db = new PGlite();
+  try {
+    await db.exec(
+      `create role anon; create role authenticated; create role service_role bypassrls; create schema auth; create table auth.users(id uuid primary key); create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$; create function auth.role() returns text language sql stable as $$ select current_setting('request.jwt.claim.role',true) $$; grant usage on schema public,auth to anon,authenticated,service_role;`,
+    );
+    for (const file of readdirSync('supabase/migrations')
+      .filter((name) => name.endsWith('.sql'))
+      .sort()) {
+      await db.exec(
+        readFileSync(`supabase/migrations/${file}`, 'utf8').replace(
+          'create extension if not exists pgcrypto;',
+          '',
+        ),
+      );
+    }
+    for (const role of ['anon', 'authenticated']) {
+      const result = await db.query<{ allowed: boolean }>(
+        "select has_function_privilege($1,'public.log_apply_click(uuid)','execute') as allowed",
+        [role],
+      );
+      assert.equal(result.rows[0].allowed, false, `${role} must not bypass the server limiter`);
+      await db.exec(`set role ${role}`);
+      await assert.rejects(
+        db.query('select log_apply_click($1)', [sampleJobs[0].id]),
+        /permission denied/,
+      );
+      await db.exec('reset role');
+    }
+    const server = await db.query<{ allowed: boolean }>(
+      "select has_function_privilege('service_role','public.log_apply_click(uuid)','execute') as allowed",
+    );
+    assert.equal(server.rows[0].allowed, true);
+  } finally {
+    await db.close();
+  }
+});
+
 test('anonymous table and expired RPC reads cannot select private job metadata', async () => {
   const db = new PGlite();
   try {
