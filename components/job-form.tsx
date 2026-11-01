@@ -1,4 +1,6 @@
 'use client';
+import { applicationUrl } from '@/lib/application-method';
+import { isJobAggregator } from '@/lib/apply-url-hygiene';
 import { defaultCategories, experienceLevels } from '@/lib/job-options';
 import { useActionState, useState } from 'react';
 import type { Job } from '@/lib/jobs';
@@ -60,6 +62,7 @@ export function JobForm({
   }));
   const update = (name: string, value: string) =>
     setValues((current) => ({ ...current, [name]: value }));
+  const cleanedApplication = applicationUrl.safeParse(values.application);
   return (
     <form action={action} className="job-form" onReset={(event) => event.preventDefault()}>
       <input type="hidden" name="id" value={job?.id || ''} />
@@ -94,6 +97,18 @@ export function JobForm({
                 <small id="application-help">
                   Enter one official HTTPS URL or one email address. If you enter an email, this
                   email is visible to everyone; use a role address, never a personal email.
+                </small>
+              )}
+              {name === 'application' && cleanedApplication.success && (
+                <small className="application-cleaned" style={{ overflowWrap: 'anywhere' }}>
+                  URL to save: {cleanedApplication.data}
+                  {isJobAggregator(cleanedApplication.data) && (
+                    <span role="status">
+                      {' '}
+                      This is a third-party job aggregator. Please link the employer�s official
+                      careers page when available.
+                    </span>
+                  )}
                 </small>
               )}
             </label>

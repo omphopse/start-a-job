@@ -1,3 +1,4 @@
+import { getApplicationMethod } from './application-method';
 import { experienceLevels } from './job-options';
 import { z } from 'zod';
 import type { PublicJob } from './public-job-fields';
@@ -14,6 +15,7 @@ export const apiQuery = z
   })
   .strict();
 export function publicJob(j: PublicJob) {
+  const method = getApplicationMethod(j);
   return {
     id: j.id,
     slug: j.slug,
@@ -30,7 +32,7 @@ export function publicJob(j: PublicJob) {
     salary_text: j.salary_text,
     last_date: j.last_date,
     posted_at: j.published_at,
-    source_apply_url: j.apply_url,
+    source_apply_url: method?.kind === 'url' ? method.url : null,
     application_email: j.application_email ?? null,
     canonical_url: `${site.url}/jobs/${j.slug}`,
     summary: j.summary,

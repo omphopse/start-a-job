@@ -1,3 +1,4 @@
+import { cleanApplyUrl } from './apply-url-hygiene';
 import { blockedApplyHosts } from './publishing-rules';
 import { z } from 'zod';
 
@@ -48,7 +49,7 @@ export const applicationUrl = z
           'Use an official HTTPS company/government URL, without credentials, ports, shorteners or messaging links.',
       });
   })
-  .transform((value) => value.replace(/^https:/i, 'https:'));
+  .transform(cleanApplyUrl);
 
 export const applicationEmail = z
   .string()

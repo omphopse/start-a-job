@@ -1,3 +1,4 @@
+import { getApplicationMethod } from '../application-method';
 import type { PublicJob } from '../public-job-fields';
 import { site } from '../config';
 export const escapeHtml = (text: string) =>
@@ -6,6 +7,7 @@ export const escapeHtml = (text: string) =>
     (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
   );
 export function jobSchema(job: PublicJob) {
+  const method = getApplicationMethod(job);
   return {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
@@ -45,6 +47,9 @@ export function jobSchema(job: PublicJob) {
           jobLocationType: 'TELECOMMUTE',
           applicantLocationRequirements: { '@type': 'Country', name: job.country || 'India' },
         }
+      : {}),
+    ...(method?.kind === 'url'
+      ? { applicationContact: { '@type': 'ContactPoint', url: method.url } }
       : {}),
     directApply: false,
     url: `${site.url}/jobs/${job.slug}`,
