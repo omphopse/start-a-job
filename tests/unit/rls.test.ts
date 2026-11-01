@@ -203,5 +203,19 @@ test('PostgreSQL RLS: anonymous cannot read drafts; poster cannot publish', asyn
     [{ apply_url: null, application_email: 'jobs@company.com' }],
     'the expired published-job RPC retains the new composite column safely',
   );
+  // Preserve every legacy RLS assertion above, then verify the tighter grants
+  // after applying the new privacy migration to those same populated tables.
+  await db.exec('reset role');
+  await db.exec(readFileSync('supabase/migrations/202611010004_public_job_privacy.sql', 'utf8'));
+  await db.exec('set role anon');
+  await assert.rejects(db.query('select * from jobs'), /permission denied/);
+  assert.equal((await db.query('select id,title from jobs')).rows.length, 1);
+  const safeExpired = await db.query<Record<string, unknown>>('select * from get_expired_job($1)', [
+    emailJob.slug,
+  ]);
+  assert.equal(safeExpired.rows.length, 1);
+  for (const column of ['created_by', 'approved_by', 'rejection_reason', 'search_document']) {
+    assert.equal(column in safeExpired.rows[0], false);
+  }
   await db.close();
 });

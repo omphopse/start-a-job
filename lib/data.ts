@@ -6,7 +6,7 @@ import { publicDb } from './supabase/public';
 import { isCurrent, today, type Job } from './jobs';
 import { sampleJobs, expiredSample, emailSample } from './sample-jobs';
 import { cachedPublicJob, cachedSimilarJobs, MissingPublicJob } from './public-job-cache';
-import type { PublicJob, JobCardData } from './public-job-fields';
+import { publicJobColumns, type PublicJob, type JobCardData } from './public-job-fields';
 import { requestPerformance } from './request-performance';
 export type Filters = {
   q?: string;
@@ -49,7 +49,7 @@ export function filterJobs(jobs: Job[], f: Filters) {
 export async function listJobs(
   f: Filters = {},
   pageSize = 20,
-): Promise<{ jobs: Job[]; count: number }> {
+): Promise<{ jobs: PublicJob[]; count: number }> {
   f = parseFilters(f);
   const page = Math.max(1, Math.min(10000, Number(f.page) || 1));
   if (demo()) {
@@ -59,7 +59,7 @@ export async function listJobs(
   if (!configured) return { jobs: [], count: 0 };
   let query = publicDb()
     .from('jobs')
-    .select('*', { count: 'exact' })
+    .select(publicJobColumns, { count: 'exact' })
     .eq('status', 'published')
     .or(`last_date.is.null,last_date.gte.${today()}`);
   if (f.q)
@@ -80,7 +80,7 @@ export async function listJobs(
       : query.order('published_at', { ascending: false });
   const { data, count, error } = await query.range((page - 1) * pageSize, page * pageSize - 1);
   if (error) throw error;
-  return { jobs: data as Job[], count: count || 0 };
+  return { jobs: data as unknown as PublicJob[], count: count || 0 };
 }
 export const getJob = cache(async (slug: string): Promise<PublicJob | null> => {
   if (demo())
