@@ -6,9 +6,21 @@ export const applicationFormatMessage =
 export const applicationUrl = z
   .string()
   .trim()
+  .refine(
+    (value) => !/[\u0000-\u0020\u007f\\]/.test(value),
+    'Application URLs cannot contain whitespace, control characters or backslashes.',
+  )
   .pipe(z.url().max(2000))
   .superRefine((value, ctx) => {
-    const u = new URL(value);
+    // Zod can run this refinement after a non-fatal URL-format issue. Invalid
+    // user input must stay a validation result rather than throw from URL().
+    let u: URL;
+    try {
+      u = new URL(value);
+    } catch {
+      ctx.addIssue({ code: 'custom', message: 'Enter a valid official HTTPS URL.' });
+      return;
+    }
     const blocked = [
       'wa.me',
       't.me',
