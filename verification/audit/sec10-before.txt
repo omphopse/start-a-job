@@ -1,0 +1,33 @@
+✖ deletion tombstones expose only jobs known to have been public, never drafts or unclassified history (2258.2927ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2958.1076
+
+✖ failing tests:
+
+test at tests\unit\tombstone-privacy.test.ts:7:1
+✖ deletion tombstones expose only jobs known to have been public, never drafts or unclassified history (2258.2927ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'customer-support-associate-northstar-services-bengaluru-s1',
+  +   'junior-accounts-assistant-bright-ledger-pune-s2',
+  +   'unclassified-legacy-record'
+    ]
+  
+      at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\tombstone-privacy.test.ts:25:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'customer-support-associate-northstar-services-bengaluru-s1', 'junior-accounts-assistant-bright-ledger-pune-s2', 'unclassified-legacy-record' ],
+    expected: [ 'customer-support-associate-northstar-services-bengaluru-s1' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

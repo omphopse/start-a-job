@@ -6,7 +6,8 @@ The audit is **NO-GO** until the applicable launch blockers below are verified. 
 
 - [ ] Back up the intended Supabase project and test the restore procedure.
 - [ ] Confirm the app and SQL Editor refer to the same project. Never run a migration against a different project's schema.
-- [ ] Apply every migration in `supabase/migrations` in filename order, including the new public-job privacy, click-RPC access, and poster privacy migrations. Apply them as a coordinated deployment with the new server code; the old click endpoint loses permission after the RPC migration.
+- [ ] Apply every migration in `supabase/migrations` in filename order, including the new public-job privacy, click-RPC access, poster privacy and tombstone privacy migrations (004–007). Apply them as a coordinated deployment with the new server code; the old click endpoint loses permission after the RPC migration.
+- [ ] Migration 007 retains old deletion records with `was_public=false` and hides them by default. Restore public visibility only for legacy slugs independently verified as previously published. Never mark every old record public. New deletions of previously published jobs retain HTTP410 behavior; unclassified old records resolve as missing until reviewed.
 - [ ] Inspect every deployed public table for RLS; compare schema drift with the repository. Inspect any extra views for `security_invoker` and definer functions for fixed `search_path` and minimal EXECUTE grants.
 - [ ] In disposable staging, run the real anonymous/poster/admin/inactive JWT matrix. Anonymous explicit public job queries should succeed; selecting creator IDs/review notes must fail. Another poster must not read/edit internal job rows; own drafts remain editable; published jobs cannot be edited by posters; admin workflows remain usable.
 - [ ] Prove a deactivated poster cannot read private jobs or write using an already-issued session/JWT. Prove reactivation restores intended access.

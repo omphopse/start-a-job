@@ -184,3 +184,9 @@ Environment scan now covers app/components/lib/scripts plus next.config.ts, prox
 Final source/history/bundle pattern scan: no matching working-tree/history secret, no service key name or exact value in 17 production JS chunks. Scope now includes tracked/untracked nonignored text artifacts, separately scans ignored local env and production static chunks. Ignored local env credentials are expected and were not committed. Regex scanning is not equivalent to dedicated gitleaks/trufflehog or a proof of absence.
 
 Final clean-clone verification, refreshed production screenshots/Lighthouse and the complete before/after matrix will be appended after those commands finish. Until then, this remains **NO-GO**.
+
+### Final-review finding: deletion-history privacy (SEC-10, High)
+
+The initial migration recorded every deletion and let anonymous readers enumerate `deleted_jobs`, including slugs from never-published drafts. `sec10-before.txt` proves the local public result included a private draft slug and an unclassified legacy record. Migration `202611010007_tombstone_privacy.sql` now records `was_public=true` only when the deleted row had a publication timestamp and filters anonymous reads by that flag. Legacy records are retained with false by default, so unknown history stays private. Verified previously public legacy slugs may be reclassified by the owner; unclassified old public deletions return missing rather than HTTP410 until reviewed. New public deletions retain HTTP410 semantics.
+
+All sec10 gates passed: lint/types/build exit0, 31 unit tests and 90 browser tests. The original regression verifies both privacy and retention of old records without weakening any existing test. The first final clean clone of 9fa4d47 passed install/lint/types/30 unit/build/90 browser gates; those results are preserved under `clean-candidate-before-tombstone/` and are superseded by a second clean clone including migration007.

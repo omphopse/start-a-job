@@ -3,7 +3,7 @@ const env=Object.fromEntries(readFileSync('.env.local','utf8').split(/\r?\n/).fi
 const key=env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 if(!key||!env.NEXT_PUBLIC_SUPABASE_URL) throw new Error('No public Supabase configuration');
 const output=[];
-for(const table of ['jobs','profiles','apply_clicks','job_reports','request_limits','categories']) {
+for(const table of ['jobs','profiles','apply_clicks','job_reports','request_limits','categories','deleted_jobs','landing_pages']) {
   try {const r=await fetch(`${env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/${table}?select=*&limit=1`,{headers:{apikey:key,Authorization:`Bearer ${key}`},signal:AbortSignal.timeout(15000)});const b=await r.json();output.push({table,status:r.status,rows:Array.isArray(b)?b.length:undefined,columns:Array.isArray(b)&&b[0]?Object.keys(b[0]):[],errorCode:!Array.isArray(b)?b.code:undefined});}
   catch { output.push({table,error:'Network request failed or timed out'}); }
 }
