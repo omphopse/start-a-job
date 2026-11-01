@@ -1,4 +1,11 @@
 import { test, expect } from '@playwright/test';
+
+test('AI summary placeholder is explicitly disabled', async ({ page }) => {
+  await page.goto('/demo/job-form');
+  await expect(
+    page.getByRole('button', { name: 'AI summary (coming soon)', exact: true }),
+  ).toHaveAttribute('disabled', '');
+});
 test('read-only dashboard and job form fit each viewport', async ({ page }, info) => {
   await page.goto('/demo/dashboard');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(

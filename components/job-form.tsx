@@ -114,6 +114,17 @@ export function JobForm({
             </label>
           ))}
         </div>
+        <div className="ai-summary-placeholder">
+          <button
+            type="button"
+            className="button secondary"
+            disabled
+            aria-describedby="ai-summary-help"
+          >
+            AI summary (coming soon)
+          </button>
+          <p id="ai-summary-help">Write or paste the job details below.</p>
+        </div>
         {[
           ['summary', 'Summary / full details'],
           ['eligibility', 'Eligibility'],
