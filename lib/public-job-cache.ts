@@ -3,8 +3,7 @@ import { unstable_cache } from 'next/cache';
 import { publicDb } from './supabase/public';
 import { today } from './jobs';
 import {
-  publicJobColumns,
-  jobCardColumns,
+  PUBLIC_JOB_COLUMNS,
   publicJobsTag,
   type PublicJob,
   type JobCardData,
@@ -22,7 +21,7 @@ export const cachedPublicJob = unstable_cache(
     const { data, error } = await timing.measure('query.publicJob', () =>
       db
         .from('jobs')
-        .select(publicJobColumns)
+        .select(PUBLIC_JOB_COLUMNS)
         .eq('slug', slug)
         .eq('status', 'published')
         .maybeSingle(),
@@ -32,7 +31,7 @@ export const cachedPublicJob = unstable_cache(
     // Preserve the existing noindex expired page, using the narrowly scoped
     // existing RPC which returns only published jobs whose deadline has passed.
     const expired = await timing.measure('query.expiredPublicJob', () =>
-      db.rpc('get_expired_job', { p_slug: slug }).select(publicJobColumns),
+      db.rpc('get_expired_job', { p_slug: slug }).select(PUBLIC_JOB_COLUMNS),
     );
     if (expired.error) throw expired.error;
     if (expired.data?.[0]) return expired.data[0] as unknown as PublicJob;
@@ -51,7 +50,7 @@ export const cachedSimilarJobs = unstable_cache(
     const { data, error } = await timing.measure('query.similarJobs', () =>
       publicDb(timing.fetch)
         .from('jobs')
-        .select(jobCardColumns)
+        .select(PUBLIC_JOB_COLUMNS)
         .eq('status', 'published')
         .eq('category', category)
         .or(`last_date.is.null,last_date.gte.${date || today()}`)

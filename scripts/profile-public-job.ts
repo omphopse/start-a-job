@@ -3,7 +3,7 @@
 import { existsSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { createClient } from '@supabase/supabase-js';
-import { publicJobColumns, jobCardColumns, type PublicJob } from '../lib/public-job-fields';
+import { PUBLIC_JOB_COLUMNS, type PublicJob } from '../lib/public-job-fields';
 import { today } from '../lib/jobs';
 
 async function main() {
@@ -31,7 +31,7 @@ async function main() {
     // single attempt rather than measure retry backoff as database latency.
     const deleted = await db
       .from('deleted_jobs')
-      .select('slug')
+      .select(PUBLIC_JOB_COLUMNS)
       .eq('slug', slug)
       .abortSignal(AbortSignal.timeout(10_000))
       .maybeSingle()
@@ -47,7 +47,7 @@ async function main() {
     start = performance.now();
     const job = await db
       .from('jobs')
-      .select(publicJobColumns)
+      .select(PUBLIC_JOB_COLUMNS)
       .eq('slug', slug)
       .eq('status', 'published')
       .abortSignal(AbortSignal.timeout(10_000))
@@ -65,7 +65,7 @@ async function main() {
     start = performance.now();
     const similar = await db
       .from('jobs')
-      .select(jobCardColumns)
+      .select(PUBLIC_JOB_COLUMNS)
       .eq('status', 'published')
       .eq('category', (job.data as unknown as PublicJob).category)
       .or(`last_date.is.null,last_date.gte.${today()}`)

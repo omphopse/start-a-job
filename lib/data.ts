@@ -6,7 +6,7 @@ import { publicDb } from './supabase/public';
 import { isCurrent, today, type Job } from './jobs';
 import { sampleJobs, expiredSample, emailSample } from './sample-jobs';
 import { cachedPublicJob, cachedSimilarJobs, MissingPublicJob } from './public-job-cache';
-import { publicJobColumns, type PublicJob, type JobCardData } from './public-job-fields';
+import { PUBLIC_JOB_COLUMNS, type PublicJob, type JobCardData } from './public-job-fields';
 import { requestPerformance } from './request-performance';
 export type Filters = {
   q?: string;
@@ -57,13 +57,16 @@ export async function listJobs(
     return { jobs: jobs.slice((page - 1) * pageSize, page * pageSize), count: jobs.length };
   }
   if (!configured) return { jobs: [], count: 0 };
-  let query = publicDb()
-    .from('jobs')
-    .select(publicJobColumns, { count: 'exact' })
+  const db = publicDb();
+  let query = (
+    f.q
+      ? db
+          .rpc('search_public_jobs', { p_query: f.q }, { count: 'exact' })
+          .select(PUBLIC_JOB_COLUMNS)
+      : db.from('jobs').select(PUBLIC_JOB_COLUMNS, { count: 'exact' })
+  )
     .eq('status', 'published')
     .or(`last_date.is.null,last_date.gte.${today()}`);
-  if (f.q)
-    query = query.textSearch('search_document', f.q, { type: 'websearch', config: 'english' });
   for (const key of [
     'state',
     'location',

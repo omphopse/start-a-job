@@ -18,7 +18,7 @@ export type JobCardData = Pick<
   | 'salary_text'
   | 'published_at'
 >;
-export const publicJobColumns = [
+export const PUBLIC_JOB_COLUMN_NAMES = [
   'id',
   'slug',
   'title',
@@ -44,7 +44,9 @@ export const publicJobColumns = [
   'published_at',
   'created_at',
   'updated_at',
-].join(',');
+] as const;
+export const PUBLIC_JOB_COLUMNS = PUBLIC_JOB_COLUMN_NAMES.join(',');
+export const publicJobColumns = PUBLIC_JOB_COLUMNS;
 export const jobCardColumns =
   'id,slug,title,company_name,location,country,job_type,work_mode,experience_level,qualification,salary_text,published_at';
 export const publicJobsTag = 'public-jobs';
