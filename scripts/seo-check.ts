@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { z } from 'zod';
+import { applicationMailto } from '../lib/application-method';
 const base = process.env.SEO_BASE_URL || 'http://localhost:3000';
 const jobSchema = z.object({
   id: z.uuid(),
@@ -13,7 +14,8 @@ const jobSchema = z.object({
   salary_text: z.string(),
   last_date: z.string().nullable(),
   posted_at: z.string().nullable(),
-  source_apply_url: z.url(),
+  source_apply_url: z.url().nullable(),
+  application_email: z.email().nullable(),
   canonical_url: z.url(),
   summary: z.string(),
 });
@@ -38,11 +40,15 @@ async function main() {
           html.includes(text.replaceAll('&', '&amp;')),
           `${path} missing ${text.slice(0, 35)} in no-JS HTML`,
         );
+    const applicationHref =
+      job.source_apply_url ||
+      (job.application_email ? applicationMailto(job.application_email) : null);
+    assert.ok(applicationHref, 'An application method is required');
     assert.ok(
-      html.includes(`href="${job.source_apply_url.replaceAll('&', '&amp;')}"`),
+      html.includes(`href="${applicationHref.replaceAll('&', '&amp;').replaceAll("'", '&#x27;')}"`),
       'Real apply anchor missing',
     );
-    assert.ok(html.includes('noopener noreferrer nofollow'));
+    if (job.source_apply_url) assert.ok(html.includes('noopener noreferrer nofollow'));
     const json = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
       .map((m) => JSON.parse(m[1]))
       .find((s) => s['@type'] === 'JobPosting');

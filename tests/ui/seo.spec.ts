@@ -4,7 +4,7 @@ test('trust pages, robots and structured data are server rendered', async ({
   request,
 }, info) => {
   await page.goto('/about');
-  await expect(page.getByRole('heading', { level: 1, name: 'About DeskJobs' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: 'About startajob' })).toBeVisible();
   await page.screenshot({
     path: `screenshots/about-${info.project.name}.png`,
     fullPage: true,

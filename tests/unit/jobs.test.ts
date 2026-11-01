@@ -13,6 +13,7 @@ test('sample data is visibly fictional and uses example.com', () => {
   assert.equal(sampleJobs.length, 10);
   for (const job of sampleJobs) {
     assert.match(job.company_name, /Sample/);
+    assert.ok(job.apply_url);
     assert.equal(new URL(job.apply_url).host, 'example.com');
   }
 });

@@ -8,10 +8,23 @@ test('JobPosting exactly matches visible job fields and excludes invented salary
     assert.equal(schema.title, j.title);
     assert.equal(schema.hiringOrganization.name, j.company_name);
     assert.equal(schema.jobLocation.address.addressLocality, j.location);
-    assert.equal(schema.validThrough, `${j.last_date}T23:59:59+05:30`);
+    assert.equal(schema.validThrough, j.last_date ? `${j.last_date}T23:59:59+05:30` : undefined);
     for (const field of ['summary', 'eligibility', 'documents_needed', 'how_to_apply'] as const)
       assert.ok(schema.description.includes(escapeHtml(j[field])));
     assert.equal('baseSalary' in schema, false);
     assert.equal(schema.directApply, false);
   }
+});
+
+test('empty optional sections and deadline are omitted from structured data', () => {
+  const schema = jobSchema({
+    ...sampleJobs[0],
+    eligibility: '',
+    documents_needed: '   ',
+    how_to_apply: '',
+    last_date: null,
+    vacancies: null,
+  });
+  assert.equal(schema.description, `<p>${escapeHtml(sampleJobs[0].summary)}</p>`);
+  assert.equal('validThrough' in schema, false);
 });

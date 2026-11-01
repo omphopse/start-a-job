@@ -1,9 +1,13 @@
 import { parseFilters } from './validation';
 import 'server-only';
+import { cache } from 'react';
 import { configured } from './config';
 import { publicDb } from './supabase/public';
 import { isCurrent, today, type Job } from './jobs';
-import { sampleJobs, expiredSample } from './sample-jobs';
+import { sampleJobs, expiredSample, emailSample } from './sample-jobs';
+import { cachedPublicJob, cachedSimilarJobs, MissingPublicJob } from './public-job-cache';
+import type { PublicJob, JobCardData } from './public-job-fields';
+import { requestPerformance } from './request-performance';
 export type Filters = {
   q?: string;
   state?: string;
@@ -78,19 +82,21 @@ export async function listJobs(
   if (error) throw error;
   return { jobs: data as Job[], count: count || 0 };
 }
-export async function getJob(slug: string): Promise<Job | null> {
-  if (demo()) return [...sampleJobs, expiredSample].find((j) => j.slug === slug) || null;
+export const getJob = cache(async (slug: string): Promise<PublicJob | null> => {
+  if (demo())
+    return [...sampleJobs, expiredSample, emailSample].find((j) => j.slug === slug) || null;
   if (!configured) return null;
-  const db = publicDb();
-  const { data, error } = await db
-    .from('jobs')
-    .select('*')
-    .eq('slug', slug)
-    .eq('status', 'published')
-    .maybeSingle();
-  if (error) throw error;
-  if (data) return data as Job;
-  const expired = await db.rpc('get_expired_job', { p_slug: slug });
-  if (expired.error) throw expired.error;
-  return (expired.data?.[0] as Job) || null;
+  try {
+    return await requestPerformance().measure('public.job.read', () => cachedPublicJob(slug));
+  } catch (error) {
+    if (error instanceof MissingPublicJob) return null;
+    throw error;
+  }
+});
+export async function similarJobs(category: string): Promise<JobCardData[]> {
+  if (demo()) return filterJobs([...sampleJobs, expiredSample], { category }).slice(0, 4);
+  if (!configured) return [];
+  return requestPerformance().measure('public.similar.read', () =>
+    cachedSimilarJobs(category, today()),
+  );
 }

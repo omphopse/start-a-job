@@ -1,3 +1,4 @@
+import { defaultCategories, experienceLevels } from '@/lib/job-options';
 import Link from 'next/link';
 import type { Filters } from '@/lib/data';
 const options = {
@@ -13,9 +14,9 @@ const options = {
     'Rajasthan',
   ],
   qualification: ['Any graduate', '12th pass', '10th pass', 'Diploma', 'B.Com', 'B.Tech'],
-  experience_level: ['fresher', '0-1', '1-3'],
+  experience_level: experienceLevels,
   job_type: ['full-time', 'part-time', 'internship', 'contract'],
-  category: ['Data entry', 'Customer support', 'Accounts', 'HR', 'Administration', 'Government'],
+  category: defaultCategories,
   work_mode: ['office', 'hybrid', 'remote'],
 };
 const labels = {
@@ -26,7 +27,14 @@ const labels = {
   category: 'Category',
   work_mode: 'Work mode',
 };
-export function FiltersForm({ filters }: { filters: Filters }) {
+export function FiltersForm({
+  filters,
+  categories = defaultCategories,
+}: {
+  filters: Filters;
+  categories?: string[];
+}) {
+  const choices = { ...options, category: categories };
   return (
     <form action="/jobs" className="filters-form">
       <input type="hidden" name="q" value={filters.q || ''} />
@@ -39,9 +47,13 @@ export function FiltersForm({ filters }: { filters: Filters }) {
           {labels[key]}
           <select name={key} defaultValue={filters[key] || ''}>
             <option value="">All {labels[key].toLowerCase()}</option>
-            {options[key].map((o) => (
+            {choices[key].map((o) => (
               <option key={o} value={o}>
-                {o === 'fresher' ? 'Fresher' : o.replace('-', ' ')}
+                {o === 'fresher'
+                  ? 'Fresher'
+                  : key === 'experience_level'
+                    ? `${o} years`
+                    : o.replace('-', ' ')}
               </option>
             ))}
           </select>

@@ -1,4 +1,4 @@
-# DeskJobs — Phase 1
+# startajob — Phase 1
 
 A fresher-focused job directory for India. Visitors browse without accounts and follow official application links. Approved posters submit drafts; active admins review and publish them.
 
@@ -62,4 +62,3 @@ Use the daily expiry endpoint and maintenance checklist in SETUP.md. Keep report
 ## Verification records
 
 Screenshots are saved in `screenshots/`; final reference PNGs are committed in the documentation commit. Production Lighthouse JSON/HTML and the final verification summary are in `verification/`. Lab Lighthouse scores do not establish field INP or guarantee performance on a deployed host. No remote push or deployment is performed by this build.
-

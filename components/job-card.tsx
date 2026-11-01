@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { Job } from '@/lib/jobs';
+import type { JobCardData } from '@/lib/public-job-fields';
 export function posted(date: string | null) {
   const n = Math.max(
     0,
@@ -7,7 +7,7 @@ export function posted(date: string | null) {
   );
   return n === 0 ? 'Today' : `${n} day${n === 1 ? '' : 's'} ago`;
 }
-export function JobCard({ job }: { job: Job }) {
+export function JobCard({ job }: { job: JobCardData }) {
   return (
     <article className="job-card">
       <div className="company-mark" aria-hidden="true">
@@ -19,7 +19,7 @@ export function JobCard({ job }: { job: Job }) {
           <span className="posted">{posted(job.published_at)}</span>
         </div>
         <h3>
-          <Link href={`/jobs/${job.slug}`}>
+          <Link className="job-card-link" href={`/jobs/${job.slug}`}>
             {job.title}
             <span className="card-arrow" aria-hidden="true">
               ↗
@@ -27,7 +27,7 @@ export function JobCard({ job }: { job: Job }) {
           </Link>
         </h3>
         <div className="job-meta">
-          <span>⌖ {job.location}</span>
+          <span>⌖ {job.location || job.country || 'Location not specified'}</span>
           <span>◷ {job.job_type.replace('-', ' ')}</span>
           <span>▱ {job.work_mode === 'office' ? 'Work from office' : job.work_mode}</span>
         </div>

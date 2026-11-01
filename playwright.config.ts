@@ -13,6 +13,7 @@ export default defineConfig({
     url: 'http://localhost:3100',
     reuseExistingServer: false,
     env: {
+      NEXT_PUBLIC_SITE_NAME: 'startajob',
       NEXT_PUBLIC_APPLY_DELAY_SECONDS: '2',
       DEMO_MODE: 'true',
       PLAYWRIGHT_TEST: 'true',

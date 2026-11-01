@@ -5,6 +5,7 @@ import { serverDb } from '@/lib/supabase/server';
 import { Dashboard } from '@/components/dashboard';
 import { logout } from './login/actions';
 import type { Job } from '@/lib/jobs';
+import { site } from '@/lib/config';
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Dashboard', robots: { index: false, follow: false } };
 export default async function Admin({
@@ -22,7 +23,7 @@ export default async function Admin({
   return (
     <div className="container section">
       <div className="admin-nav">
-        <span>DeskJobs workspace</span>
+        <span>{site.name} workspace</span>
         <form action={logout}>
           <button className="button secondary">Sign out</button>
         </form>

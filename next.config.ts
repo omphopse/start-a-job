@@ -3,6 +3,8 @@ const config: NextConfig = {
   distDir: process.env.PLAYWRIGHT_TEST === 'true' ? '.next-test' : '.next',
   devIndicators: false,
   poweredByHeader: false,
+  // Bound the CDN stale window for public ISR pages (Next defaults to a year).
+  expireTime: 60,
   async headers() {
     return [
       {

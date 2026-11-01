@@ -5,7 +5,7 @@ test('public API and discovery feeds expose current public fields only', async (
   expect(response.headers()['access-control-allow-origin']).toBe('*');
   const body = await response.json();
   expect(body.jobs).toHaveLength(5);
-  expect(body.attribution).toBe('Source: DeskJobs');
+  expect(body.attribution).toBe('Source: startajob');
   expect(body.jobs[0]).not.toHaveProperty('created_by');
   const job = await request.get(`/api/public/jobs/${body.jobs[0].slug}.json`);
   expect(job.status()).toBe(200);

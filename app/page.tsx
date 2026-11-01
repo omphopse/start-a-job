@@ -1,9 +1,10 @@
 import { JsonLd } from '@/components/json-ld';
 import { homeSchema } from '@/lib/seo/schema';
 import { metadata } from '@/lib/seo/metadata';
+import { site } from '@/lib/config';
 export const generateMetadata = () =>
   metadata(
-    'DeskJobs — Your first job, your next chapter',
+    `${site.name} — Your first job, your next chapter`,
     'Find fresher-friendly desk and office jobs across India. Browse for free and apply directly on official websites.',
     '/',
   );
@@ -12,13 +13,16 @@ import { listJobs, demo } from '@/lib/data';
 import { JobCard } from '@/components/job-card';
 export const dynamic = 'force-dynamic';
 const chips = [
-  ['Fresher', 'experience_level=fresher'],
-  ['Work from office', 'work_mode=office'],
-  ['Data entry', 'category=Data+entry'],
-  ['Customer support', 'category=Customer+support'],
-  ['Accounts', 'category=Accounts'],
-  ['HR', 'category=HR'],
-  ['Government', 'category=Government'],
+  ['Software developer', 'Software developer'],
+  ['Frontend developer', 'Frontend'],
+  ['Backend developer', 'Backend'],
+  ['Full stack developer', 'Full stack'],
+  ['Mobile developer', 'Mobile developer'],
+  ['QA engineer', 'QA'],
+  ['Data analyst', 'Data analyst'],
+  ['Data engineer', 'Data engineer'],
+  ['DevOps engineer', 'DevOps'],
+  ['IT support', 'IT support'],
 ];
 export default async function Home() {
   const { jobs, count } = await listJobs({}, 5);
@@ -130,7 +134,7 @@ export default async function Home() {
         </div>
         <div className="filter-chips">
           {chips.map(([label, query]) => (
-            <Link key={label} href={`/jobs?${query}`}>
+            <Link key={label} href={`/jobs?${new URLSearchParams({ q: query })}`}>
               {label}
               <span>↗</span>
             </Link>

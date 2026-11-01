@@ -1,69 +1,55 @@
+import { experienceLevels } from './job-options';
 import { z } from 'zod';
+import { applicationInput, applicationUrl, applicationEmail } from './application-method';
 const text = (min = 1, max = 200) => z.string().trim().min(min).max(max);
-export const jobInput = z.object({
+const jobFields = {
   title: text(3, 120),
   company_name: text(2, 120),
-  location: text(2, 80),
-  state: text(2, 80),
+  location: text(0, 100).default(''),
+  state: text(0, 100).default(''),
+  country: text(2, 100).default('India'),
   work_mode: z.enum(['office', 'hybrid', 'remote']),
   qualification: text(2, 120),
-  experience_level: z.enum(['fresher', '0-1', '1-3']),
-  category: z.enum([
-    'Data entry',
-    'Customer support',
-    'Accounts',
-    'HR',
-    'Administration',
-    'Government',
-  ]),
+  experience_level: z.enum(experienceLevels),
+  category: text(2, 80),
   job_type: z.enum(['full-time', 'part-time', 'internship', 'contract']),
   salary_text: text(1, 120),
   vacancies: z.preprocess(
-    (v) => (v === '' ? null : Number(v)),
+    (v) => (v === '' || v == null ? null : Number(v)),
     z.number().int().min(1).max(1000000).nullable(),
   ),
   last_date: z.iso
     .date()
     .or(z.literal(''))
     .transform((v) => v || null),
-  apply_url: z
-    .url()
-    .max(2000)
-    .superRefine((value, ctx) => {
-      const u = new URL(value);
-      const blocked = [
-        'wa.me',
-        't.me',
-        'telegram.me',
-        'whatsapp.com',
-        'bit.ly',
-        'tinyurl.com',
-        ...(process.env.APPLY_HOST_BLOCKLIST || '').split(',').filter(Boolean),
-      ];
-      if (
-        u.protocol !== 'https:' ||
-        u.username ||
-        u.password ||
-        u.port ||
-        !u.hostname.includes('.') ||
-        /^\d+\.\d+\.\d+\.\d+$/.test(u.hostname) ||
-        u.hostname.startsWith('[') ||
-        u.hostname.endsWith('.local') ||
-        blocked.some((h) => u.hostname === h || u.hostname.endsWith(`.${h}`))
-      )
-        ctx.addIssue({
-          code: 'custom',
-          message:
-            'Use an official HTTPS company/government URL, without shorteners or messaging links.',
-        });
-    }),
   summary: text(50, 20000),
-  eligibility: text(20, 5000),
-  documents_needed: text(10, 5000),
-  how_to_apply: text(20, 5000),
+  eligibility: z.string().trim().max(5000).default(''),
+  documents_needed: z.string().trim().max(5000).default(''),
+  how_to_apply: z.string().trim().max(5000).default(''),
   official_confirmed: z.literal('on'),
   no_fees: z.literal('on'),
-});
+};
+const blankToNull = (value: unknown) =>
+  value == null || (typeof value === 'string' && !value.trim()) ? null : value;
+// Persisted records (including admin approval) must have exactly one method.
+export const jobInput = z
+  .object({
+    ...jobFields,
+    apply_url: z.preprocess(blankToNull, applicationUrl.nullable()),
+    application_email: z.preprocess(blankToNull, applicationEmail.nullable()),
+  })
+  .superRefine((job, ctx) => {
+    if (Boolean(job.apply_url) === Boolean(job.application_email))
+      ctx.addIssue({
+        code: 'custom',
+        path: ['application'],
+        message: 'Provide exactly one application URL or email address.',
+      });
+  });
+// A single form input produces both columns, explicitly clearing the old method.
+export const jobFormInput = z
+  .object({ ...jobFields, application: applicationInput })
+  .transform(({ application, ...fields }) => ({ ...fields, ...application }));
 export const slugify = (text: string) =>
   text
     .toLowerCase()
@@ -79,7 +65,7 @@ export const filtersSchema = z.object({
   state: queryText(80),
   location: queryText(80),
   qualification: queryText(120),
-  experience_level: z.enum(['fresher', '0-1', '1-3']).optional().catch(undefined),
+  experience_level: z.enum(experienceLevels).optional().catch(undefined),
   category: queryText(80),
   job_type: z
     .enum(['full-time', 'part-time', 'internship', 'contract'])

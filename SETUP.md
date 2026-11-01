@@ -8,12 +8,12 @@ Complete each numbered step in order. Keep all keys out of Git and screenshots.
 2. Create a Supabase account and a new project. Choose a suitable India/nearby region, choose a strong database password, and store it in a password manager. Wait for provisioning.
 3. In the Supabase SQL editor, paste and run `supabase/migrations/202610300001_initial.sql` once. Future migration files must run in filename order. Check that all tables have RLS enabled. This migration adds profiles, jobs, reports, click records, editable landing pages, deleted-job tombstones and durable rate-limit records.
 4. In the project's API settings, copy the project URL and anonymous/public API key into `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Put the legacy service-role key into `SUPABASE_SERVICE_ROLE_KEY`. It must remain server-side. Never add the `NEXT_PUBLIC_` prefix to a secret.
-5. Set `NEXT_PUBLIC_SITE_URL` to your eventual HTTPS domain, without a trailing slash; keep localhost during local work. Set `NEXT_PUBLIC_SITE_NAME`, `CONTACT_EMAIL` to your real support address, and `NEXT_PUBLIC_APPLY_DELAY_SECONDS=12`. Set `DEMO_MODE=false` before going live. Leave AdSense and indexing credentials blank until their steps below.
+5. Set `NEXT_PUBLIC_SITE_URL` to your eventual HTTPS domain, without a trailing slash; keep localhost during local work. Set `NEXT_PUBLIC_SITE_NAME`, `CONTACT_EMAIL` to your real support address, and `NEXT_PUBLIC_APPLY_DELAY_SECONDS=10`. Set `DEMO_MODE=false` before going live. Leave AdSense and indexing credentials blank until their steps below.
 
 ## Email OTP and team accounts
 
 6. In Supabase Auth, enable the Email provider. Disable public new-user signups. Configure the Site URL and allowed redirect URLs for localhost, the deployment preview/staging host and the final HTTPS domain. The app uses codes, not a callback or magic-link route.
-7. Edit the email sign-in/Magic Link template so its body displays the six-digit `{{ .Token }}` value. Remove the magic-link button/ConfirmationURL. Use wording such as “Your DeskJobs sign-in code is {{ .Token }}”. Configure the email OTP length to six digits if the dashboard exposes it; choose an expiry appropriate to your users. Test the received email contains a code and no required sign-in link. See [Supabase email OTP documentation](https://supabase.com/docs/guides/auth/auth-email-passwordless).
+7. Edit the email sign-in/Magic Link template so its body displays the six-digit `{{ .Token }}` value. Remove the magic-link button/ConfirmationURL. Use wording such as “Your startajob sign-in code is {{ .Token }}”. Configure the email OTP length to six digits if the dashboard exposes it; choose an expiry appropriate to your users. Test the received email contains a code and no required sign-in link. See [Supabase email OTP documentation](https://supabase.com/docs/guides/auth/auth-email-passwordless).
 8. Configure custom SMTP under Auth email settings. Supabase's built-in delivery has very low sending limits and is unsuitable for production. Resend or Brevo may offer a free tier; check their current allowances. Verify your sending domain, add the provider's SPF/DKIM DNS records (and DMARC as appropriate), then copy SMTP host, port, username, password and sender address into Supabase. Keep SMTP credentials in Supabase, not in this repo. Send a test email and check spam placement.
 9. Restart the local server after environment changes. Run `npm run create-admin -- you@example.com` with your real address. This creates the first Auth user and active admin profile without sending an invitation. The script refuses to create another initial admin if one exists. Open `/admin/login`, request a code, copy it from your email, and sign in.
 10. Open `/admin/users`, enter a poster name and email, and create the account. Ask that person to request their own code. Test creating a draft, submitting it, rejecting with a reason, editing/resubmitting, and approving it. Confirm the poster cannot publish and cannot edit a published job. Deactivate the poster and verify old sessions lose protected access; reactivate when appropriate.
@@ -52,6 +52,12 @@ Complete each numbered step in order. Keep all keys out of Git and screenshots.
 28. Run `npm run lighthouse` against a production server and inspect `verification/lighthouse-*.html`. Repeat after enabling ads, consent tooling or analytics. The countdown is a transparent reading aid, not a reason to click ads. Monitor real Core Web Vitals after launch: LCP below 2.5s, CLS below 0.1 and field INP below 200ms. Lab tests cannot establish field INP.
 29. Monthly: review Search Console indexing/JobPosting reports, expired/deleted URLs, sitemap health, crawl errors, bot logs and provider-notification failures. Fix broken official links, thin/duplicate introductions and stale deadlines. Review reports, update original content, check mobile performance and accessibility, patch dependencies and back up the database. Delete stale request-limit records (for example `delete from public.request_limits where reset_at < now() - interval '1 day';`) and apply your chosen retention schedule to clicks/reports. Test poster deactivation and restore procedures periodically.
 
+## Location dropdowns
+
+Apply `supabase/migrations/202611010003_job_country.sql` before deploying the location dropdown changes. It preserves existing city/state values and defaults existing countries to India. Posters can leave city and state blank.
+
+Country, state, and city dropdowns load from CountriesNow through `/api/locations`; no API key is required. The server caches provider responses for 24 hours and times out requests after 15 seconds. Allow outbound HTTPS to `countriesnow.space` from the deployment. The form preserves existing selections when the provider is unavailable and offers Retry controls.
+
 ## Optional analytics and advertising
 
 30. Analytics is off. If adding Google Analytics, create a GA4 property and web stream, integrate its tag with a consent-aware component, update the privacy policy and test consent behaviour before collecting data. Do not put personal information, reports or auth emails into events. No analytics package was added automatically.
@@ -63,3 +69,35 @@ Complete each numbered step in order. Keep all keys out of Git and screenshots.
 
 34. Verify the real admin/poster workflow, SMTP, database backups, host logs, expiry scheduler and third-party notifications on staging. Confirm every secret remains server-only and rotate any exposed key immediately. Keep your Supabase and hosting recovery details in a password manager.
 35. Save the final local verification report and screenshots as a baseline. Push only when you are ready, then test the deployed host again. Local passing tests cannot verify your domain, provider accounts, DNS, email delivery, AdSense approval or production bot/firewall configuration.
+
+## Upgrade: optional fields, experience levels and categories
+
+For an existing project, run `supabase/migrations/202610300002_categories_experience.sql` once in Supabase SQL Editor. Do not rerun the initial migration. For a new project, run all migration files in filename order. This migration adds the category catalog, admin-only category creation, category references and expanded experience levels without deleting jobs.
+
+Admins can open **Add a new category** above the job form. Added categories are available to posters and public filters. Summary remains required; Eligibility, Documents needed, How to apply, Vacancies and Last date are optional and blank values are hidden on public job pages.
+
+## Application URL or email
+
+Before deploying this feature, apply `supabase/migrations/202611010001_application_email.sql` once in Supabase SQL Editor, after the earlier migrations. This adds nullable `application_email`, permits `apply_url` to be null for email jobs, and requires exactly one application method. Existing URLs and jobs are preserved. Table grants, RLS, publication guards and the expired-job RPC retain their restrictions. This migration was exercised in the local PostgreSQL test database; it has **not** been applied to the live Supabase project by this change.
+
+The single **Application URL or Email** field accepts an official HTTPS URL or one email address. Input is trimmed; email domains are lowercased while local-part spelling/case and plus addressing are preserved. HTTP, unsafe protocols, credentials, ports, shorteners, messaging links, malformed addresses and multiple recipients are rejected. The application method remains required for drafts as well as published jobs, matching the previous form rule. Saving a URL explicitly clears the email; saving an email explicitly clears the URL. Approval repeats validation against the saved fields.
+
+URL applications retain their safe external link and configurable countdown; the default is now ten seconds. Existing environment overrides remain effective, so set `NEXT_PUBLIC_APPLY_DELAY_SECONDS=10` on your deployment if you want ten seconds and an older override is present. Email jobs immediately render the saved address and **Send Application** mailto link, without a countdown or prefilled personal data. Invalid legacy destinations render an unavailable message rather than a broken application link.
+
+Public fetches now project the application email alongside the URL, with no additional queries. Public JSON keeps `source_apply_url` for URL jobs (null for email jobs) and adds nullable `application_email`; OpenAPI documents both. Public responses remain anonymous, published-only, and free of private moderation fields. Existing save/review invalidation expires the tagged public job cache and affected ISR pages after application-method changes. Deploy after the migration, then verify URL → email → URL editing in a signed-in admin session and the anonymous public page. No live deployment or live signed-in mutation was performed by this change.
+
+Local verification: lint and TypeScript checks pass, along with 21 unit/database tests and four desktop browser tests. The optimized production webpack build and isolated `next start` fixture pass, including URL → email → URL cache invalidation, legacy URL behavior, expiry, public access and protected admin redirects. Twenty warm fixture requests were cache hits with zero backend calls (median TTFB 16.9 ms; p95 24.0 ms). These are local fixture results, not deployed latency measurements. Reproduce with `npx tsx scripts/benchmark-public-jobs.ts application-methods`; results are in `verification/public-performance-application-methods.json`.
+
+Files changed for this feature:
+
+- Admin entry/persistence: `components/job-form.tsx`, `app/admin/jobs/actions.ts`, `lib/validation.ts`, `lib/application-method.ts`.
+- Storage/data: `supabase/migrations/202611010001_application_email.sql`, `lib/jobs.ts`, `lib/sample-jobs.ts`, `lib/data.ts`, `lib/public-job-fields.ts`, `lib/public-job-cache.ts`.
+- Rendering/review/public API: `components/application-panel.tsx`, `app/jobs/[slug]/page.tsx`, `components/review-queue.tsx`, `lib/public-api.ts`, `app/openapi.json/route.ts`, `scripts/seo-check.ts`.
+- Verification: `tests/unit/application-method.test.ts`, `tests/unit/jobs.test.ts`, `tests/unit/rls.test.ts`, `tests/ui/application.spec.ts`, `tests/ui/dashboard.spec.ts`, `scripts/benchmark-public-jobs.ts`, and the application-methods verification artifacts.
+- Configuration/documentation: `.env.example` and this file. Existing private environment overrides are preserved.
+
+## startajob branding
+
+The application display name is `startajob`. The default, example environment and local `NEXT_PUBLIC_SITE_NAME` setting have been updated. On the hosting provider, set `NEXT_PUBLIC_SITE_NAME=startajob` and rebuild/redeploy so a previously configured display name does not override the new default. Restart a running local development server after its environment setting changes. Keep the existing `NEXT_PUBLIC_SITE_URL`, domains, email addresses, Supabase identifiers and credentials.
+
+Update the Supabase Auth email template and SMTP sender display name to match the sign-in wording above. Also review any custom introductions or seeded sample copy already saved in Supabase for outdated product wording; this rebrand does not rewrite stored content. Those external/provider updates and deployment have not been performed or verified here. No database migration is required for the branding change.

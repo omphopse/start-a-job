@@ -1,3 +1,4 @@
+import { experienceLevels } from '@/lib/job-options';
 import { site } from '@/lib/config';
 export function GET() {
   const properties = Object.fromEntries(
@@ -14,16 +15,31 @@ export function GET() {
       'job_type',
       'category',
       'salary_text',
-      'source_apply_url',
       'canonical_url',
       'summary',
     ].map((key) => [key, { type: 'string' }]),
   );
   const job = {
     type: 'object',
-    required: [...Object.keys(properties), 'last_date', 'posted_at'],
+    required: [
+      ...Object.keys(properties),
+      'source_apply_url',
+      'application_email',
+      'last_date',
+      'posted_at',
+    ],
     properties: {
       ...properties,
+      source_apply_url: {
+        type: ['string', 'null'],
+        format: 'uri',
+        description: 'Official HTTPS application URL; null for email applications.',
+      },
+      application_email: {
+        type: ['string', 'null'],
+        format: 'email',
+        description: 'Public application email; null for URL applications.',
+      },
       last_date: { type: ['string', 'null'], format: 'date' },
       posted_at: { type: ['string', 'null'], format: 'date-time' },
     },
@@ -50,7 +66,10 @@ export function GET() {
             ...['q', 'state', 'category', 'experience_level', 'job_type'].map((name) => ({
               in: 'query',
               name,
-              schema: { type: 'string' },
+              schema: {
+                type: 'string',
+                ...(name === 'experience_level' ? { enum: experienceLevels } : {}),
+              },
             })),
             { in: 'query', name: 'page', schema: { type: 'integer', minimum: 1, default: 1 } },
             {

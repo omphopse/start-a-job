@@ -18,6 +18,11 @@ export function metadata(
       siteName: site.name,
       type: 'website',
     },
+    twitter: {
+      card: 'summary',
+      title: short,
+      description: description.slice(0, 154),
+    },
     robots: noindex ? { index: false, follow: true } : { index: true, follow: true },
   };
 }

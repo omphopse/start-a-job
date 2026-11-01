@@ -1,3 +1,4 @@
+import { listCategories } from '@/lib/categories';
 import { parseFilters } from '@/lib/validation';
 import { Fragment } from 'react';
 import { AdSlot } from '@/components/ad-slot';
@@ -22,6 +23,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 export default async function Jobs({ searchParams }: { searchParams: Promise<Filters> }) {
   const f = parseFilters(await searchParams);
   const { jobs, count } = await listJobs(f);
+  const categories = await listCategories();
   const page = Math.max(1, Number(f.page) || 1);
   const pageUrl = (n: number) =>
     `/jobs?${new URLSearchParams({ ...f, page: String(n) }).toString()}`;
@@ -54,7 +56,7 @@ export default async function Jobs({ searchParams }: { searchParams: Promise<Fil
       </section>
       <div className="container results-layout">
         <aside className="desktop-filters">
-          <FiltersForm filters={f} />
+          <FiltersForm filters={f} categories={categories} />
           <div className="trust-mini">
             <span>♧</span>
             <strong>Your search, made safer.</strong>
@@ -91,7 +93,7 @@ export default async function Jobs({ searchParams }: { searchParams: Promise<Fil
           <details className="mobile-filters">
             <summary>☷ Filter opportunities</summary>
             <div className="filter-drawer">
-              <FiltersForm filters={f} />
+              <FiltersForm filters={f} categories={categories} />
             </div>
           </details>
           {jobs.length ? (

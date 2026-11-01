@@ -4,6 +4,8 @@ import './globals.css';
 import { site } from '@/lib/config';
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  applicationName: site.name,
+  openGraph: { siteName: site.name },
   title: { default: `${site.name} — Your first step forward`, template: `%s | ${site.name}` },
   description:
     'Discover desk and office jobs for freshers across India. Read the details and apply directly on the official website.',
@@ -15,7 +17,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <header className="site-header">
           <div className="container nav">
             <Link className="brand" href="/">
-              <span className="brand-icon">d.</span>
+              <span className="brand-icon" aria-hidden="true">
+                s.
+              </span>
               {site.name}
               <span className="brand-dot">↗</span>
             </Link>
@@ -44,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <strong>Explore</strong>
               <Link href="/jobs">Browse jobs</Link>
-              <Link href="/about">About DeskJobs</Link>
+              <Link href="/about">About {site.name}</Link>
               <Link href="/contact">Contact us</Link>
             </div>
             <div>

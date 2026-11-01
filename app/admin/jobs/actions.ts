@@ -8,14 +8,19 @@ import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import { requireProfile } from '@/lib/auth';
 import { serverDb } from '@/lib/supabase/server';
-import { jobInput, makeSlug } from '@/lib/validation';
+import { jobFormInput, makeSlug } from '@/lib/validation';
+import { listCategories } from '@/lib/categories';
 import { refreshJobs } from '@/lib/revalidate';
 export async function saveJob(_state: { message: string }, form: FormData) {
   const profile = await requireProfile();
-  const parsed = jobInput.safeParse(Object.fromEntries(form));
+  const parsed = jobFormInput.safeParse(Object.fromEntries(form));
   if (!parsed.success)
     return {
       message: parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join(' · '),
+    };
+  if (!(await listCategories()).includes(parsed.data.category))
+    return {
+      message: 'Select an existing category. An admin can add a new category above the form.',
     };
   const intent = z.enum(['draft', 'pending', 'published']).safeParse(form.get('intent'));
   if (!intent.success || (profile.role !== 'admin' && intent.data === 'published'))

@@ -26,3 +26,25 @@ test('public filter validation handles duplicate/oversized inputs', () => {
   assert.equal(parseFilters({ page: '-1' }).page, undefined);
   assert.equal(parseFilters({ category: 'Accounts', unknown: 'secret' }).category, 'Accounts');
 });
+
+test('optional job fields accept blanks; expanded experience and custom category are valid', () => {
+  const input = {
+    ...sampleJobs[0],
+    vacancies: '',
+    last_date: '',
+    eligibility: '',
+    documents_needed: '',
+    how_to_apply: '',
+    experience_level: '6-9',
+    category: 'Quantum Computing',
+    official_confirmed: 'on',
+    no_fees: 'on',
+  };
+  const result = jobInput.parse(input);
+  assert.equal(result.vacancies, null);
+  assert.equal(result.last_date, null);
+  assert.equal(result.eligibility, '');
+  assert.equal(jobInput.safeParse({ ...input, summary: '' }).success, false);
+  assert.equal(jobInput.safeParse({ ...input, vacancies: '0' }).success, false);
+  assert.equal(parseFilters({ experience_level: '15+' }).experience_level, '15+');
+});

@@ -1,4 +1,5 @@
 import type { Job } from './jobs';
+import { site } from './config';
 const roles = [
   [
     'Customer Support Associate',
@@ -42,16 +43,23 @@ export const sampleJobs: Job[] = roles.map(([title, company, location, state, ca
   category,
   job_type: i === 3 ? 'internship' : 'full-time',
   salary_text: i === 2 ? '₹15,000–₹20,000 / month' : 'Not disclosed',
-  vacancies: i + 2,
-  last_date: '2099-12-31',
+  vacancies: i === 9 ? null : i + 2,
+  last_date: i === 9 ? null : '2099-12-31',
   apply_url: `https://example.com/careers/sample-${i + 1}`,
-  summary: `SAMPLE DATA — This is a fictional vacancy for demonstrating DeskJobs. The ${title.toLowerCase()} role involves supporting day-to-day office operations, maintaining accurate records and collaborating with the team. No real recruitment is taking place.`,
+  application_email: null,
+  summary: `SAMPLE DATA — This is a fictional vacancy for demonstrating ${site.name}. The ${title.toLowerCase()} role involves supporting day-to-day office operations, maintaining accurate records and collaborating with the team. No real recruitment is taking place.`,
   eligibility:
-    'Fresh graduates with clear communication, basic computer skills and a willingness to learn. Check the official notice for exact eligibility.',
+    i === 9
+      ? ''
+      : 'Fresh graduates with clear communication, basic computer skills and a willingness to learn. Check the official notice for exact eligibility.',
   documents_needed:
-    'An updated résumé, education certificates and a valid identity document. Share sensitive documents only on a verified official portal.',
+    i === 9
+      ? ''
+      : 'An updated résumé, education certificates and a valid identity document. Share sensitive documents only on a verified official portal.',
   how_to_apply:
-    'Read the complete notice, check your eligibility and follow the application instructions on the official website. Never pay an application agent.',
+    i === 9
+      ? ''
+      : 'Read the complete notice, check your eligibility and follow the application instructions on the official website. Never pay an application agent.',
   status: 'published',
   rejection_reason: null,
   created_by: '00000000-0000-4000-8000-999999999999',
@@ -66,4 +74,11 @@ export const expiredSample: Job = {
   slug: 'expired-sample-job',
   title: 'Expired sample vacancy',
   last_date: '2020-01-01',
+};
+export const emailSample: Job = {
+  ...sampleJobs[0],
+  id: '00000000-0000-4000-8000-000000000100',
+  slug: 'email-application-sample-job',
+  apply_url: null,
+  application_email: 'Recruitment+jobs@example.com',
 };

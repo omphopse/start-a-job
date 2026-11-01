@@ -1,16 +1,25 @@
-import type { Job } from '../jobs';
+import type { PublicJob } from '../public-job-fields';
 import { site } from '../config';
 export const escapeHtml = (text: string) =>
   text.replace(
     /[&<>"']/g,
     (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
   );
-export function jobSchema(job: Job) {
+export function jobSchema(job: PublicJob) {
   return {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
     title: job.title,
-    description: `<p>${escapeHtml(job.summary)}</p><h2>Eligibility</h2><p>${escapeHtml(job.eligibility)}</p><h2>Documents needed</h2><p>${escapeHtml(job.documents_needed)}</p><h2>How to apply</h2><p>${escapeHtml(job.how_to_apply)}</p>`,
+    description:
+      `<p>${escapeHtml(job.summary)}</p>` +
+      [
+        ['Eligibility', job.eligibility],
+        ['Documents needed', job.documents_needed],
+        ['How to apply', job.how_to_apply],
+      ]
+        .filter(([, text]) => text?.trim())
+        .map(([title, text]) => `<h2>${title}</h2><p>${escapeHtml(text)}</p>`)
+        .join(''),
     datePosted: job.published_at || job.created_at,
     ...(job.last_date ? { validThrough: `${job.last_date}T23:59:59+05:30` } : {}),
     employmentType: (
@@ -26,15 +35,15 @@ export function jobSchema(job: Job) {
       '@type': 'Place',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: job.location,
-        addressRegion: job.state,
-        addressCountry: 'IN',
+        ...(job.location ? { addressLocality: job.location } : {}),
+        ...(job.state ? { addressRegion: job.state } : {}),
+        addressCountry: job.country || 'IN',
       },
     },
     ...(job.work_mode === 'remote'
       ? {
           jobLocationType: 'TELECOMMUTE',
-          applicantLocationRequirements: { '@type': 'Country', name: 'India' },
+          applicantLocationRequirements: { '@type': 'Country', name: job.country || 'India' },
         }
       : {}),
     directApply: false,

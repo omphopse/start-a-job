@@ -25,7 +25,7 @@ Scores are lab measurements. They do not establish field INP or guarantee perfor
 
 ## Assumptions and manual work
 
-- Brand defaults to DeskJobs. Contact email and operator wording must be replaced/reviewed before launch.
+- Brand defaults to startajob. Contact email and operator wording must be replaced/reviewed before launch.
 - No Supabase credentials were supplied. The schema/policies were exercised in embedded PostgreSQL, but remote migrations, real email delivery, signed-in browser CRUD, service-role account provisioning, report/click persistence and live session deactivation must be checked against a configured staging project. Dashboard screenshots are explicitly read-only sample previews, not evidence of real login.
 - Official-domain ownership and absence of recruitment fees require editorial review. URL validation and mandatory checkboxes enforce the posting rules in the app but cannot independently authenticate a company's domain.
 - Sample jobs are fictional, explicitly labelled and use example.com. Remove them before launch; demo mode is opt-in and must be off in production.
@@ -54,3 +54,20 @@ Scores are lab measurements. They do not establish field INP or guarantee perfor
 
 Each feature's commit body records its check results. Separate fixes record corrected navigation and test assertions. Final source formatting and validation polish are kept in a separate fix commit. The final chat report includes the complete release Git log and the final documentation/release hashes.
 
+## startajob branding update — 2026-11-01
+
+The current application brand is `startajob`. Header/footer text, homepage and trust-page copy, login community text, the admin workspace label, public job and landing copy, sample descriptions, page titles, Open Graph site names, Twitter metadata, application-name metadata, API attribution, RSS, OpenAPI and llms.txt use the central display-name configuration. The existing text monogram is now `s.` with its original dimensions, colors and layout. No checked-in image logo, favicon asset or PWA manifest was found.
+
+Files modified for this rebrand:
+
+- Branding/configuration: `lib/config.ts`, `.env.example`, local `.env.local` (only the non-secret site-name setting), `app/layout.tsx`.
+- Pages: `app/page.tsx`, `app/[info]/page.tsx`, `app/admin/page.tsx`, `app/admin/login/page.tsx`, `app/jobs/[slug]/page.tsx`.
+- Copy/metadata: `lib/landing.ts`, `lib/sample-jobs.ts`, `lib/seo/metadata.ts`.
+- Documentation: `README.md`, `SETUP.md`, this report.
+- Verification: `playwright.config.ts`, `tests/ui/api.spec.ts`, `tests/ui/seo.spec.ts`, new `tests/ui/branding.spec.ts`, `scripts/benchmark-public-jobs.ts`, `verification/public-performance-rebrand.json`, its server log and `verification/rebrand-turbopack-build.log`.
+
+Intentional remaining references are internal package/lockfile identifiers, the workspace path, the dated release verification record and historical screenshots/logs. Negative branding-regression assertions also contain the previous spelling. Lowercase “desk jobs” remains where it describes the category of work. Repository/package names, routes, domains, canonical URLs, database objects, Supabase identifiers, credentials, authentication, RLS and cache policy were not renamed or modified for branding.
+
+Validation passed: full lint and TypeScript checks, 21 unit/database tests and nine browser tests across mobile, tablet and desktop. Browser coverage includes public pages, header/footer, login, the admin preview, protected-admin redirects, titles, Open Graph/Twitter/application-name metadata, JSON-LD, API attribution, discovery feeds and overflow checks. A live signed-in admin session was not exercised. The optimized webpack production build and local production-server fixture checks passed, including branding assertions, URL/email switching, invalidation, expiry and removal behavior. Twenty warm production-mode fixture requests were all cache hits with zero backend calls. These fixture timings are not deployed production results.
+
+The default Turbopack production build was attempted and failed with the existing CSS-worker child-process connection error. The supported webpack production build passed; package build scripts and bundler defaults were preserved. Reproduce the passing integration check with `npx tsx scripts/benchmark-public-jobs.ts rebrand`; append `--turbopack` to attempt the default builder. No hosting deployment, domain change, provider email-template update or stored Supabase content rewrite was performed. See the branding section in SETUP.md for manual provider steps.

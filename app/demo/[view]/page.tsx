@@ -1,3 +1,4 @@
+import { CategoryForm } from '@/components/category-form';
 import { ReviewQueue } from '@/components/review-queue';
 import { UsersPanel } from '@/components/users-panel';
 import { notFound } from 'next/navigation';
@@ -57,6 +58,7 @@ export default async function Demo({ params }: { params: Promise<{ view: string 
         <>
           <h1>Job form preview</h1>
           <p className="demo-notice">Read-only sample. Sign in to create a real submission.</p>
+          <CategoryForm preview />
           <JobForm job={sampleJobs[0]} preview />
         </>
       )}

@@ -1,14 +1,15 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { metadata } from '@/lib/seo/metadata';
+import { site } from '@/lib/config';
 const pages: Record<string, { title: string; intro: string; sections: [string, string][] }> = {
   about: {
-    title: 'About DeskJobs',
+    title: `About ${site.name}`,
     intro: 'A little direction for your first step into work.',
     sections: [
       [
         'Built for fresh beginnings',
-        'DeskJobs is an independent job discovery portal focused on desk and office opportunities for freshers and entry-level candidates across India. The site is maintained by the DeskJobs editorial team.',
+        `${site.name} is an independent job discovery portal focused on desk and office opportunities for freshers and entry-level candidates across India. The site is maintained by the ${site.name} editorial team.`,
       ],
       [
         'How we review opportunities',
@@ -21,7 +22,7 @@ const pages: Record<string, { title: string; intro: string; sections: [string, s
     ],
   },
   contact: {
-    title: 'Contact DeskJobs',
+    title: `Contact ${site.name}`,
     intro: 'Have a question, correction or concern? We’re listening.',
     sections: [
       [
@@ -62,7 +63,7 @@ const pages: Record<string, { title: string; intro: string; sections: [string, s
     sections: [
       [
         'We are not the employer',
-        'DeskJobs is an independent listing service. We do not offer employment, guarantee selection or accept applications on behalf of employers. Always verify details, eligibility and deadlines on the official company or government website.',
+        `${site.name} is an independent listing service. We do not offer employment, guarantee selection or accept applications on behalf of employers. Always verify details, eligibility and deadlines on the official company or government website.`,
       ],
       [
         'Never pay to apply through us',

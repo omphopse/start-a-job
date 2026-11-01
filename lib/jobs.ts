@@ -1,3 +1,4 @@
+import type { experienceLevels } from './job-options';
 export type Job = {
   id: string;
   slug: string;
@@ -5,15 +6,17 @@ export type Job = {
   company_name: string;
   location: string;
   state: string;
+  country?: string;
   work_mode: 'office' | 'hybrid' | 'remote';
   qualification: string;
-  experience_level: 'fresher' | '0-1' | '1-3';
+  experience_level: (typeof experienceLevels)[number];
   category: string;
   job_type: 'full-time' | 'part-time' | 'internship' | 'contract';
   salary_text: string;
   vacancies: number | null;
   last_date: string | null;
-  apply_url: string;
+  apply_url: string | null;
+  application_email: string | null;
   summary: string;
   eligibility: string;
   documents_needed: string;
@@ -33,5 +36,5 @@ export const today = () =>
     month: '2-digit',
     day: '2-digit',
   }).format(new Date());
-export const isCurrent = (job: Job) =>
+export const isCurrent = (job: Pick<Job, 'status' | 'last_date'>) =>
   job.status === 'published' && (!job.last_date || job.last_date >= today());

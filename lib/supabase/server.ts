@@ -1,13 +1,16 @@
 import 'server-only';
+import { cache } from 'react';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
-export async function serverDb() {
+import { requestPerformance } from '../request-performance';
+export const serverDb = cache(async function serverDb() {
   const jar = await cookies();
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      global: { fetch: requestPerformance().fetch },
       cookies: {
         getAll: () => jar.getAll(),
         setAll: (values) => {
@@ -27,7 +30,7 @@ export async function serverDb() {
       },
     },
   );
-}
+});
 export function serviceDb() {
   if (!process.env.SUPABASE_SERVICE_ROLE_KEY)
     throw new Error('Server service role key is not configured.');

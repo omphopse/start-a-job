@@ -1,4 +1,5 @@
 import { LoginForm } from '@/components/login-form';
+import { site } from '@/lib/config';
 export const metadata = { title: 'Poster sign in', robots: { index: false, follow: false } };
 export default function Login() {
   return (
@@ -12,7 +13,7 @@ export default function Login() {
         </h1>
         <p>
           Help fresh talent find their first step. Share clear, trustworthy opportunities with the
-          DeskJobs community.
+          {site.name} community.
         </p>
         <div className="auth-promise">
           ♧ Every submission is reviewed.

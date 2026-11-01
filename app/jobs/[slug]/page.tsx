@@ -4,43 +4,68 @@ import { JsonLd } from '@/components/json-ld';
 import { jobSchema, breadcrumbs } from '@/lib/seo/schema';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getJob, listJobs } from '@/lib/data';
+import { getJob, similarJobs } from '@/lib/data';
 import { isCurrent, today } from '@/lib/jobs';
 import { JobCard, posted } from '@/components/job-card';
-import { ApplyPanel } from '@/components/apply-panel';
-export const dynamic = 'force-dynamic';
+import { ApplicationPanel } from '@/components/application-panel';
+import { getApplicationMethod } from '@/lib/application-method';
+import { after } from 'next/server';
+import { requestPerformance } from '@/lib/request-performance';
+import { site } from '@/lib/config';
+// No request cookies or headers enter this public ISR page.
+export const revalidate = 60;
+export function generateStaticParams() {
+  return [];
+}
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const job = await getJob((await params).slug);
   return job
     ? metadata(
         job.title.slice(0, 30) + ' · ' + job.company_name.slice(0, 15) + ' · ' + job.id.slice(0, 8),
         job.title +
-          ' in ' +
-          job.location +
+          (job.location || job.state || job.country
+            ? ' in ' + [job.location, job.state, job.country].filter(Boolean).join(', ')
+            : '') +
           '. ' +
           job.qualification +
-          '. Apply by ' +
-          (job.last_date || 'the official deadline') +
-          '.',
+          '.' +
+          (job.last_date ? ' Apply by ' + job.last_date + '.' : ''),
         '/jobs/' + job.slug,
         !isCurrent(job),
       )
     : {};
 }
 export default async function JobDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const timing = requestPerformance();
+  if (process.env.PERF_REQUESTS === '1') after(() => timing.finish());
   const { slug } = await params;
   const job = await getJob(slug);
   if (!job) notFound();
   const current = isCurrent(job);
-  const { jobs } = await listJobs({ category: job.category }, 4);
+  const jobs = await similarJobs(job.category);
+  // Server-only diagnostic clock does not affect rendered output.
+  // eslint-disable-next-line react-hooks/purity
+  const transformationStarted = performance.now();
   const days = job.last_date
     ? Math.ceil((new Date(job.last_date).getTime() - new Date(today()).getTime()) / 86400000)
     : null;
   const delay = Math.max(
     0,
-    Math.min(60, Number(process.env.NEXT_PUBLIC_APPLY_DELAY_SECONDS) || 12),
+    Math.min(60, Number(process.env.NEXT_PUBLIC_APPLY_DELAY_SECONDS) || 10),
   );
-  const host = new URL(job.apply_url).host;
+  const application = getApplicationMethod(job);
+  const host =
+    application?.kind === 'url'
+      ? new URL(application.url).host
+      : application?.kind === 'email'
+        ? application.email.split('@')[1]
+        : null;
+  const sections = [
+    ['Eligibility', job.eligibility],
+    ['Documents needed', job.documents_needed],
+    ['How to apply', job.how_to_apply],
+  ].filter(([, text]) => text?.trim());
+  timing.record('public.transform', transformationStarted);
   return (
     <div className="container detail-page">
       {current && <JsonLd data={jobSchema(job)} />}
@@ -57,22 +82,34 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
         {job.title}
       </div>
       <div className="detail-header">
-        <span className="verified-badge">
-          {host === 'example.com' ? 'Sample source' : 'Verified source'}: {host} ↗
-        </span>
+        {host && (
+          <span className="verified-badge">
+            {application?.kind === 'email'
+              ? 'Application email'
+              : host === 'example.com'
+                ? 'Sample source'
+                : 'Verified source'}
+            : {host}
+            {application?.kind === 'url' ? ' ↗' : ''}
+          </span>
+        )}
         <h1>{job.title}</h1>
         <p className="detail-company">{job.company_name}</p>
         <div className="job-meta">
           <span>
-            ⌖ {job.location}, {job.state}
+            ⌖{' '}
+            {[job.location, job.state, job.country].filter(Boolean).join(', ') ||
+              'Location not specified'}
           </span>
           <span>▱ {job.work_mode === 'office' ? 'Work from office' : job.work_mode}</span>
           <span>Posted {posted(job.published_at).toLowerCase()}</span>
         </div>
-        <p className={`last-date ${days !== null && days <= 3 ? 'urgent' : ''}`}>
-          Last date: <strong>{job.last_date || 'Not specified — check the official notice'}</strong>
-          {days !== null && days >= 0 && days <= 3 ? ' · Closing soon' : ''}
-        </p>
+        {job.last_date && (
+          <p className={`last-date ${days !== null && days <= 3 ? 'urgent' : ''}`}>
+            Last date: <strong>{job.last_date}</strong>
+            {days !== null && days >= 0 && days <= 3 ? ' · Closing soon' : ''}
+          </p>
+        )}
       </div>
       {!current && (
         <section className="expired-notice">
@@ -84,15 +121,16 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
         </section>
       )}
       <p className="answer-first">
-        {job.company_name} is listing a {job.title.toLowerCase()} role in {job.location},{' '}
-        {job.state}. Candidates with {job.qualification.toLowerCase()} qualifications and{' '}
+        {job.company_name} is listing a {job.title.toLowerCase()} role
+        {[job.location, job.state, job.country].filter(Boolean).length
+          ? ` in ${[job.location, job.state, job.country].filter(Boolean).join(', ')}`
+          : ''}
+        . Candidates with {job.qualification.toLowerCase()} qualifications and{' '}
         {job.experience_level === 'fresher'
           ? 'no prior experience'
           : `${job.experience_level} years of experience`}{' '}
-        can review the eligibility below.{' '}
-        {job.last_date
-          ? `The last date to apply is ${job.last_date}.`
-          : 'Check the official notice for the application deadline.'}
+        can apply through the official source.{' '}
+        {job.last_date ? `The last date to apply is ${job.last_date}.` : ''}
       </p>
       <dl className="facts-grid">
         {[
@@ -102,7 +140,7 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
             job.experience_level === 'fresher' ? 'Fresher' : `${job.experience_level} years`,
           ],
           ['Salary', job.salary_text],
-          ['Vacancies', job.vacancies || 'See official notice'],
+          ...(job.vacancies ? [['Vacancies', job.vacancies]] : []),
           ['Job type', job.job_type.replace('-', ' ')],
         ].map(([k, v]) => (
           <div key={k}>
@@ -113,27 +151,25 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
       </dl>
       <div className="detail-columns">
         <article className="detail-content">
-          <section className="checklist">
-            <p className="eyebrow">A QUICK CHECK BEFORE YOUR NEXT STEP</p>
-            <h2>Before you apply</h2>
-            <p>
-              Check your eligibility, prepare your documents and read the official application
-              instructions.
-            </p>
-            {[
-              ['Eligibility', job.eligibility],
-              ['Documents needed', job.documents_needed],
-              ['How to apply', job.how_to_apply],
-            ].map(([title, text], i) => (
-              <div key={title} className="checklist-item">
-                <span aria-hidden="true">0{i + 1}</span>
-                <div>
-                  <h2>{title}</h2>
-                  <p>{text}</p>
+          {sections.length > 0 && (
+            <section className="checklist">
+              <p className="eyebrow">A QUICK CHECK BEFORE YOUR NEXT STEP</p>
+              <h2>Before you apply</h2>
+              <p>
+                Check your eligibility, prepare your documents and read the official application
+                instructions.
+              </p>
+              {sections.map(([title, text], i) => (
+                <div key={title} className="checklist-item">
+                  <span aria-hidden="true">0{i + 1}</span>
+                  <div>
+                    <h2>{title}</h2>
+                    <p>{text}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </section>
+              ))}
+            </section>
+          )}
           <section className="full-details">
             <h2>About this opportunity</h2>
             <p className="plain-text">{job.summary}</p>
@@ -151,7 +187,7 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
               </section>
             </>
           )}
-          {current && <ApplyPanel url={job.apply_url} jobId={job.id} delay={delay} />}
+          {current && <ApplicationPanel job={job} delay={delay} />}
           <div className="report-link">
             <a href={`/jobs/${job.slug}/report`}>⚑ Report this job</a>
             <p>Something doesn’t look right? Help us keep the community safe.</p>
@@ -162,7 +198,7 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
             <span>♧</span>
             <strong>Your first job should be a safe step.</strong>
             <p>
-              DeskJobs shares opportunities and links you to the source. We are not the employer,
+              {site.name} shares opportunities and links you to the source. We are not the employer,
               and we never charge application fees.
             </p>
             <Link href="/disclaimer" className="text-link">
