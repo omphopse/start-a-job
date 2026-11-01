@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { PGlite } from '@electric-sql/pglite';
 import { readFileSync, readdirSync } from 'node:fs';
+import { PUBLIC_JOB_COLUMN_NAMES, PUBLIC_JOB_COLUMNS } from '../../lib/public-job-fields';
 import { sampleJobs } from '../../lib/sample-jobs';
 
 test('click logging can only be executed by the rate-limited server role', async () => {
@@ -68,11 +69,34 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
       `insert into jobs(${keys.join(',')}) values(${keys.map((_, i) => `$${i + 1}`).join(',')})`,
       Object.values(job),
     );
+    const allColumns = await db.query<{ column_name: string }>(
+      `select column_name from information_schema.columns where table_schema='public' and table_name='jobs'`,
+    );
     await db.exec("set role anon; select set_config('request.jwt.claim.role','anon',false)");
     assert.equal((await db.query('select id,title from jobs')).rows.length, 1);
-    for (const column of ['created_by', 'approved_by', 'rejection_reason']) {
+    for (const { column_name: column } of allColumns.rows.filter(
+      ({ column_name }) => !PUBLIC_JOB_COLUMN_NAMES.some((allowed) => allowed === column_name),
+    )) {
       await assert.rejects(db.query(`select ${column} from jobs`), /permission denied/);
     }
+    await assert.rejects(db.query('select * from jobs'), /permission denied/);
+    assert.equal((await db.query(`select ${PUBLIC_JOB_COLUMNS} from jobs`)).rows.length, 1);
+    const searched = await db.query<Record<string, unknown>>(
+      'select * from search_public_jobs($1)',
+      [job.title],
+    );
+    assert.equal(searched.rows.length, 1);
+    assert.deepEqual(Object.keys(searched.rows[0]).sort(), [...PUBLIC_JOB_COLUMN_NAMES].sort());
+    await db.exec('reset role');
+    await db.exec(
+      "select set_config('request.jwt.claim.role','service_role',false); update jobs set status='draft'",
+    );
+    await db.exec('set role anon');
+    assert.equal(
+      (await db.query('select * from search_public_jobs($1)', [job.title])).rows.length,
+      0,
+    );
+    await db.exec("reset role; update jobs set status='published'; set role anon");
     const otherPoster = '00000000-0000-4000-8000-777777777777';
     await db.exec(
       `reset role; insert into auth.users values('${otherPoster}'); insert into profiles(id,email,role) values('${otherPoster}','other@example.com','poster'); select set_config('request.jwt.claim.role','authenticated',false); select set_config('request.jwt.claim.sub','${otherPoster}',false); set role authenticated`,
@@ -94,6 +118,11 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
     await db.exec(
       "reset role; select set_config('request.jwt.claim.role','service_role',false); update jobs set last_date='2000-01-01'; set role anon; select set_config('request.jwt.claim.role','anon',false)",
     );
+    assert.equal(
+      (await db.query('select * from search_public_jobs($1)', [job.title])).rows.length,
+      0,
+      'the definer search function must exclude expired jobs even though it bypasses RLS',
+    );
     const expired = await db.query<Record<string, unknown>>('select * from get_expired_job($1)', [
       job.slug,
     ]);
@@ -101,6 +130,19 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
     assert.equal(expired.rows[0].title, job.title);
     for (const column of ['created_by', 'approved_by', 'rejection_reason', 'search_document'])
       assert.equal(column in expired.rows[0], false);
+    await db.exec('reset role');
+    await db.exec(
+      readFileSync('supabase/rollbacks/202611010008_public_search_boundary.sql', 'utf8'),
+    );
+    await db.exec('set role anon');
+    await db.query('select search_document from jobs');
+    await assert.rejects(db.query('select created_by from jobs'), /permission denied/);
+    await db.exec('reset role');
+    await db.exec(
+      readFileSync('supabase/migrations/202611010008_public_search_boundary.sql', 'utf8'),
+    );
+    await db.exec('set role anon');
+    await assert.rejects(db.query('select search_document from jobs'), /permission denied/);
   } finally {
     await db.close();
   }
