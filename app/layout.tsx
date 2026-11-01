@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   applicationName: site.name,
   openGraph: { siteName: site.name },
-  title: { default: `${site.name} — Your first step forward`, template: `%s | ${site.name}` },
+  title: { default: `${site.name} — ${site.tagline}`, template: `%s | ${site.name}` },
   description:
     'Discover desk and office jobs for freshers across India. Read the details and apply directly on the official website.',
 };
@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="container nav">
             <Link className="brand" href="/">
               <span className="brand-icon" aria-hidden="true">
-                s.
+                {site.mark}
               </span>
               {site.name}
               <span className="brand-dot">↗</span>
@@ -40,9 +40,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {site.name} ↗
               </Link>
               <p>
-                A little direction. A new beginning.
+                {site.footerTagline}
                 <br />
-                Find your first opportunity with confidence.
+                {site.footerDescription}
               </p>
             </div>
             <div>
@@ -59,7 +59,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="container footer-bottom">
-            © {new Date().getFullYear()} {site.name} · Made for new beginnings.
+            © {new Date().getFullYear()} {site.name} · {site.footerCredit}
             <span>Always free for job seekers.</span>
           </div>
         </footer>

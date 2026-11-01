@@ -101,10 +101,7 @@ export default async function Info({ params }: { params: Promise<{ info: string 
       ))}
       {['about', 'contact', 'privacy-policy'].includes(info) && (
         <p>
-          Contact:{' '}
-          <a href={`mailto:${process.env.CONTACT_EMAIL || 'hello@example.com'}`}>
-            {process.env.CONTACT_EMAIL || 'hello@example.com'}
-          </a>
+          Contact: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
           {!process.env.CONTACT_EMAIL && ' (placeholder — configure before launch)'}
         </p>
       )}

@@ -1,4 +1,4 @@
-# startajob — Phase 1
+# Job directory — Phase 1
 
 A fresher-focused job directory for India. Visitors browse without accounts and follow official application links. Approved posters submit drafts; active admins review and publish them.
 
@@ -87,3 +87,7 @@ There is no `202611010002`; the first two migrations precede the November sequen
 An empty closing date is saved as today's India calendar date plus `JOB_DEFAULT_VALID_DAYS` (default 30). Set `JOB_DEFAULT_VALID_DAYS=0` to disable the fallback; only then does an undated detail show “No closing date”. The form displays the fallback and lets posters/admins select another date. Past dates trigger a visible warning and remain saveable. Admin approval also supplies a fallback for undated older submissions. Expired badges and the Expired filter apply to both admin and poster dashboards independently of moderation status.
 
 An expired published job's slug returns **HTTP 200**, with a friendly notice, current similar jobs, `noindex`, no active Apply control and no JobPosting JSON-LD. Keeping the page readable preserves useful context for old links. Current listing/search/sitemap/feed/API queries exclude it. A known deletion of a previously public job returns **410** through the tombstone proxy; an unknown slug returns **404**. Demo mode includes the fictional `deleted-sample-job` tombstone so the HTTP contract is testable without a remote project.
+
+
+### Brand configuration
+`lib/config.ts` is the source of the current display name, tagline, domain, contact address and brand mark. Set `NEXT_PUBLIC_SITE_NAME`, `NEXT_PUBLIC_SITE_URL` and `CONTACT_EMAIL` for a deployment and rebuild. The existing default name is unchanged; the Supabase project display name is independent. Generate the matching OTP email body with `npx tsx scripts/email-template.ts`, then paste it into Supabase Auth templates. Documentation refers to config values rather than duplicating a product name. Historical audit reports and captured verification output retain the names they recorded; the hard-coded-brand guard covers current app, components, library, scripts, tests and current setup/configuration documentation.

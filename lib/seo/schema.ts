@@ -70,7 +70,13 @@ export function breadcrumbs(items: { name: string; path: string }[]) {
 }
 export function homeSchema() {
   return [
-    { '@context': 'https://schema.org', '@type': 'Organization', name: site.name, url: site.url },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: site.name,
+      url: site.url,
+      slogan: site.tagline,
+    },
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',

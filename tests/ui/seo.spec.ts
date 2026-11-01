@@ -1,10 +1,11 @@
+import { site } from '../../lib/config';
 import { test, expect } from '@playwright/test';
 test('trust pages, robots and structured data are server rendered', async ({
   page,
   request,
 }, info) => {
   await page.goto('/about');
-  await expect(page.getByRole('heading', { level: 1, name: 'About startajob' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: `About ${site.name}` })).toBeVisible();
   await page.screenshot({
     path: `screenshots/about-${info.project.name}.png`,
     fullPage: true,

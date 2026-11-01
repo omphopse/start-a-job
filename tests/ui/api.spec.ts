@@ -1,3 +1,4 @@
+import { site } from '../../lib/config';
 import { test, expect } from '@playwright/test';
 
 test('API page caps and long location filters never fall back to unfiltered first-page data', async ({
@@ -23,7 +24,7 @@ test('public API and discovery feeds expose current public fields only', async (
   expect(response.headers()['access-control-allow-origin']).toBe('*');
   const body = await response.json();
   expect(body.jobs).toHaveLength(5);
-  expect(body.attribution).toBe('Source: startajob');
+  expect(body.attribution).toBe(`Source: ${site.name}`);
   expect(body.jobs[0]).not.toHaveProperty('created_by');
   const job = await request.get(`/api/public/jobs/${body.jobs[0].slug}.json`);
   expect(job.status()).toBe(200);

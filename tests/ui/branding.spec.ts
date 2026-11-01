@@ -1,6 +1,7 @@
+import { site } from '../../lib/config';
 import { test, expect } from '@playwright/test';
 
-test('startajob branding is consistent across public, authentication and admin preview pages', async ({
+test(`${site.name} branding is consistent across public, authentication and admin preview pages`, async ({
   page,
 }) => {
   test.setTimeout(60_000);
@@ -14,12 +15,12 @@ test('startajob branding is consistent across public, authentication and admin p
     '/jobs/customer-support-associate-northstar-services-bengaluru-s1',
   ]) {
     await page.goto(path);
-    await expect(page.locator('header .brand')).toContainText('startajob');
-    await expect(page.locator('header .brand-icon')).toHaveText('s.');
-    await expect(page.locator('footer .brand')).toContainText('startajob');
+    await expect(page.locator('header .brand')).toContainText(site.name);
+    await expect(page.locator('header .brand-icon')).toHaveText(site.mark);
+    await expect(page.locator('footer .brand')).toContainText(site.name);
     await expect(page.locator('meta[name="application-name"]')).toHaveAttribute(
       'content',
-      'startajob',
+      site.name,
     );
     expect(await page.locator('body').innerText()).not.toMatch(
       /\b(?:DeskJobs|deskjobs|DESKJOBS|Desk Jobs)\b/,
@@ -29,20 +30,17 @@ test('startajob branding is consistent across public, authentication and admin p
     );
   }
   await page.goto('/about');
-  await expect(page).toHaveTitle('About startajob');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('About startajob');
-  await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute(
-    'content',
-    'startajob',
-  );
+  await expect(page).toHaveTitle(`About ${site.name}`);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(`About ${site.name}`);
+  await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute('content', site.name);
   await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
     'content',
-    'About startajob',
+    `About ${site.name}`,
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/about$/);
   await page.goto('/admin/login');
-  await expect(page).toHaveTitle('Poster sign in | startajob');
-  await expect(page.locator('.auth-story')).toContainText('startajob community.');
+  await expect(page).toHaveTitle(`Poster sign in | ${site.name}`);
+  await expect(page.locator('.auth-story')).toContainText(`${site.name} community.`);
   await page.goto('/admin');
   await expect(page).toHaveURL(/\/admin\/login/);
 });
@@ -57,11 +55,11 @@ test('public API, structured data and discovery metadata use the new brand', asy
     request.get('/openapi.json'),
     request.get('/'),
   ]);
-  expect((await api.json()).attribution).toBe('Source: startajob');
-  expect(await feed.text()).toContain('<title>startajob</title>');
-  expect(await llms.text()).toMatch(/^# startajob\n/);
-  expect((await openapi.json()).info.title).toBe('startajob public jobs');
+  expect((await api.json()).attribution).toBe(`Source: ${site.name}`);
+  expect(await feed.text()).toContain(`<title>${site.name}</title>`);
+  expect((await llms.text()).startsWith(`# ${site.name}\n`)).toBe(true);
+  expect((await openapi.json()).info.title).toBe(`${site.name} public jobs`);
   const html = await home.text();
-  expect(html).toContain('"name":"startajob"');
-  expect(html).toContain('name="twitter:title" content="startajob');
+  expect(html).toContain(`"name":"${site.name}"`);
+  expect(html).toContain(`name="twitter:title" content="${site.name}`);
 });

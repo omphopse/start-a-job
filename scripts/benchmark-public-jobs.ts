@@ -1,3 +1,4 @@
+import { site } from '../lib/config';
 // Local production-mode integration benchmark. The backend is a synthetic,
 // anonymous-only Supabase fixture, never the configured database.
 import assert from 'node:assert/strict';
@@ -71,7 +72,7 @@ async function main() {
     DEMO_MODE: 'false',
     PERF_REQUESTS: '1',
     NEXT_PUBLIC_SITE_URL: 'http://localhost:3118',
-    NEXT_PUBLIC_SITE_NAME: 'startajob',
+    NEXT_PUBLIC_SITE_NAME: site.name,
     NEXT_PUBLIC_ADSENSE_CLIENT: '',
     INDEXNOW_KEY: '',
     GOOGLE_INDEXING_SA_JSON: '',
@@ -173,19 +174,19 @@ async function main() {
       for (const route of ['/', '/about', '/admin/login', path]) {
         const branded = await read(route);
         assert.equal(branded.status, 200);
-        assert.match(branded.html, /name="application-name" content="startajob"/);
+        assert.ok(branded.html.includes(`name="application-name" content="${site.name}"`));
         assert.doesNotMatch(branded.html, /DeskJobs/);
       }
       const home = await read('/');
-      assert.match(home.html, /name="twitter:title" content="startajob/);
-      assert.match(home.html, /property="og:site_name" content="startajob"/);
+      assert.ok(home.html.includes(`name="twitter:title" content="${site.name}`));
+      assert.ok(home.html.includes(`property="og:site_name" content="${site.name}"`));
       const api = await read('/api/public/jobs.json?limit=1');
       assert.equal(api.status, 200);
-      assert.equal(JSON.parse(api.html).attribution, 'Source: startajob');
+      assert.equal(JSON.parse(api.html).attribution, `Source: ${site.name}`);
       const openapi = await read('/openapi.json');
-      assert.equal(JSON.parse(openapi.html).info.title, 'startajob public jobs');
-      assert.match((await read('/feed.xml')).html, /<title>startajob<\/title>/);
-      assert.match((await read('/llms.txt')).html, /^# startajob\n/);
+      assert.equal(JSON.parse(openapi.html).info.title, `${site.name} public jobs`);
+      assert.ok((await read('/feed.xml')).html.includes(`<title>${site.name}</title>`));
+      assert.ok((await read('/llms.txt')).html.startsWith(`# ${site.name}\n`));
     }
     let emailApplication, urlApplication;
     if (label !== 'before') {

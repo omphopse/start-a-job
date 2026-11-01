@@ -4,7 +4,7 @@ import { metadata } from '@/lib/seo/metadata';
 import { site } from '@/lib/config';
 export const generateMetadata = () =>
   metadata(
-    `${site.name} — Your first job, your next chapter`,
+    `${site.name} — ${site.tagline}`,
     'Find fresher-friendly desk and office jobs across India. Browse for free and apply directly on official websites.',
     '/',
   );
