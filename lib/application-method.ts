@@ -1,5 +1,5 @@
 import { cleanApplyUrl } from './apply-url-hygiene';
-import { blockedApplyHosts } from './publishing-rules';
+import { blockedApplyHosts, applyHostPattern } from './publishing-rules';
 import { z } from 'zod';
 
 export const applicationFormatMessage =
@@ -23,6 +23,7 @@ export const applicationUrl = z
       ctx.addIssue({ code: 'custom', message: 'Enter a valid official HTTPS URL.' });
       return;
     }
+    const hostname = u.hostname.toLowerCase().replace(/\.+$/, '');
     const blocked = [
       ...blockedApplyHosts,
       ...(process.env.APPLY_HOST_BLOCKLIST || '')
@@ -37,11 +38,12 @@ export const applicationUrl = z
       u.username ||
       u.password ||
       u.port ||
-      !u.hostname.includes('.') ||
-      /^\d+\.\d+\.\d+\.\d+$/.test(u.hostname) ||
-      u.hostname.startsWith('[') ||
-      u.hostname.endsWith('.local') ||
-      blocked.some((host) => u.hostname === host || u.hostname.endsWith(`.${host}`))
+      !new RegExp(`^${applyHostPattern}$`, 'i').test(hostname) ||
+      hostname.length > 253 ||
+      /^\d+\.\d+\.\d+\.\d+$/.test(hostname) ||
+      hostname.startsWith('[') ||
+      hostname.endsWith('.local') ||
+      blocked.some((host) => hostname === host || hostname.endsWith(`.${host}`))
     )
       ctx.addIssue({
         code: 'custom',
@@ -49,7 +51,8 @@ export const applicationUrl = z
           'Use an official HTTPS company/government URL, without credentials, ports, shorteners or messaging links.',
       });
   })
-  .transform(cleanApplyUrl);
+  .transform(cleanApplyUrl)
+  .pipe(z.string().max(2000));
 
 export const applicationEmail = z
   .string()

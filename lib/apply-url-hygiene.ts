@@ -1,6 +1,6 @@
 export function cleanApplyUrl(value: string): string {
   const url = new URL(value);
-  let changed = false;
+  url.hostname = url.hostname.replace(/\.+$/, '');
   for (const key of [...url.searchParams.keys()]) {
     if (
       /^(utm_|mc_|pk_|mtm_)/i.test(key) ||
@@ -9,10 +9,9 @@ export function cleanApplyUrl(value: string): string {
       )
     ) {
       url.searchParams.delete(key);
-      changed = true;
     }
   }
-  return changed ? url.toString() : value.replace(/^https:/i, 'https:');
+  return url.toString();
 }
 const aggregators = [
   'unstop.com',

@@ -1,19 +1,8 @@
 import { site } from '@/lib/config';
+import { robotsText } from '@/lib/robots';
 export const dynamic = 'force-dynamic';
 export function GET() {
-  const search = [
-    'OAI-SearchBot',
-    'ChatGPT-User',
-    'Claude-SearchBot',
-    'Claude-User',
-    'PerplexityBot',
-    'Googlebot',
-    'Bingbot',
-  ];
-  const training = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'CCBot', 'Applebot-Extended'];
-  const restrictions = 'Disallow: /admin\nDisallow: /api/internal\nDisallow: /jobs?*&*&*\n';
-  return new Response(
-    `User-agent: *\nAllow: /\n${restrictions}\n${search.map((bot) => `User-agent: ${bot}\nAllow: /\n${restrictions}`).join('\n')}\n${training.map((bot) => `User-agent: ${bot}\n${process.env.ALLOW_AI_TRAINING_BOTS === 'false' ? 'Disallow' : 'Allow'}: /\n${restrictions}`).join('\n')}\nSitemap: ${site.url}/sitemap.xml\n`,
-    { headers: { 'Content-Type': 'text/plain; charset=utf-8' } },
-  );
+  return new Response(robotsText(site.url), {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
 }

@@ -1,0 +1,12 @@
+
+> desk-jobs@0.1.3 build
+> next build --webpack
+
+▲ Next.js 16.4.3 (webpack)
+- Environments: .env.local
+⨯ Failed to load next.config.ts, see more info here https://nextjs.org/docs/messages/next-config-error
+
+> Build error occurred
+Error: Production requires NEXT_PUBLIC_SITE_URL.
+    at assertDeploymentEnvironment (C:\Users\Asus\Documents\DeskJobs\lib\environment.ts:36:42)
+    at Object.<anonymous> (C:\Users\Asus\Documents\DeskJobs\next.config.compiled.js:12:46)

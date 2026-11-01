@@ -1,0 +1,4 @@
+
+> desk-jobs@0.1.3 lint
+> eslint .
+

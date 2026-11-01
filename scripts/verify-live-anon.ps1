@@ -14,6 +14,7 @@ function Invoke-AnonProbe($Path, $Body = $null) {
     $response = Invoke-WebRequest @args
     $status = [int]$response.StatusCode; $content = $response.Content
   } catch {
+    if ($_.Exception.Status) { $code = [string]$_.Exception.Status } else { $code = $_.Exception.GetType().Name }
     if ($_.Exception.Response) {
       $status = [int]$_.Exception.Response.StatusCode
       $content = $_.ErrorDetails.Message

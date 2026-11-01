@@ -15,7 +15,6 @@ $folder=Join-Path $PSScriptRoot ('../verification/v0.1.3/'+$Item)
 New-Item -ItemType Directory -Force $folder | Out-Null
 foreach ($task in @('lint','typecheck','test:unit','build')) {
   $args=@('run',$task)
-  if ($task -eq 'build') { $args+=@('--','--webpack') }
   & npm.cmd @args *> (Join-Path $folder ($task.Replace(':','-')+'.txt'))
   if ($LASTEXITCODE -ne 0) { throw "$task failed; see verification/v0.1.3/$Item" }
   Write-Output "PASS $task"

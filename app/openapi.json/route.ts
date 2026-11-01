@@ -54,7 +54,7 @@ export function GET() {
     openapi: '3.1.0',
     info: {
       title: `${site.name} public jobs`,
-      version: '0.1.0',
+      version: '0.1.3',
       description: `Published, non-expired jobs only. Content must be attributed as Source: ${site.name} and linked to each job’s canonical_url. No authentication required.`,
     },
     servers: [{ url: site.url }],

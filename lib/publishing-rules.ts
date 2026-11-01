@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { experienceLevels } from './job-options';
 
 // Publish contract shared by Zod and the generated PostgreSQL safety net.
@@ -24,11 +25,25 @@ export const blockedApplyHosts = [
   'whatsapp.com',
   'bit.ly',
   'tinyurl.com',
+  't.co',
+  'goo.gl',
+  'ow.ly',
+  'rb.gy',
+  'shorturl.at',
+  'cutt.ly',
+  'is.gd',
+  'tiny.cc',
+  'rebrand.ly',
+  'buff.ly',
+  'm.me',
+  'signal.me',
 ] as const;
+export const applyHostPattern =
+  '(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?';
 const quote = (value: string) => `'${value.replaceAll("'", "''")}'`;
 export function publishingMigration() {
   const textChecks = Object.entries(publishText).map(
-    ([field, [min, max]]) => `length(btrim(j.${field})) between ${min} and ${max}`,
+    ([field, [min, max]]) => `public.publish_text_length(j.${field}) between ${min} and ${max}`,
   );
   const enums = Object.entries({
     work_mode: workModes,
@@ -38,6 +53,11 @@ export function publishingMigration() {
   return `-- Generated from lib/publishing-rules.ts; regenerate with scripts/generate-publishing-migration.ts.
 -- Never edit an applied migration: add a new migration when changing this contract.
 begin;
+create function public.publish_text_length(value text) returns integer
+language sql immutable strict set search_path=pg_catalog,pg_temp as $$
+  select coalesce(sum(case when ascii(ch) > 65535 then 2 else 1 end),0)::integer
+  from regexp_split_to_table(btrim(value, ${[9, 10, 11, 12, 13, 32, 160, 5760, 8192, 8193, 8194, 8195, 8196, 8197, 8198, 8199, 8200, 8201, 8202, 8232, 8233, 8239, 8287, 12288, 65279].map((code) => `chr(${code})`).join('||')}), '') ch where ch <> ''
+$$;
 create function public.job_publishable(j public.jobs) returns boolean
 language sql immutable set search_path=pg_catalog,pg_temp as $$
 select coalesce(
@@ -45,16 +65,17 @@ select coalesce(
   and (j.vacancies is null or j.vacancies between 1 and 1000000)
   and (
     (j.apply_url is not null and j.application_email is null
-      and length(j.apply_url) <= 2000
-      and j.apply_url ~* '^https://[^/@:[:space:]\\\\]+\\.[^/@:[:space:]\\\\]+([/?#][^[:space:]\\\\]*)?$'
+      and public.publish_text_length(j.apply_url) <= 2000
+      and j.apply_url ~* ${quote(`^https://${applyHostPattern}([/?#][^[:space:]\\\\]*)?$`)}
       and j.apply_url !~ '[[:cntrl:]]'
-      and split_part(split_part(split_part(substring(lower(j.apply_url) from 9), '/', 1), '?', 1), '#', 1) !~ '(^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$|\\.local$)'
-      and split_part(split_part(split_part(substring(lower(j.apply_url) from 9), '/', 1), '?', 1), '#', 1) !~ ${quote(`(^|\\.)(${blockedApplyHosts.map((h) => h.replaceAll('.', '\\.')).join('|')})$`)})
+      and length(rtrim(split_part(split_part(split_part(substring(lower(j.apply_url) from 9), '/', 1), '?', 1), '#', 1), '.')) <= 253
+      and rtrim(split_part(split_part(split_part(substring(lower(j.apply_url) from 9), '/', 1), '?', 1), '#', 1), '.') !~ '(^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$|\\.local$)'
+      and rtrim(split_part(split_part(split_part(substring(lower(j.apply_url) from 9), '/', 1), '?', 1), '#', 1), '.') !~ ${quote(`(^|\\.)(${blockedApplyHosts.map((h) => h.replaceAll('.', '\\.')).join('|')})$`)})
     or (j.apply_url is null and j.application_email is not null
       and length(j.application_email) <= 254
       and length(split_part(j.application_email, '@', 1)) <= 64
       and j.application_email !~ '(^\\.|\\.\\.|\\.@)'
-      and j.application_email ~ '^[A-Za-z0-9.!#$%&''*+/=?^_\`{|}~-]+@[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+$')
+      and j.application_email ~ ${quote(z.regexes.email.source)})
   ), false)
 $$;
 -- NOT VALID protects new writes without rejecting legacy rows during installation.

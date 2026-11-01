@@ -3,6 +3,12 @@ on: [push, pull_request]
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      SITE_ENV: local
+      DEMO_MODE: 'true'
+      NEXT_PUBLIC_SUPABASE_URL: ''
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ''
+      SUPABASE_SERVICE_ROLE_KEY: ''
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,3 +22,15 @@ jobs:
       - run: npm run test:unit
       - run: npm run build
       - run: npm run test:ui
+  windows-powershell:
+    runs-on: windows-latest
+    env:
+      SITE_ENV: local
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm.cmd ci
+      - run: npx.cmd tsx --test tests/unit/anon-probe.test.ts

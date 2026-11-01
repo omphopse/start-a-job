@@ -1,0 +1,10 @@
+
+> desk-jobs@0.1.3 seo:check
+> tsx scripts/seo-check.ts
+
+PASS no-JS HTML + JSON-LD: /jobs/customer-support-associate-northstar-services-bengaluru-s1
+PASS no-JS HTML + JSON-LD: /jobs/junior-accounts-assistant-bright-ledger-pune-s2
+PASS no-JS HTML + JSON-LD: /jobs/data-entry-executive-cleardesk-solutions-hyderabad-s3
+PASS no-JS HTML + JSON-LD: /jobs/hr-operations-intern-people-first-mumbai-s4
+PASS no-JS HTML + JSON-LD: /jobs/office-administration-trainee-maple-business-services-chennai-s5
+PASS all named bots, sitemap hierarchy (4 XML documents), sitemap URLs and jobs.json schema

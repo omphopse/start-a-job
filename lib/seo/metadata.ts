@@ -1,3 +1,4 @@
+import { robotsPolicy } from '../environment';
 import type { Metadata } from 'next';
 import { site } from '../config';
 export function metadata(
@@ -23,6 +24,6 @@ export function metadata(
       title: short,
       description: description.slice(0, 154),
     },
-    robots: noindex ? { index: false, follow: true } : { index: true, follow: true },
+    robots: robotsPolicy(noindex),
   };
 }

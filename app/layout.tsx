@@ -1,8 +1,10 @@
+import { robotsPolicy } from '@/lib/environment';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import './globals.css';
 import { site } from '@/lib/config';
 export const metadata: Metadata = {
+  robots: robotsPolicy(false),
   metadataBase: new URL(site.url),
   applicationName: site.name,
   openGraph: { siteName: site.name },

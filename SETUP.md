@@ -107,3 +107,46 @@ Files changed for this feature:
 The current application display name is defined once in `lib/config.ts`. Set `NEXT_PUBLIC_SITE_NAME` to the final approved name when supplied, and rebuild after changing it. Keep `NEXT_PUBLIC_SITE_URL` set to the appropriate environment domain. The Supabase project display name is independent and is not renamed by this application setting.
 
 Update the Supabase Auth email template and SMTP sender display name to match the sign-in wording above. Also review any custom introductions or seeded sample copy already saved in Supabase for outdated product wording; this rebrand does not rewrite stored content. Those external/provider updates and deployment have not been performed or verified here. No database migration is required for the branding change.
+
+## Environment separation and safe migration commands
+
+| Environment | Supabase target | Configuration |
+| --- | --- | --- |
+| Local verification | Disposable Docker stack only; never linked hosted data | `.env.example`, `SITE_ENV=local` |
+| Staging | The separate project used for your manual staging tests | `.env.staging.example`, `SITE_ENV=staging` |
+| Production | A different dedicated production project, with its own Auth users, keys and backups | `.env.production.example`, `SITE_ENV=production` |
+
+The actual hosted project refs have not been supplied/verified in this work. Record the staging and production refs in your private deployment inventory and compare them in the Supabase dashboard before every link/push. A Supabase project's display name does not determine its environment or the website brand. Never copy staging credentials into production, or production credentials into local test files. The examples contain placeholders only.
+
+`SITE_ENV=staging` sends `X-Robots-Tag: noindex, nofollow`, noindex metadata and `User-agent: * / Disallow: /` in robots.txt. Production permits normal discovery. In a production build (unless explicitly marked local/staging), the build fails unless `NEXT_PUBLIC_SITE_URL` is an HTTPS site origin, `DEMO_MODE=false`, and the effective apply delay is ten seconds. Keep the production template's `NEXT_PUBLIC_APPLY_DELAY_SECONDS=10`. Changing public variables requires rebuilding. Canonical, OpenGraph, JSON-LD, feed and sitemap URLs derive from the normalized `site.url` config.
+
+A local-only `supabase/config.toml` is included (public signups disabled, six-digit OTP, max 1,000 API rows, no automatic seed). For a **fresh disposable local stack** only:
+
+```powershell
+npx.cmd supabase start
+npx.cmd supabase db reset --local
+```
+
+Reset destroys the selected database's current data. `supabase link --project-ref <STAGING_PROJECT_REF>` changes which remote project subsequent linked commands target. `supabase db push --linked --dry-run` previews migrations for that linked target; `supabase db push --linked` applies them and changes remote schema/data. Verify the project ref and pending migration list before applying. Use a separate checkout/private CLI workdir for production linking and verify its ref independently. **Never run `supabase db reset --linked` or a reset with a production database URL: it drops remote schema/data and replays migrations. Never reset production.** No link, push, reset of a hosted project, deployment or remote data write was performed for this release. See [Supabase's local workflow and linked-reset warning](https://supabase.com/docs/guides/local-development/cli-workflows).
+
+Read the actual immutable migration order in README: two October files, then November 001, 003–009 (ten files; November 002 never existed). Apply 009 before relying on its publishing safety net. It demotes incomplete published records to `unpublished`; review and correct them before republishing. Back up before the owner applies it. The matching rollback removes only the safety net and does not automatically republish invalid content.
+
+## Windows PowerShell script policy
+
+If `npm.ps1` or another downloaded script is blocked, use `npm.cmd` / `npx.cmd` to invoke the Windows command wrappers. For a reviewed local PowerShell script, run it once with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-live-anon.ps1`, or set `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` in that terminal. The process-scoped setting ends when that terminal closes; do not change machine-wide policy or set global Unrestricted. Set the anonymous verifier's two environment variables privately and check its printed project ref; it never needs a service-role key.
+
+## Dashboard settings that SQL migrations do not copy
+
+Repeat these settings separately in staging and production; migrating tables/functions/policies does not copy provider settings:
+
+- Enable Email OTP and configure **six digits** to match the login form. Set the sign-in/Magic Link email body to display `{{ .Token }}`, without requiring a magic-link button. Generate the brand-aware body with `npx tsx scripts/email-template.ts`, then paste it into that project's template. See [passwordless email](https://supabase.com/docs/guides/auth/auth-email-passwordless), [email template variables](https://supabase.com/docs/guides/auth/auth-email-templates) and [OTP configuration](https://supabase.com/docs/guides/local-development/cli/config).
+- Disable public new-user signups. Create the initial admin through `npm run create-admin -- admin@example.com` using the private credentials for the intended project. Confirm its project ref before running; this command creates an Auth user and admin profile. Then sign in with OTP and create posters through `/admin/users`. Do not run this against production during staging tests.
+- Configure and test custom SMTP, verified sender domain and sender display name separately in each project. Migrations do not copy SMTP credentials. See [Supabase custom SMTP](https://supabase.com/docs/guides/auth/auth-smtp).
+- Set Auth **Site URL** to that environment's website and allow only its required redirect URLs. Keep staging hosts out of production's allowlist unless there is an explicit operational reason; local development URLs belong in local/staging settings.
+- Enable the appropriate backup/PITR plan, document retention and recovery contacts, and test a restore into a disposable project. Auth configuration, DNS, provider secrets, SMTP delivery and backup restore readiness require manual verification.
+
+## Dev “1 Issue” indicator and verification limits
+
+The installed Next.js guide at `node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/devIndicators.md` documents that the indicator is development UI and does not appear in `next build` / `next start`. `devIndicators: false` was already configured; it does not suppress compile/runtime errors. The production-fixture admin redirects, dashboard previews, forms, accessibility checks and build pass. The original authenticated admin's issue text was not supplied and was not reproduced locally; the underlying issue cannot honestly be declared harmless from its count alone. No staging/production session was opened to investigate it. If it remains, capture the issue's expanded text during your next authorized staging check. The separately observed local Turbopack CSS-worker crash is documented in the release report; the dev/build scripts now select the supported `--webpack` option explicitly so ordinary `npm run dev` and `npm run build` use the verified bundler.
+
+If a hosted database was initialized by pasting SQL into the dashboard, reconcile its migration history with the actual schema before using CLI push. Use `supabase migration list --linked` only after verifying the linked ref; do not blindly replay existing migrations or mark an unapplied migration as applied. In particular, never mark 009 applied before running and checking it. The local CLI configuration is not proof of any hosted project's migration history or Auth settings.

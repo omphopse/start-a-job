@@ -12,15 +12,13 @@ export default defineConfig({
   webServer: process.env.TEST_BASE_URL
     ? undefined
     : {
-        command:
-          process.env.TEST_WEBPACK === 'true'
-            ? 'npm run dev -- --webpack --port 3100'
-            : 'npm run dev -- --port 3100',
+        command: 'npm run dev -- --port 3100',
         url: 'http://localhost:3100',
         reuseExistingServer: false,
         env: {
           NEXT_PUBLIC_SITE_NAME: site.name,
           NEXT_PUBLIC_APPLY_DELAY_SECONDS: '2',
+          SITE_ENV: 'local',
           DEMO_MODE: 'true',
           PLAYWRIGHT_TEST: 'true',
           NEXT_PUBLIC_SUPABASE_URL: '',

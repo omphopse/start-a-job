@@ -65,6 +65,7 @@ async function main() {
   const env = {
     ...process.env,
     PLAYWRIGHT_TEST: 'true',
+    SITE_ENV: 'local',
     NEXT_PUBLIC_SUPABASE_URL: `http://127.0.0.1:${address.port}`,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: 'local-public-fixture',
     SUPABASE_SERVICE_ROLE_KEY: 'local-fixture-only',

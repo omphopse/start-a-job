@@ -77,7 +77,11 @@ test('fresh PostgreSQL schema and direct publishing enforce required fields and 
     }
     for (const url of [
       'http://company.com/x',
+      `https://${('a'.repeat(63) + '.').repeat(4)}com/x`,
       'https://bit.ly/x',
+      'https://bit.ly./x',
+      'https://%62it.ly/x',
+      'https://t.co/x',
       'https://wa.me/123',
       'https://user:pass@company.com/x',
       'https://127.0.0.1/x',
@@ -91,6 +95,30 @@ test('fresh PostgreSQL schema and direct publishing enforce required fields and 
       "update jobs set apply_url=null, application_email='hr@example.com' where id=$1",
       [job.id],
     );
+    await assert.rejects(
+      db.query('update jobs set title=$1 where id=$2', ['\t\t\t', job.id]),
+      /check constraint/,
+    );
+    await assert.rejects(
+      db.query('update jobs set title=$1 where id=$2', ['😀'.repeat(61), job.id]),
+      /check constraint/,
+    );
+    for (const email of ['a!b@company.com', 'a@x.c', 'a.@company.com']) {
+      assert.equal(
+        jobInput.safeParse({
+          ...sampleJobs[0],
+          apply_url: null,
+          application_email: email,
+          official_confirmed: 'on',
+          no_fees: 'on',
+        }).success,
+        false,
+      );
+      await assert.rejects(
+        db.query('update jobs set application_email=$1 where id=$2', [email, job.id]),
+        /check constraint/,
+      );
+    }
     await db.exec(readFileSync('supabase/rollbacks/202611010009_published_required.sql', 'utf8'));
   } finally {
     await db.close();

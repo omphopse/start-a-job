@@ -1,0 +1,59 @@
+
+> desk-jobs@0.1.3 test:unit
+> tsx --test tests/unit/*.test.ts
+
+✔ anonymous probe classifies responses in Windows PowerShell 5.1 (959.2581ms)
+✔ PowerShell request adapter accepts empty 200 responses and preserves safe network error codes (1110.681ms)
+✔ API limits and field allowlist protect private data (47.0959ms)
+✔ shared public query projections exclude private moderation and identity fields (1.3789ms)
+✔ application input trims URLs and normalizes only the email domain (9.4382ms)
+✔ create/edit form values always replace both application columns (11.6209ms)
+✔ email links encode recipient and subject without prefilled private data (1.9758ms)
+✔ email and URL applications render their configured countdown (33.689ms)
+✔ malformed and malicious application URLs return validation errors without throwing (7.7158ms)
+✔ URL validation cleans tracking but preserves functional IDs, signed parameters and anchors (8.0421ms)
+✔ aggregator warnings include subdomains without blocking otherwise valid URLs (1.3755ms)
+✔ current source and setup docs have no hard-coded display brand outside its config (204.1531ms)
+✔ email template and public domain read the central brand config (0.5711ms)
+✔ closing defaults use calendar arithmetic, preserve chosen dates, and can be disabled (35.7453ms)
+✔ site URL is absolute (1.6233ms)
+✔ original summary confirmation is required but never persisted (8.1448ms)
+✔ feed excerpt strips markup, collapses whitespace and caps Unicode characters at 300 (0.5792ms)
+✔ staging is noindex in headers, metadata and robots while production permits discovery (6.6321ms)
+✔ production configuration rejects missing/local origins, demo mode and non-ten-second delays (1.734ms)
+✔ canonical, OpenGraph and organization URLs use the configured site origin (0.7571ms)
+✔ out-of-range PostgREST results preserve the requested filters and public total (5595.7875ms)
+✔ public filter boundaries match the accepted page cap and job location lengths (42.1271ms)
+✔ current visibility excludes expired and unpublished jobs (40.3875ms)
+✔ sample data is visibly fictional and uses example.com (1.8954ms)
+✔ migration includes DB-level poster guard and RLS on every table (0.8642ms)
+✔ job form accepts a country with blank city and state (7.9799ms)
+✔ location API validates requests, normalizes provider options and handles failures (69.0083ms)
+✔ SEO notifications do nothing without configuration and tolerate failure (40.3319ms)
+✔ performance tracing is opt-in and never logs request secrets (58.367ms)
+✔ migration 009 stays synchronized with the shared publishing definition (26.8144ms)
+✔ fresh PostgreSQL schema and direct publishing enforce required fields and keep optional text optional (9049.2263ms)
+✔ common private-key containers and service accounts are ignored while the env template is trackable (374.3102ms)
+✔ PostgreSQL RLS: anonymous cannot read drafts; poster cannot publish (8581.1894ms)
+✔ click logging can only be executed by the rate-limited server role (8609.084ms)
+✔ anonymous table and expired RPC reads cannot select private job metadata (2489.235ms)
+✔ SEO verifier accepts a real server-rendered URL apply anchor (34.6278ms)
+✔ SEO verifier accepts delayed email disclosure without demanding an immediate mailto link (2.7015ms)
+✔ SEO verifier accepts an omitted optional city in actual JobPosting markup (1.2247ms)
+✔ JobPosting exactly matches visible job fields and excludes invented salary (5.8958ms)
+✔ empty optional sections and deadline are omitted from structured data (0.6809ms)
+✔ public tombstone cache coalesces concurrent reads, expires and evicts (6.963ms)
+✔ failed tombstone reads are retried rather than cached as public access (3.7679ms)
+✔ deletion tombstones expose only jobs known to have been public, never drafts or unclassified history (7474.7195ms)
+✔ job inputs reject unsafe URLs and missing safety confirmations (21.065ms)
+✔ slug is lowercase and includes role, company, city, short id (0.7324ms)
+✔ public filter validation handles duplicate/oversized inputs (25.2589ms)
+✔ optional job fields accept blanks; expanded experience and custom category are valid (22.5003ms)
+ℹ tests 47
+ℹ suites 0
+ℹ pass 47
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14944.6879

@@ -1,3 +1,5 @@
+import { assertDeploymentEnvironment, environmentHeaders } from './lib/environment';
+assertDeploymentEnvironment();
 import type { NextConfig } from 'next';
 const config: NextConfig = {
   distDir: process.env.PLAYWRIGHT_TEST === 'true' ? '.next-test' : '.next',
@@ -10,6 +12,7 @@ const config: NextConfig = {
       {
         source: '/(.*)',
         headers: [
+          ...environmentHeaders(),
           // Baseline directives preserve cached Next.js inline scripts and the
           // optional ad integration. A strict script policy needs nonces/hashes
           // and a separate deployment review; this is not an XSS sandbox.
