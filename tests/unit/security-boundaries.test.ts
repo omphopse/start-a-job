@@ -73,6 +73,24 @@ test('anonymous table and expired RPC reads cannot select private job metadata',
     for (const column of ['created_by', 'approved_by', 'rejection_reason']) {
       await assert.rejects(db.query(`select ${column} from jobs`), /permission denied/);
     }
+    const otherPoster = '00000000-0000-4000-8000-777777777777';
+    await db.exec(
+      `reset role; insert into auth.users values('${otherPoster}'); insert into profiles(id,email,role) values('${otherPoster}','other@example.com','poster'); select set_config('request.jwt.claim.role','authenticated',false); select set_config('request.jwt.claim.sub','${otherPoster}',false); set role authenticated`,
+    );
+    assert.equal(
+      (await db.query('select created_by,rejection_reason from jobs where id=$1', [job.id])).rows
+        .length,
+      0,
+      'a different poster cannot read internal metadata even on a published row',
+    );
+    await db.exec(
+      `reset role; select set_config('request.jwt.claim.sub','${poster}',false); set role authenticated`,
+    );
+    assert.equal(
+      (await db.query('select created_by from jobs where id=$1', [job.id])).rows.length,
+      1,
+      'the owning poster retains access to their own job',
+    );
     await db.exec(
       "reset role; select set_config('request.jwt.claim.role','service_role',false); update jobs set last_date='2000-01-01'; set role anon; select set_config('request.jwt.claim.role','anon',false)",
     );
