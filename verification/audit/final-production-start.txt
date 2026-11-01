@@ -1,0 +1,12 @@
+Clean clone: C:/Users/Asus/AppData/Local/Temp/deskjobs-audit-final-v4-20261101
+Source revision: 162a262d719228f2be1659efe91e5ef2cc4b36cf
+Configuration: .env.example only, with NEXT_PUBLIC_SITE_URL and SEO_BASE_URL overridden to http://localhost:3400.
+Command: npm run start -- --port 3400
+Observed process output:
+> desk-jobs@0.1.0 start
+> next start --port 3400
+Next.js 16.4.3
+Local: http://localhost:3400
+Ready in 536ms
+Running next.config.ts took 94ms
+No real Supabase credentials were copied to this clone.

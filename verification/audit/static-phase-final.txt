@@ -37,6 +37,16 @@
       "type": "jwt"
     }
   ],
+  "localKeyRoles": [
+    {
+      "variable": "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "role": "anon"
+    },
+    {
+      "variable": "SUPABASE_SERVICE_ROLE_KEY",
+      "role": "service_role"
+    }
+  ],
   "history": [],
   "bundle": [],
   "bundleFiles": 17,

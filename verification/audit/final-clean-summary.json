@@ -1,42 +1,42 @@
 {
-  "revision": "9fa4d47d070a42771c5ba3af79356931c104b4f9",
+  "revision": "162a262d719228f2be1659efe91e5ef2cc4b36cf",
   "initialStatus": [],
   "results": [
     {
       "name": "install",
       "command": "npm ci --offline --no-audit",
       "exit": 0,
-      "seconds": 50.62
+      "seconds": 52.54
     },
     {
       "name": "lint",
       "command": "npm run lint",
       "exit": 0,
-      "seconds": 10.36
+      "seconds": 15.73
     },
     {
       "name": "types",
       "command": "npm run typecheck",
       "exit": 0,
-      "seconds": 6.33
+      "seconds": 9.18
     },
     {
       "name": "unit",
       "command": "npm run test:unit",
       "exit": 0,
-      "seconds": 8.46
+      "seconds": 17.0
     },
     {
       "name": "build",
       "command": "npm run build",
       "exit": 0,
-      "seconds": 17.18
+      "seconds": 28.88
     },
     {
       "name": "playwright",
       "command": "npm run test:ui -- --workers=2",
       "exit": 0,
-      "seconds": 112.19
+      "seconds": 172.28
     }
   ]
 }

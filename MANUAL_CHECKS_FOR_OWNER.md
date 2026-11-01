@@ -44,6 +44,6 @@ The audit is **NO-GO** until the applicable launch blockers below are verified. 
 - [ ] Have a leaked-key procedure: revoke/rotate the key, update all server deployments, rebuild, invalidate affected sessions where appropriate, investigate access logs, remove exposed artifacts, and rescan history/bundles. Deleting a leaked file alone does not revoke the key.
 - [ ] Set log retention/redaction, request-limit cleanup, backups, uptime/error/abuse alerts, incident contacts and a rollback procedure.
 - [ ] Collect field Core Web Vitals/INP and validate real production performance; local Lighthouse scores are not field evidence.
-- [ ] Resolve checklist drift about the disabled AI placeholder and any thin-page/pagination/real-ad requirements still marked PARTIAL in AUDIT_REPORT.md.
+- [ ] Confirm the 10-second delay requested for this implementation (the generic audit template says 12). The disabled AI placeholder is now verified. Review thin-page rules, real-data pagination and real-ad requirements still marked PARTIAL in AUDIT_REPORT.md.
 
 No audit can guarantee the absence of all vulnerabilities. Keep the final NO-GO conditions and unresolved findings visible until individually verified.

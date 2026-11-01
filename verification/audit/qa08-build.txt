@@ -1,0 +1,62 @@
+
+> desk-jobs@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 55ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.8s
+  Running TypeScript ...
+  Finished TypeScript in 9.4s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/12) ...
+  Generating static pages using 7 workers (3/12) 
+  Generating static pages using 7 workers (6/12) 
+  Generating static pages using 7 workers (9/12) 
+✓ Generating static pages using 7 workers (12/12) in 724ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├   /[info]
+│ ├ ● /about
+│ ├ ● /contact
+│ ├ ● /privacy-policy
+│ └ ● /disclaimer
+├ ƒ /admin
+├ ƒ /admin/jobs/[id]
+├ ƒ /admin/landing-pages
+├ ○ /admin/login
+├ ƒ /admin/reports
+├ ƒ /admin/users
+├ ƒ /ads.txt
+├ ƒ /api/apply-click
+├ ƒ /api/internal/expire
+├ ƒ /api/locations
+├ ƒ /api/public/jobs.json
+├ ƒ /api/public/jobs/[file]
+├ ƒ /demo/[view]
+├ ƒ /feed.xml
+├ ƒ /indexnow-key.txt
+├ ƒ /jobs
+├ ● /jobs/[slug]
+├ ƒ /jobs/[slug]/report
+├ ƒ /jobs/category/[category]
+├ ƒ /jobs/category/[category]/location/[location]
+├ ƒ /jobs/location/[location]
+├ ƒ /llms.txt
+├ ƒ /openapi.json
+├ ƒ /robots.txt
+├ ƒ /sitemap.xml
+└ ƒ /sitemaps/[file]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

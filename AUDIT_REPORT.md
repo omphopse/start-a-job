@@ -183,10 +183,165 @@ Environment scan now covers app/components/lib/scripts plus next.config.ts, prox
 
 Final source/history/bundle pattern scan: no matching working-tree/history secret, no service key name or exact value in 17 production JS chunks. Scope now includes tracked/untracked nonignored text artifacts, separately scans ignored local env and production static chunks. Ignored local env credentials are expected and were not committed. Regex scanning is not equivalent to dedicated gitleaks/trufflehog or a proof of absence.
 
-Final clean-clone verification, refreshed production screenshots/Lighthouse and the complete before/after matrix will be appended after those commands finish. Until then, this remains **NO-GO**.
+The final clean-clone verification, refreshed production screenshots/Lighthouse and complete before/after matrix appear in the final independent verdict below. Superseded candidate results remain archived for comparison.
 
 ### Final-review finding: deletion-history privacy (SEC-10, High)
 
 The initial migration recorded every deletion and let anonymous readers enumerate `deleted_jobs`, including slugs from never-published drafts. `sec10-before.txt` proves the local public result included a private draft slug and an unclassified legacy record. Migration `202611010007_tombstone_privacy.sql` now records `was_public=true` only when the deleted row had a publication timestamp and filters anonymous reads by that flag. Legacy records are retained with false by default, so unknown history stays private. Verified previously public legacy slugs may be reclassified by the owner; unclassified old public deletions return missing rather than HTTP410 until reviewed. New public deletions retain HTTP410 semantics.
 
 All sec10 gates passed: lint/types/build exit0, 31 unit tests and 90 browser tests. The original regression verifies both privacy and retention of old records without weakening any existing test. The first final clean clone of 9fa4d47 passed install/lint/types/30 unit/build/90 browser gates; those results are preserved under `clean-candidate-before-tombstone/` and are superseded by a second clean clone including migration007.
+
+### Final-review layout and API findings
+
+**QA-07 (Medium), commit b6a78b7:** Visual review found the brand wrapping to 73.59px high at 360px. A valid 120-character unbroken job title also expanded a 390px page to 2270px. Compact header spacing, non-wrapping branding, wrapping breadcrumbs and text overflow handling now keep both usable. `qa07-before.txt` and `qa07-long-text-before.json` preserve the failures. Final lint/types/build passed, with 31 unit and 96 browser tests, including regressions for long title/company/qualification/location values. Screenshots were refreshed after this fix.
+
+**QA-08 (Medium), commit 162a262:** The public API accepted page 10000 while the shared parser silently reset it to page one; the response claimed page 10000 but repeated the first ten jobs. Public state/city filters also rejected valid 81–100 character saved values. A read-only real PostgREST request independently confirmed out-of-range offsets return HTTP416/PGRST103. The parser now accepts the documented cap, filters match the 100-character form boundary, and the actual SDK path returns an empty page with the correct filtered count after that response. `qa08-before.txt`, `qa08-range-before.txt` and `qa08-range-regression-before.txt` preserve failures. Final lint/types/build passed, with 33 unit and 99 browser tests. The SDK regression preserves query filters during count recovery. An initial fixture lint error remains recorded; it was corrected before the final gates and commit.
+
+Three superseded clean-clone runs are archived under `clean-candidate-before-tombstone/`, `clean-candidate-before-layout/` and `clean-candidate-before-pagination/`. The final source candidate includes all fixes above; only its fresh-clone measurements are used for the final verdict.
+
+## Final independent verdict
+
+**NO-GO for public launch.** Local source fixes are verified, but the configured real database still exposes internal published-job columns, and the live Auth/JWT/hosting matrix is incomplete. Apply migrations 004–007, review legacy tombstones, deploy matching code, and complete MANUAL_CHECKS_FOR_OWNER.md before reconsidering GO. No production migration or deployment was performed.
+
+### Final reproducibility results
+
+Verified clean source revision: `162a262d719228f2be1659efe91e5ef2cc4b36cf`. The final report/evidence commit changes only documentation, audit harnesses and generated artifacts after this source verification. No real service credentials were copied to the clone; all configuration came from .env.example with fixture site URL overridden to localhost:3400.
+
+| Command | Exit | Seconds | Evidence |
+| --- | ---: | ---: | --- |
+| npm ci --offline --no-audit | 0 | 52.54 | final-clean-install.txt |
+| npm run lint | 0 | 15.73 | final-clean-lint.txt |
+| npm run typecheck | 0 | 9.18 | final-clean-types.txt |
+| npm run test:unit | 0 | 17 | final-clean-unit.txt |
+| npm run build | 0 | 28.88 | final-clean-build.txt |
+| npm run test:ui -- --workers=2 | 0 | 172.28 | final-clean-playwright.txt |
+
+Production `npm run start -- --port 3400` became ready; production-probe.json and seo-final.txt verify response headers, exact 10-second delays, 5 no-JS job pages, sitemap hierarchy, named bots and discovery JSON schema. Production location proxy returned 222 options (200), 37 options (200), 313 options (200) for countries/India states/Maharashtra cities. Provider data completeness is not certified.
+
+### Final matrix — every original item
+
+The Phase A table supplies the original command/test/file evidence. Unchanged PARTIAL items remain limited exactly as described there and in the owner checklist; no local test substitutes for missing production evidence.
+
+| Item | Before | After | Evidence / remaining limit |
+| --- | --- | --- | --- |
+| Clean git/reproducible release/tag | FAIL | PASS | Fresh clone starts clean; all final-clean-summary.json gates exit 0. Main source fixes are isolated commits; generated evidence is committed separately. |
+| Documented env only | PARTIAL | PASS | static-phase-final.json: all deployed/tool variables documented, no unused fields; NODE_ENV is framework-managed. |
+| Netlify build configuration | PARTIAL | PARTIAL | Python tomllib parsed netlify.toml; clean build passes; actual OpenNext/Netlify deployment not run. |
+| Fresh local Supabase/reset/migration order | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Seed sample labeling | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| create-admin / idempotence | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Home, jobs, details, trust pages | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Search / URL filters / sort / 20/page | PARTIAL | PARTIAL | portal.spec.ts and api.spec.ts verify URL filters, sorting and distinct 5-item API pages; filter-boundaries.test.ts verifies page 10000 and PostgREST 416 recovery. Default listing size is 20 in lib/data.ts; the 10-job fixture cannot prove a real second 20-item listing page. |
+| Sitemap / robots / friendly 404 | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Generic 500 | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Published/non-expired lists, feeds, API, sitemap | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Expired detail / similar jobs / no JobPosting | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Public site no login | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Detail layout order | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| URL real SSR anchor + target/rel | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Countdown default/config / disabled click / progress / live announcements | PASS local | PASS | production-probe.json tests disabled at 9s/enabled at 10s for both methods using the production build; UI suite tests configured 2s. The explicit 10-second user request overrides the generic template default of 12. |
+| Email delayed disclosure | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Host + safety note | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Sticky mobile apply / shared state / no covered final content | PARTIAL | PASS | accessibility.spec.ts proves shared timer and final footer clearance at 360/390. Real-device safe-area/zoom remains manual. |
+| Anonymous click recording bounded / RPC-only | FAIL | PARTIAL | Local role grants and HTTP origin/limiter boundary fixed; website and email UI wiring tested. Real persistence/direct JWT mutation tests remain manual. |
+| Report persistence | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Ads separated from apply | PASS disabled configuration | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| OTP six-digit / no signup | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Active profile checked every request | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Admin team/review/edit/unpublish/delete/direct publish | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Poster isolation and no publishing | PASS local DB / PARTIAL live | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Rejection reason visible to poster | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Disabled AI placeholder | FAIL / conflict | PASS | dashboard.spec.ts verifies disabled AI summary coming-soon control; legacy control absence assertion retained. |
+| AdSlot env/reservation/label and ads.txt | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Unique metadata/canonical/OG | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| JobPosting visible match/deadline/no invented salary | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Breadcrumb/Organization/WebSite | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Named search bots / training toggle / admin blocked | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Sitemap hierarchy/lastmod/revalidation | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| IndexNow/Google helpers nonblocking/no-env | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Category/location landing and thin noindex | PASS local basic | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Public JSON/feed/OpenAPI/llms | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Public data excludes private columns on ALL access paths | FAIL | FAIL | Local privacy regressions pass, but live-anon-phase-final.json still exposes internal job columns. Apply migrations 004–007 and retest. |
+| Screenshots at five widths | PASS local preview | PASS | 25 final production screenshots at 360/390/768/1024/1440 plus contact sheets inspected; phase-a originals preserved separately. Dashboard is a demo preview. |
+| No horizontal overflow | PASS tested routes | PASS | browser-phase-final.json: 65 route/width checks, zero overflow; long job text and compact-brand regressions added in accessibility.spec.ts. |
+| Target size ≥44px / tiny text | FAIL | PASS | accessibility.spec.ts verifies real controls >=44px. Geometry scanner flags only the intentionally offscreen aria-hidden report honeypot; see report-form.tsx and globals.css .honeypot. |
+| Accessibility axe | FAIL | PASS | Final production axe: zero selected WCAG A/AA violations on home/jobs/detail/login; all 3 viewport projects include axe regression. Not a complete screen-reader audit. |
+| Mobile Lighthouse / field CWV | PARTIAL | PARTIAL | Final clean production scores below; field INP/CrUX and actual deployed domain remain NOT VERIFIED. |
+| Secret hygiene | PARTIAL | PARTIAL | All-history/working-tree regex scan no matching exposed secret; ignore patterns regression passes. Dedicated scanner and provider secret-scanning settings not verified. |
+| Client bundle secret scan | PASS narrow scan | PASS | static-phase-final.json: production chunks scanned for exact local service key/name and secret patterns; no match. Encoded/novel leaks not ruled out. |
+| Real anonymous DB negative matrix | PARTIAL | PARTIAL | Real read-only requests for all hidden statuses/expiry return0; no real write attempts or authenticated JWT matrix. |
+| Every public table RLS / fixed definer paths | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Auth rate limits / enumeration / brute force | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Secure cookies/logout | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Every admin page/action server protected | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Installed versions/advisories | PASS prod scan / PARTIAL supply chain | PARTIAL | Final online production npm audit 0; full audit 20 moderate dev-tool package entries from 2 advisory families. No blind force downgrades. |
+| Zod coverage / mass assignment | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| ≥20 malicious URL tests | NOT VERIFIED | PASS | application-url-edge.test.ts and input-probe-after.txt: 26 rejected cases, 3 valid cases, no validation exceptions. |
+| XSS / JSON-LD escape / all text fields | PARTIAL | PARTIAL | input-probe-after.txt covers 10 rendered/schema text fields and script escaping. Complete persisted/live field/browser matrix is not verified. |
+| SQL injection / query sanitization | PASS source / PARTIAL runtime | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Open redirects / SSRF | PASS source bounded scope | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| CSRF/origin enforcement | PARTIAL | PARTIAL | security.spec.ts rejects cross-origin clicks; server actions use framework checks. Reverse-proxy identity headers and live origin behavior unverified. |
+| Security response headers | FAIL | PARTIAL | production-probe.json confirms baseline CSP/HSTS/nosniff/referrer/permissions/frame headers. Real HTTPS host and strict script/ad policy remain manual. |
+| Public API CORS/caps/rate limits/errors | PASS local basic / PARTIAL abuse | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Error responses/logs secret-free | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Admin noindex / absent sitemap | PASS local | PASS | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+| Lockfile / dependencies / install scripts | PARTIAL | PARTIAL | Same bounded Phase A evidence; final clean-clone command results above re-verify local behavior. External or missing edge-case evidence remains unverified. |
+
+### Final production Lighthouse and axe
+
+| Page | Performance | SEO | Accessibility | Best Practices | LCP ms | CLS | TBT ms |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| home | 99 | 100 | 100 | 100 | 766.46 | 0 | 139.27 |
+| listing | 100 | 100 | 100 | 100 | 763.38 | 0 | 59.00 |
+| job | 93 | 100 | 100 | 100 | 774.45 | 0 | 308.78 |
+
+Final production axe: home=0, jobs=0, detail=0, login=0 violations in selected WCAG A/AA tags. Layout checks: 65 combinations, 0 horizontal overflows. Full JSON/HTML Lighthouse reports and axe node details are preserved in verification/audit. Lab TBT is not field INP; real p75 Core Web Vitals remain NOT VERIFIED.
+
+Visual review includes all 25 final pages in contact sheets and full-size detail inspection. The original 360px wrapped brand and valid 120-character title overflow were caught after initial automated passes and corrected with regressions; screenshots were refreshed after the fixes. Secondary metadata still uses small fonts, so real-device/zoom legibility remains a manual check. No primary action clipping or permanent sticky-footer overlap found in fixtures. The sole small-target geometry exception is the offscreen report honeypot (left:-10000px, aria-hidden, tabIndex:-1), not an exposed clickable control.
+
+### Remaining dependency advisories
+
+Production audit: 0 known advisories. Full audit: 20 moderate dev-tool package entries; the two advisory families are glob cancellation traversal and minimatch amplification. No production dependency path is reported, but CI/build work over untrusted filenames can still be exposed. Upgrade supported tooling after compatibility testing; npm audit force suggestions include incompatible downgrades and were not applied.
+
+| Package | Severity | Reachability |
+| --- | --- | --- |
+| @eslint-community/eslint-utils | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @eslint/config-array | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @eslint/eslintrc | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @next/eslint-plugin-next | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @sentry/bundler-plugins | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @sentry/node | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @typescript-eslint/eslint-plugin | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @typescript-eslint/parser | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @typescript-eslint/type-utils | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @typescript-eslint/typescript-estree | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| @typescript-eslint/utils | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| eslint | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| eslint-config-next | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| eslint-plugin-import | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| eslint-plugin-jsx-a11y | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| eslint-plugin-react | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| glob | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| lighthouse | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| minimatch | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+| typescript-eslint | moderate | Dev/build/CI dependency chain; no production dependency path reported |
+
+### Residual risk and owner action
+
+- Known configured-database column exposure remains until migration 004 and matching deployment; other new grants/policies and tombstone protections also require migrations 005–007 and real retesting. Legacy deleted records are preserved but hidden unless independently classified as public.
+- NOT VERIFIED: disposable local Supabase reset, real Auth delivery/expiry/SMTP, known-vs-unknown timing, real admin/poster/inactive JWT writes, complete role/action lifecycle, create-admin/seed against Auth, session logout/cookies, production edge IP/origin trust, and deployed schema drift/views/functions.
+- NOT VERIFIED: real Netlify/OpenNext deployment, TLS/DNS/CDN invalidation and expiry scheduler, bot/WAF access, search-engine credentials, actual ads/consent/strict CSP, field INP/CWV, all browser engines/devices/zoom, exhaustive persisted XSS/error/log injection.
+- Dedicated gitleaks/trufflehog, hosted secret scanning/Dependabot, backups/restoration and monitoring/alerts remain owner checks. Regex scanning does not prove that every possible secret was absent.
+- The observed four-worker Next development-server JSON failure was preserved; the unchanged two-worker rerun and final sequential clean clone passed. No tests were deleted/skipped to hide it.
+- Follow MANUAL_CHECKS_FOR_OWNER.md. An audit cannot guarantee absence of all vulnerabilities. This is an audited source candidate, not launch approval.
+
+### Primary advisory/platform references
+
+- [Next.js October 2026 security update](https://nextjs.org/blog/nextjs-security-update-october-14-2026): fixed active-LTS threshold 16.4.1; installed 16.4.3 is above it. Final npm audit remains the broader installed-tree check.
+- [Netlify Next.js/OpenNext support](https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/): auto adapter support; actual deployment was not executed.
+- [AdSense supported CSP integration](https://support.google.com/adsense/answer/16283098?hl=en-GB): strict nonce integration requires separate deployment/ad testing; baseline policy is not claimed as strict XSS containment.
+- [Glob advisory](https://github.com/advisories/GHSA-3g3m-2fjr-6pw4) and [minimatch advisory](https://github.com/advisories/GHSA-g3hv-75wg-m249): final dev-tool findings retained.
+
+**NO-GO — GO requires applying and verifying the privacy/access migrations on the intended database, deploying the matching source, and completing the real-session/hosting launch checks without unresolved critical/high findings.**
+
+Final clean-clone counts: **33 unit tests; 99 browser tests; all passed.**

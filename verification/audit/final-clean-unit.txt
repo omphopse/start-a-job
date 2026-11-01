@@ -2,41 +2,44 @@
 > desk-jobs@0.1.0 test:unit
 > tsx --test tests/unit/*.test.ts
 
-✔ API limits and field allowlist protect private data (4.2523ms)
-✔ shared public query projections exclude private moderation and identity fields (0.5962ms)
-✔ application input trims URLs and normalizes only the email domain (6.1119ms)
-✔ create/edit form values always replace both application columns (11.1259ms)
-✔ email links encode recipient and subject without prefilled private data (1.9326ms)
-✔ email and URL applications render their configured countdown (31.3847ms)
-✔ malformed and malicious application URLs return validation errors without throwing (5.052ms)
-✔ site URL is absolute (1.4549ms)
-✔ current visibility excludes expired and unpublished jobs (33.8441ms)
-✔ sample data is visibly fictional and uses example.com (0.8784ms)
-✔ migration includes DB-level poster guard and RLS on every table (24.4893ms)
-✔ job form accepts a country with blank city and state (7.6343ms)
-✔ location API validates requests, normalizes provider options and handles failures (72.0629ms)
-✔ SEO notifications do nothing without configuration and tolerate failure (98.484ms)
-✔ performance tracing is opt-in and never logs request secrets (40.5988ms)
-✔ common private-key containers and service accounts are ignored while the env template is trackable (225.7819ms)
-✔ PostgreSQL RLS: anonymous cannot read drafts; poster cannot publish (3665.5841ms)
-✔ click logging can only be executed by the rate-limited server role (3329.1045ms)
-✔ anonymous table and expired RPC reads cannot select private job metadata (1802.2416ms)
-✔ SEO verifier accepts a real server-rendered URL apply anchor (16.7429ms)
-✔ SEO verifier accepts delayed email disclosure without demanding an immediate mailto link (2.8041ms)
-✔ SEO verifier accepts an omitted optional city in actual JobPosting markup (1.1595ms)
-✔ JobPosting exactly matches visible job fields and excludes invented salary (2.4471ms)
-✔ empty optional sections and deadline are omitted from structured data (0.5312ms)
-✔ public tombstone cache coalesces concurrent reads, expires and evicts (2.8956ms)
-✔ failed tombstone reads are retried rather than cached as public access (2.1757ms)
-✔ job inputs reject unsafe URLs and missing safety confirmations (5.6782ms)
-✔ slug is lowercase and includes role, company, city, short id (0.8006ms)
-✔ public filter validation handles duplicate/oversized inputs (3.1049ms)
-✔ optional job fields accept blanks; expanded experience and custom category are valid (1.247ms)
-ℹ tests 30
+✔ API limits and field allowlist protect private data (4.6451ms)
+✔ shared public query projections exclude private moderation and identity fields (0.5317ms)
+✔ application input trims URLs and normalizes only the email domain (18.1593ms)
+✔ create/edit form values always replace both application columns (16.6506ms)
+✔ email links encode recipient and subject without prefilled private data (3.4209ms)
+✔ email and URL applications render their configured countdown (32.0907ms)
+✔ malformed and malicious application URLs return validation errors without throwing (5.983ms)
+✔ site URL is absolute (2.2782ms)
+✔ out-of-range PostgREST results preserve the requested filters and public total (7297.6643ms)
+✔ public filter boundaries match the accepted page cap and job location lengths (28.3289ms)
+✔ current visibility excludes expired and unpublished jobs (43.1579ms)
+✔ sample data is visibly fictional and uses example.com (0.8829ms)
+✔ migration includes DB-level poster guard and RLS on every table (7.0045ms)
+✔ job form accepts a country with blank city and state (11.0058ms)
+✔ location API validates requests, normalizes provider options and handles failures (88.7876ms)
+✔ SEO notifications do nothing without configuration and tolerate failure (45.1494ms)
+✔ performance tracing is opt-in and never logs request secrets (49.1145ms)
+✔ common private-key containers and service accounts are ignored while the env template is trackable (313.7479ms)
+✔ PostgreSQL RLS: anonymous cannot read drafts; poster cannot publish (9021.5915ms)
+✔ click logging can only be executed by the rate-limited server role (8809.378ms)
+✔ anonymous table and expired RPC reads cannot select private job metadata (2745.2008ms)
+✔ SEO verifier accepts a real server-rendered URL apply anchor (20.1407ms)
+✔ SEO verifier accepts delayed email disclosure without demanding an immediate mailto link (5.4493ms)
+✔ SEO verifier accepts an omitted optional city in actual JobPosting markup (1.4009ms)
+✔ JobPosting exactly matches visible job fields and excludes invented salary (3.304ms)
+✔ empty optional sections and deadline are omitted from structured data (0.3869ms)
+✔ public tombstone cache coalesces concurrent reads, expires and evicts (10.3491ms)
+✔ failed tombstone reads are retried rather than cached as public access (3.2292ms)
+✔ deletion tombstones expose only jobs known to have been public, never drafts or unclassified history (8444.9713ms)
+✔ job inputs reject unsafe URLs and missing safety confirmations (15.0101ms)
+✔ slug is lowercase and includes role, company, city, short id (0.5426ms)
+✔ public filter validation handles duplicate/oversized inputs (7.971ms)
+✔ optional job fields accept blanks; expanded experience and custom category are valid (2.2631ms)
+ℹ tests 33
 ℹ suites 0
-ℹ pass 30
+ℹ pass 33
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 7684.5798
+ℹ duration_ms 16015.2317

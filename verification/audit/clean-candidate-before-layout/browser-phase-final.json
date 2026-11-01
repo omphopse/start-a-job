@@ -1,0 +1,528 @@
+{
+  "base": "http://localhost:3400",
+  "pages": [
+    {
+      "name": "home",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "jobs",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "detail",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "login",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "about",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "contact",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "privacy",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "disclaimer",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "404",
+      "width": 360,
+      "status": 404,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "category",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "location",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "report",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "jobs",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "detail",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "login",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "about",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "contact",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "privacy",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "disclaimer",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "404",
+      "width": 390,
+      "status": 404,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "category",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "location",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "report",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "jobs",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "detail",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "login",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "about",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "contact",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "privacy",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "disclaimer",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "404",
+      "width": 768,
+      "status": 404,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "category",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "location",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "report",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "jobs",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "detail",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "login",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "about",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "contact",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "privacy",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "disclaimer",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "404",
+      "width": 1024,
+      "status": 404,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "category",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "location",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "report",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "jobs",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "detail",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "login",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "about",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "contact",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "privacy",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "disclaimer",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "404",
+      "width": 1440,
+      "status": 404,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "category",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "location",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    },
+    {
+      "name": "report",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        }
+      ]
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "home",
+      "violations": [],
+      "passes": 22
+    },
+    {
+      "name": "jobs",
+      "violations": [],
+      "passes": 24
+    },
+    {
+      "name": "detail",
+      "violations": [],
+      "passes": 21
+    },
+    {
+      "name": "login",
+      "violations": [],
+      "passes": 22
+    }
+  ],
+  "headers": {
+    "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-security-policy": "base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Sun, 01 Nov 2026 10:32:54 GMT",
+    "keep-alive": "timeout=5",
+    "permissions-policy": "camera=(), microphone=(), geolocation=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "strict-transport-security": "max-age=31536000",
+    "transfer-encoding": "chunked",
+    "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY"
+  }
+}

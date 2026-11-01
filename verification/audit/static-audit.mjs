@@ -11,6 +11,14 @@ const scan=(text,source)=>text.split('\n').flatMap((line,i)=>patterns.filter(([,
 const workingFiles = git('ls-files','--cached','--others','--exclude-standard').trim().split('\n').filter(p=>p && existsSync(p) && !/\.(png|jpg|jpeg|webp|ico|woff2?|ttf|pdf|zip)$/i.test(p));
 const working=workingFiles.flatMap(p=>scan(readFileSync(p,'utf8'),p));
 const localEnv=existsSync('.env.local')?readFileSync('.env.local','utf8'):'';
+const localKeyRoles = ['NEXT_PUBLIC_SUPABASE_ANON_KEY','SUPABASE_SERVICE_ROLE_KEY'].map((name) => {
+  const line = localEnv.split(/\r?\n/).find((entry) => entry.startsWith(name+'='));
+  try {
+    const value = line.slice(name.length+1).trim().replace(/^['"]|['"]$/g,'');
+    const role = JSON.parse(Buffer.from(value.split('.')[1], 'base64url')).role;
+    return { variable:name, role:['anon','service_role','authenticated'].includes(role) ? role : 'unexpected' };
+  } catch { return { variable:name, role:'not a decodable JWT' }; }
+});
 const localSecrets=scan(localEnv,'.env.local (ignored)');
 const history=[];
 for(const commit of git('rev-list','--all').trim().split('\n')) {
@@ -20,7 +28,7 @@ for(const commit of git('rev-list','--all').trim().split('\n')) {
 const bundleFiles=walk('.next/static').filter(p=>p.endsWith('.js'));
 const secretValues=[...localEnv.matchAll(/^(SUPABASE_SERVICE_ROLE_KEY|GOOGLE_INDEXING_SA_JSON|CRON_SECRET)=(.+)$/gm)].map(m=>({type:m[1],value:m[2].trim().replace(/^['"]|['"]$/g,'')})).filter(x=>x.value.length>15);
 const bundle=bundleFiles.flatMap(p=>{const text=readFileSync(p,'utf8');return [...scan(text,p),...secretValues.filter(s=>text.includes(s.value)).map(s=>({source:p,type:s.type+' exact-value'})),...(text.includes('SUPABASE_SERVICE_ROLE_KEY')?[{source:p,type:'service-role variable name'}]:[])];});
-const output={used:[...used].sort(),undocumented:[...used].filter(v=>!documented.includes(v)),unused:documented.filter(v=>!used.has(v)),working,localSecrets,history,bundle,bundleFiles:bundleFiles.length,trackedSensitive:git('ls-files').split('\n').filter(p=>/(\.env(?!\.example)|\.pem$|\.key$|service.account.*\.json$)/.test(p))};
+const output={used:[...used].sort(),undocumented:[...used].filter(v=>!documented.includes(v)),unused:documented.filter(v=>!used.has(v)),working,localSecrets,localKeyRoles,history,bundle,bundleFiles:bundleFiles.length,trackedSensitive:git('ls-files').split('\n').filter(p=>/(\.env(?!\.example)|\.pem$|\.key$|service.account.*\.json$)/.test(p))};
 const phase=process.env.AUDIT_PHASE || 'phase-a';
 writeFileSync(`verification/audit/static-${phase}.json`,JSON.stringify(output,null,2));
 console.log(JSON.stringify(output,null,2));

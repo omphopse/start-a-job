@@ -1,0 +1,34 @@
+[WebServer] (node:20908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:23720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [mobile] › tests\ui\accessibility.spec.ts:5:5 › compact header keeps the brand on one line without horizontal overflow (1.3s)
+
+
+  1) [mobile] › tests\ui\accessibility.spec.ts:5:5 › compact header keeps the brand on one line without horizontal overflow 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 45
+    Received:    73.59375
+
+       8 |     await page.goto('/');
+       9 |     const brand = await page.locator('header .brand').boundingBox();
+    > 10 |     expect(brand!.height).toBeLessThanOrEqual(45);
+         |                           ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   }
+      13 | });
+        at C:\Users\Asus\Documents\DeskJobs\tests\ui\accessibility.spec.ts:10:27
+
+    Error Context: test-results\accessibility-compact-head-8493b-without-horizontal-overflow-mobile\error-context.md
+
+  1 failed
+    [mobile] › tests\ui\accessibility.spec.ts:5:5 › compact header keeps the brand on one line without horizontal overflow 

@@ -1,0 +1,7 @@
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+{ code: 'PGRST103', message: 'Requested range not satisfiable' }
+
+Node.js v24.20.0

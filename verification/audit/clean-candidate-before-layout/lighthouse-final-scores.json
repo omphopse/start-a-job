@@ -1,0 +1,29 @@
+[
+  {
+    "page": "home",
+    "performance": 98,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "LCP": 769.5039999999999,
+    "CLS": 0
+  },
+  {
+    "page": "listing",
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "LCP": 765.1196,
+    "CLS": 0
+  },
+  {
+    "page": "job",
+    "performance": 98,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "LCP": 764.2756999999999,
+    "CLS": 0
+  }
+]

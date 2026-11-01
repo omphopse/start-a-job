@@ -4,7 +4,7 @@ const key=env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 if(!key||!env.NEXT_PUBLIC_SUPABASE_URL) throw new Error('No public Supabase configuration');
 const output=[];
 for(const table of ['jobs','profiles','apply_clicks','job_reports','request_limits','categories','deleted_jobs','landing_pages']) {
-  try {const r=await fetch(`${env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/${table}?select=*&limit=1`,{headers:{apikey:key,Authorization:`Bearer ${key}`},signal:AbortSignal.timeout(15000)});const b=await r.json();output.push({table,status:r.status,rows:Array.isArray(b)?b.length:undefined,columns:Array.isArray(b)&&b[0]?Object.keys(b[0]):[],errorCode:!Array.isArray(b)?b.code:undefined});}
+  try {const r=await fetch(`${env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/${table}?select=*&limit=1`,{headers:{apikey:key,Authorization:`Bearer ${key}`},signal:AbortSignal.timeout(15000)});const b=await r.json();output.push({table,status:r.status,rows:Array.isArray(b)?b.length:undefined,columns:Array.isArray(b)&&b[0]?Object.keys(b[0]):[],nonNullPrivateFields:Array.isArray(b)&&b[0]?['created_by','approved_by','rejection_reason'].filter((field)=>b[0][field]!=null):[],errorCode:!Array.isArray(b)?b.code:undefined});}
   catch { output.push({table,error:'Network request failed or timed out'}); }
 }
 for (const status of ['draft','pending','rejected','unpublished']) {
@@ -17,4 +17,7 @@ const expired = await fetch(`${env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/jobs?select
 const expiredBody = await expired.json();
 output.push({table:'jobs',filter:'expired',status:expired.status,rows:Array.isArray(expiredBody)?expiredBody.length:undefined});
 const phase=process.env.AUDIT_PHASE || 'phase-a';
+const rangeResponse = await fetch(`${env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/jobs?select=id&status=eq.published&offset=199980&limit=20`, {headers:{apikey:key,Authorization:`Bearer ${key}`,Prefer:'count=exact'},signal:AbortSignal.timeout(15000)});
+const rangeBody = await rangeResponse.json();
+output.push({table:'jobs',filter:'out-of-range-page',status:rangeResponse.status,rows:Array.isArray(rangeBody)?rangeBody.length:undefined,errorCode:rangeBody.code});
 writeFileSync(`verification/audit/live-anon-${phase}.json`,JSON.stringify(output,null,2));console.log(JSON.stringify(output,null,2));

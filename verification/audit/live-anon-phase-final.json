@@ -33,31 +33,39 @@
       "search_document",
       "application_email",
       "country"
+    ],
+    "nonNullPrivateFields": [
+      "created_by",
+      "approved_by"
     ]
   },
   {
     "table": "profiles",
     "status": 200,
     "rows": 0,
-    "columns": []
+    "columns": [],
+    "nonNullPrivateFields": []
   },
   {
     "table": "apply_clicks",
     "status": 200,
     "rows": 0,
-    "columns": []
+    "columns": [],
+    "nonNullPrivateFields": []
   },
   {
     "table": "job_reports",
     "status": 200,
     "rows": 0,
-    "columns": []
+    "columns": [],
+    "nonNullPrivateFields": []
   },
   {
     "table": "request_limits",
     "status": 200,
     "rows": 0,
-    "columns": []
+    "columns": [],
+    "nonNullPrivateFields": []
   },
   {
     "table": "categories",
@@ -65,7 +73,22 @@
     "rows": 1,
     "columns": [
       "name"
-    ]
+    ],
+    "nonNullPrivateFields": []
+  },
+  {
+    "table": "deleted_jobs",
+    "status": 200,
+    "rows": 0,
+    "columns": [],
+    "nonNullPrivateFields": []
+  },
+  {
+    "table": "landing_pages",
+    "status": 200,
+    "rows": 0,
+    "columns": [],
+    "nonNullPrivateFields": []
   },
   {
     "table": "jobs",
@@ -96,5 +119,11 @@
     "filter": "expired",
     "status": 200,
     "rows": 0
+  },
+  {
+    "table": "jobs",
+    "filter": "out-of-range-page",
+    "status": 416,
+    "errorCode": "PGRST103"
   }
 ]

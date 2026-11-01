@@ -2,258 +2,263 @@
 > desk-jobs@0.1.0 test:ui
 > playwright test --workers=2
 
-[WebServer] (node:6988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:17880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 99 tests using 2 workers
+
+(node:16632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [mobile] › tests\ui\accessibility.spec.ts:25:5 › compact header keeps the brand on one line without horizontal overflow (2.2s)
+[WebServer] (node:20756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [mobile] › tests\ui\accessibility.spec.ts:5:5 › maximum-length unbroken job details wrap within the viewport (5.9s)
+[WebServer] (node:25704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [mobile] › tests\ui\accessibility.spec.ts:37:5 › public pages pass automated WCAG A and AA checks (5.5s)
+  ok  4 [mobile] › tests\ui\accessibility.spec.ts:66:5 › secondary controls provide 44px hit areas (2.0s)
+[WebServer] (node:15304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [mobile] › tests\ui\admin.spec.ts:2:5 › admin review and team previews are responsive; real routes protected (3.6s)
+  ok  5 [mobile] › tests\ui\accessibility.spec.ts:89:5 › mobile sticky apply shares countdown state and leaves final content visible (4.2s)
+[WebServer] (node:3792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [mobile] › tests\ui\api.spec.ts:3:5 › API page caps and long location filters never fall back to unfiltered first-page data (1.8s)
+[WebServer] (node:1964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [mobile] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown (3.5s)
+[WebServer] (node:16036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [mobile] › tests\ui\api.spec.ts:20:5 › public API and discovery feeds expose current public fields only (5.2s)
+  ok 11 [mobile] › tests\ui\application.spec.ts:64:5 › URL applications preserve the configured countdown and safe new-tab link (4.1s)
+  ok 10 [mobile] › tests\ui\application.spec.ts:23:5 › email applications reveal the address and mail link after the configured countdown (5.4s)
+  ok 12 [mobile] › tests\ui\application.spec.ts:80:5 › combined form input accepts an email without native URL-only validation (3.2s)
+[WebServer] (node:16908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [mobile] › tests\ui\auth.spec.ts:2:5 › admin routes require auth and login is accessible (4.5s)
+[WebServer] (node:13140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 14 [mobile] › tests\ui\auth.spec.ts:22:5 › OTP steps preserve email and offer explicit resend and change actions (5.6s)
+  ok 16 [mobile] › tests\ui\branding.spec.ts:50:5 › public API, structured data and discovery metadata use the new brand (584ms)
+  ok 17 [mobile] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled (1.7s)
+[WebServer] (node:11660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
 [WebServer] (node:3528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:21248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+  ok 18 [mobile] › tests\ui\dashboard.spec.ts:9:5 › read-only dashboard and job form fit each viewport (2.2s)
+[WebServer] (node:12324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 19 [mobile] › tests\ui\dashboard.spec.ts:39:5 › job fields survive a server validation error and form reset (2.5s)
+[WebServer] (node:12088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 20 [mobile] › tests\ui\dashboard.spec.ts:75:5 › empty optional sections are hidden on the public job page (2.2s)
+[WebServer] (node:12036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 15 [mobile] › tests\ui\branding.spec.ts:3:5 › startajob branding is consistent across public, authentication and admin preview pages (15.2s)
+  ok 22 [mobile] › tests\ui\job-card.spec.ts:37:5 › cards support keyboard navigation and long content without overflow (4.5s)
+[WebServer] (node:19016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 23 [mobile] › tests\ui\landing.spec.ts:2:5 › landing pages have counts, matching jobs, breadcrumbs and empty-page noindex (8.9s)
+  ok 21 [mobile] › tests\ui\job-card.spec.ts:3:5 › whole job cards are links across public layouts (16.3s)
+[WebServer] (node:19492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 25 [mobile] › tests\ui\locations.spec.ts:62:5 › failed location requests can be retried without blocking optional fields (2.1s)
+  ok 24 [mobile] › tests\ui\locations.spec.ts:3:5 › API-backed locations cascade, clear dependent selections, and allow blank city and state (2.8s)
+[WebServer] (node:9396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 26 [mobile] › tests\ui\portal.spec.ts:2:5 › home loads without horizontal overflow (2.5s)
+  ok 27 [mobile] › tests\ui\portal.spec.ts:12:5 › search and shareable filters work; expired jobs are hidden (5.5s)
+[WebServer] (node:27292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 28 [mobile] › tests\ui\portal.spec.ts:29:5 › required widths have no overflow (8.2s)
+  ok 29 [mobile] › tests\ui\portal.spec.ts:38:5 › detail countdown, real link, and expired notice (7.4s)
+  ok 31 [mobile] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers (805ms)
+  ok 32 [mobile] › tests\ui\security.spec.ts:17:5 › click endpoint rejects cross-origin requests before logging (640ms)
+[WebServer] (node:17104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:8736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 33 [mobile] › tests\ui\seo.spec.ts:2:5 › trust pages, robots and structured data are server rendered (4.6s)
+  ok 30 [mobile] › tests\ui\report.spec.ts:2:5 › report flow is clear and demo never claims to save (9.1s)
+[WebServer] (node:25480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:24024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 35 [tablet] › tests\ui\accessibility.spec.ts:5:5 › maximum-length unbroken job details wrap within the viewport (1.7s)
+  ok 34 [tablet] › tests\ui\accessibility.spec.ts:25:5 › compact header keeps the brand on one line without horizontal overflow (1.9s)
+[WebServer] (node:22852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 37 [tablet] › tests\ui\accessibility.spec.ts:66:5 › secondary controls provide 44px hit areas (1.9s)
+[WebServer] (node:2740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 36 [tablet] › tests\ui\accessibility.spec.ts:37:5 › public pages pass automated WCAG A and AA checks (3.4s)
+[WebServer] (node:13564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 39 [tablet] › tests\ui\admin.spec.ts:2:5 › admin review and team previews are responsive; real routes protected (1.5s)
+  ok 40 [tablet] › tests\ui\api.spec.ts:3:5 › API page caps and long location filters never fall back to unfiltered first-page data (257ms)
+  ok 41 [tablet] › tests\ui\api.spec.ts:20:5 › public API and discovery feeds expose current public fields only (540ms)
+[WebServer] (node:22748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 38 [tablet] › tests\ui\accessibility.spec.ts:89:5 › mobile sticky apply shares countdown state and leaves final content visible (6.2s)
+  ok 42 [tablet] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown (3.5s)
+[WebServer] (node:27348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 43 [tablet] › tests\ui\application.spec.ts:23:5 › email applications reveal the address and mail link after the configured countdown (2.6s)
+  ok 45 [tablet] › tests\ui\application.spec.ts:80:5 › combined form input accepts an email without native URL-only validation (865ms)
+[WebServer] (node:16060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 44 [tablet] › tests\ui\application.spec.ts:64:5 › URL applications preserve the configured countdown and safe new-tab link (3.1s)
+  ok 46 [tablet] › tests\ui\auth.spec.ts:2:5 › admin routes require auth and login is accessible (1.5s)
+  ok 47 [tablet] › tests\ui\auth.spec.ts:22:5 › OTP steps preserve email and offer explicit resend and change actions (1.6s)
+  ok 49 [tablet] › tests\ui\branding.spec.ts:50:5 › public API, structured data and discovery metadata use the new brand (495ms)
+  ok 50 [tablet] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled (857ms)
+[WebServer] (node:9104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 51 [tablet] › tests\ui\dashboard.spec.ts:9:5 › read-only dashboard and job form fit each viewport (2.3s)
+[WebServer] (node:12688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 48 [tablet] › tests\ui\branding.spec.ts:3:5 › startajob branding is consistent across public, authentication and admin preview pages (5.9s)
+[WebServer] (node:23636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 52 [tablet] › tests\ui\dashboard.spec.ts:39:5 › job fields survive a server validation error and form reset (2.2s)
+[WebServer] (node:2228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 53 [tablet] › tests\ui\dashboard.spec.ts:75:5 › empty optional sections are hidden on the public job page (1.3s)
+[WebServer] (node:25828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 55 [tablet] › tests\ui\job-card.spec.ts:37:5 › cards support keyboard navigation and long content without overflow (1.7s)
+[WebServer] (node:13340) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 56 [tablet] › tests\ui\landing.spec.ts:2:5 › landing pages have counts, matching jobs, breadcrumbs and empty-page noindex (1.6s)
+[WebServer] (node:7368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 57 [tablet] › tests\ui\locations.spec.ts:3:5 › API-backed locations cascade, clear dependent selections, and allow blank city and state (1.7s)
+[WebServer] (node:436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 54 [tablet] › tests\ui\job-card.spec.ts:3:5 › whole job cards are links across public layouts (5.7s)
+  ok 58 [tablet] › tests\ui\locations.spec.ts:62:5 › failed location requests can be retried without blocking optional fields (1.0s)
+  ok 59 [tablet] › tests\ui\portal.spec.ts:2:5 › home loads without horizontal overflow (906ms)
+  ok 60 [tablet] › tests\ui\portal.spec.ts:12:5 › search and shareable filters work; expired jobs are hidden (2.4s)
+  ok 61 [tablet] › tests\ui\portal.spec.ts:29:5 › required widths have no overflow (3.0s)
+  ok 63 [tablet] › tests\ui\report.spec.ts:2:5 › report flow is clear and demo never claims to save (1.3s)
+[WebServer] (node:13428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 64 [tablet] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers (115ms)
+  ok 65 [tablet] › tests\ui\security.spec.ts:17:5 › click endpoint rejects cross-origin requests before logging (32ms)
+[WebServer] (node:17596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 66 [tablet] › tests\ui\seo.spec.ts:2:5 › trust pages, robots and structured data are server rendered (1.5s)
+[WebServer] (node:25152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 62 [tablet] › tests\ui\portal.spec.ts:38:5 › detail countdown, real link, and expired notice (4.2s)
+(node:9892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 68 [desktop] › tests\ui\accessibility.spec.ts:5:5 › maximum-length unbroken job details wrap within the viewport (1.9s)
+  ok 67 [desktop] › tests\ui\accessibility.spec.ts:25:5 › compact header keeps the brand on one line without horizontal overflow (1.9s)
+  ok 69 [desktop] › tests\ui\accessibility.spec.ts:66:5 › secondary controls provide 44px hit areas (3.2s)
+[WebServer] (node:2288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 70 [desktop] › tests\ui\accessibility.spec.ts:37:5 › public pages pass automated WCAG A and AA checks (5.0s)
+[WebServer] (node:23540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 72 [desktop] › tests\ui\admin.spec.ts:2:5 › admin review and team previews are responsive; real routes protected (1.2s)
+  ok 73 [desktop] › tests\ui\api.spec.ts:3:5 › API page caps and long location filters never fall back to unfiltered first-page data (129ms)
+  ok 74 [desktop] › tests\ui\api.spec.ts:20:5 › public API and discovery feeds expose current public fields only (168ms)
+[WebServer] (node:22112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 71 [desktop] › tests\ui\accessibility.spec.ts:89:5 › mobile sticky apply shares countdown state and leaves final content visible (6.5s)
+  ok 75 [desktop] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown (3.3s)
+[WebServer] (node:660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 76 [desktop] › tests\ui\application.spec.ts:23:5 › email applications reveal the address and mail link after the configured countdown (2.8s)
+  ok 77 [desktop] › tests\ui\application.spec.ts:64:5 › URL applications preserve the configured countdown and safe new-tab link (3.6s)
+  ok 78 [desktop] › tests\ui\application.spec.ts:80:5 › combined form input accepts an email without native URL-only validation (1.3s)
+[WebServer] (node:17416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 79 [desktop] › tests\ui\auth.spec.ts:2:5 › admin routes require auth and login is accessible (1.7s)
+  ok 80 [desktop] › tests\ui\auth.spec.ts:22:5 › OTP steps preserve email and offer explicit resend and change actions (1.7s)
+  ok 82 [desktop] › tests\ui\branding.spec.ts:50:5 › public API, structured data and discovery metadata use the new brand (249ms)
+  ok 83 [desktop] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled (1.1s)
+[WebServer] (node:22192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 84 [desktop] › tests\ui\dashboard.spec.ts:9:5 › read-only dashboard and job form fit each viewport (2.1s)
+[WebServer] (node:14412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 81 [desktop] › tests\ui\branding.spec.ts:3:5 › startajob branding is consistent across public, authentication and admin preview pages (4.9s)
+[WebServer] (node:23076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 86 [desktop] › tests\ui\dashboard.spec.ts:75:5 › empty optional sections are hidden on the public job page (1.1s)
+  ok 85 [desktop] › tests\ui\dashboard.spec.ts:39:5 › job fields survive a server validation error and form reset (2.5s)
+  ok 88 [desktop] › tests\ui\job-card.spec.ts:37:5 › cards support keyboard navigation and long content without overflow (1.6s)
+[WebServer] (node:11520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 89 [desktop] › tests\ui\landing.spec.ts:2:5 › landing pages have counts, matching jobs, breadcrumbs and empty-page noindex (1.9s)
+[WebServer] (node:11764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 87 [desktop] › tests\ui\job-card.spec.ts:3:5 › whole job cards are links across public layouts (5.4s)
+[WebServer] (node:7164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 90 [desktop] › tests\ui\locations.spec.ts:3:5 › API-backed locations cascade, clear dependent selections, and allow blank city and state (1.5s)
+[WebServer] (node:17292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 91 [desktop] › tests\ui\locations.spec.ts:62:5 › failed location requests can be retried without blocking optional fields (1.2s)
+  ok 92 [desktop] › tests\ui\portal.spec.ts:2:5 › home loads without horizontal overflow (1.2s)
+  ok 93 [desktop] › tests\ui\portal.spec.ts:12:5 › search and shareable filters work; expired jobs are hidden (2.6s)
+  ok 94 [desktop] › tests\ui\portal.spec.ts:29:5 › required widths have no overflow (4.3s)
+[WebServer] (node:3812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 96 [desktop] › tests\ui\report.spec.ts:2:5 › report flow is clear and demo never claims to save (1.8s)
+  ok 97 [desktop] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers (135ms)
+  ok 98 [desktop] › tests\ui\security.spec.ts:17:5 › click endpoint rejects cross-origin requests before logging (27ms)
+[WebServer] (node:5136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ok 99 [desktop] › tests\ui\seo.spec.ts:2:5 › trust pages, robots and structured data are server rendered (1.7s)
+  ok 95 [desktop] › tests\ui\portal.spec.ts:38:5 › detail countdown, real link, and expired notice (5.6s)
+[WebServer] (node:4972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
 
-Running 90 tests using 2 workers
-
-(node:19316) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `node --trace-warnings ...` to show where the warning was created)
-(node:18544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:19424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok  1 [mobile] › tests\ui\accessibility.spec.ts:34:5 › secondary controls provide 44px hit areas (5.0s)
-[WebServer] (node:10504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok  2 [mobile] › tests\ui\accessibility.spec.ts:5:5 › public pages pass automated WCAG A and AA checks (6.3s)
-[WebServer] (node:9080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok  4 [mobile] › tests\ui\admin.spec.ts:2:5 › admin review and team previews are responsive; real routes protected (2.5s)
-[WebServer] (node:9584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:26424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:18336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok  3 [mobile] › tests\ui\accessibility.spec.ts:57:5 › mobile sticky apply shares countdown state and leaves final content visible (6.0s)
-[WebServer] (node:19340) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:9732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok  5 [mobile] › tests\ui\api.spec.ts:2:5 › public API and discovery feeds expose current public fields only (3.6s)
-[WebServer] (node:6120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok  6 [mobile] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown (3.2s)
-  ok  7 [mobile] › tests\ui\application.spec.ts:23:5 › email applications reveal the address and mail link after the configured countdown (2.2s)
-[WebServer] (node:4420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok  9 [mobile] › tests\ui\application.spec.ts:80:5 › combined form input accepts an email without native URL-only validation (724ms)
-[WebServer] (node:26860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 10 [mobile] › tests\ui\auth.spec.ts:2:5 › admin routes require auth and login is accessible (882ms)
-  ok  8 [mobile] › tests\ui\application.spec.ts:64:5 › URL applications preserve the configured countdown and safe new-tab link (2.9s)
-  ok 11 [mobile] › tests\ui\auth.spec.ts:22:5 › OTP steps preserve email and offer explicit resend and change actions (776ms)
-  ok 13 [mobile] › tests\ui\branding.spec.ts:50:5 › public API, structured data and discovery metadata use the new brand (223ms)
-  ok 14 [mobile] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled (531ms)
-[WebServer] (node:25732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 15 [mobile] › tests\ui\dashboard.spec.ts:9:5 › read-only dashboard and job form fit each viewport (1.4s)
-[WebServer] (node:25436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 16 [mobile] › tests\ui\dashboard.spec.ts:39:5 › job fields survive a server validation error and form reset (966ms)
-[WebServer] (node:21780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 17 [mobile] › tests\ui\dashboard.spec.ts:75:5 › empty optional sections are hidden on the public job page (940ms)
-[WebServer] (node:23524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:25124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 12 [mobile] › tests\ui\branding.spec.ts:3:5 › startajob branding is consistent across public, authentication and admin preview pages (5.2s)
-[WebServer] (node:24332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 19 [mobile] › tests\ui\job-card.spec.ts:37:5 › cards support keyboard navigation and long content without overflow (1.5s)
-[WebServer] (node:23436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:14188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:16640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 20 [mobile] › tests\ui\landing.spec.ts:2:5 › landing pages have counts, matching jobs, breadcrumbs and empty-page noindex (2.8s)
-  ok 18 [mobile] › tests\ui\job-card.spec.ts:3:5 › whole job cards are links across public layouts (5.7s)
-[WebServer] (node:12884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:22240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 21 [mobile] › tests\ui\locations.spec.ts:3:5 › API-backed locations cascade, clear dependent selections, and allow blank city and state (1.2s)
-  ok 22 [mobile] › tests\ui\locations.spec.ts:62:5 › failed location requests can be retried without blocking optional fields (1.0s)
-[WebServer] (node:12444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 23 [mobile] › tests\ui\portal.spec.ts:2:5 › home loads without horizontal overflow (1.1s)
-  ok 24 [mobile] › tests\ui\portal.spec.ts:12:5 › search and shareable filters work; expired jobs are hidden (1.8s)
-  ok 25 [mobile] › tests\ui\portal.spec.ts:29:5 › required widths have no overflow (2.8s)
-[WebServer] (node:7248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:11472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 26 [mobile] › tests\ui\portal.spec.ts:38:5 › detail countdown, real link, and expired notice (4.4s)
-  ok 28 [mobile] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers (148ms)
-  ok 27 [mobile] › tests\ui\report.spec.ts:2:5 › report flow is clear and demo never claims to save (2.6s)
-  ok 29 [mobile] › tests\ui\security.spec.ts:17:5 › click endpoint rejects cross-origin requests before logging (75ms)
-[WebServer] (node:15092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:17336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:16400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-(node:26500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `node --trace-warnings ...` to show where the warning was created)
-  ok 30 [mobile] › tests\ui\seo.spec.ts:2:5 › trust pages, robots and structured data are server rendered (2.5s)
-[WebServer] (node:20512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-(node:18740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:19244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 31 [tablet] › tests\ui\accessibility.spec.ts:5:5 › public pages pass automated WCAG A and AA checks (3.6s)
-  ok 32 [tablet] › tests\ui\accessibility.spec.ts:34:5 › secondary controls provide 44px hit areas (2.0s)
-[WebServer] (node:11712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:19424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 34 [tablet] › tests\ui\admin.spec.ts:2:5 › admin review and team previews are responsive; real routes protected (1.4s)
-  ok 35 [tablet] › tests\ui\api.spec.ts:2:5 › public API and discovery feeds expose current public fields only (227ms)
-[WebServer] (node:21048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:14168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:26204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 36 [tablet] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown (3.1s)
-[WebServer] (node:9584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 33 [tablet] › tests\ui\accessibility.spec.ts:57:5 › mobile sticky apply shares countdown state and leaves final content visible (5.9s)
-  ok 37 [tablet] › tests\ui\application.spec.ts:23:5 › email applications reveal the address and mail link after the configured countdown (2.2s)
-  ok 39 [tablet] › tests\ui\application.spec.ts:80:5 › combined form input accepts an email without native URL-only validation (693ms)
-[WebServer] (node:1836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 40 [tablet] › tests\ui\auth.spec.ts:2:5 › admin routes require auth and login is accessible (865ms)
-  ok 38 [tablet] › tests\ui\application.spec.ts:64:5 › URL applications preserve the configured countdown and safe new-tab link (3.0s)
-  ok 41 [tablet] › tests\ui\auth.spec.ts:22:5 › OTP steps preserve email and offer explicit resend and change actions (1.3s)
-  ok 43 [tablet] › tests\ui\branding.spec.ts:50:5 › public API, structured data and discovery metadata use the new brand (144ms)
-  ok 44 [tablet] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled (677ms)
-[WebServer] (node:9324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:12356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 45 [tablet] › tests\ui\dashboard.spec.ts:9:5 › read-only dashboard and job form fit each viewport (1.7s)
-[WebServer] (node:26288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 42 [tablet] › tests\ui\branding.spec.ts:3:5 › startajob branding is consistent across public, authentication and admin preview pages (3.8s)
-  ok 47 [tablet] › tests\ui\dashboard.spec.ts:75:5 › empty optional sections are hidden on the public job page (788ms)
-[WebServer] (node:16184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 46 [tablet] › tests\ui\dashboard.spec.ts:39:5 › job fields survive a server validation error and form reset (1.6s)
-[WebServer] (node:25640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 49 [tablet] › tests\ui\job-card.spec.ts:37:5 › cards support keyboard navigation and long content without overflow (1.7s)
-[WebServer] (node:26304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:15352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:24800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 50 [tablet] › tests\ui\landing.spec.ts:2:5 › landing pages have counts, matching jobs, breadcrumbs and empty-page noindex (1.4s)
-  ok 48 [tablet] › tests\ui\job-card.spec.ts:3:5 › whole job cards are links across public layouts (4.3s)
-[WebServer] (node:1764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 51 [tablet] › tests\ui\locations.spec.ts:3:5 › API-backed locations cascade, clear dependent selections, and allow blank city and state (1.2s)
-[WebServer] (node:16380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 52 [tablet] › tests\ui\locations.spec.ts:62:5 › failed location requests can be retried without blocking optional fields (945ms)
-  ok 53 [tablet] › tests\ui\portal.spec.ts:2:5 › home loads without horizontal overflow (1.2s)
-  ok 54 [tablet] › tests\ui\portal.spec.ts:12:5 › search and shareable filters work; expired jobs are hidden (2.4s)
-  ok 55 [tablet] › tests\ui\portal.spec.ts:29:5 › required widths have no overflow (2.9s)
-[WebServer] (node:16960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 57 [tablet] › tests\ui\report.spec.ts:2:5 › report flow is clear and demo never claims to save (1.2s)
-  ok 58 [tablet] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers (92ms)
-  ok 59 [tablet] › tests\ui\security.spec.ts:17:5 › click endpoint rejects cross-origin requests before logging (17ms)
-[WebServer] (node:7296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:6800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 60 [tablet] › tests\ui\seo.spec.ts:2:5 › trust pages, robots and structured data are server rendered (1.4s)
-  ok 56 [tablet] › tests\ui\portal.spec.ts:38:5 › detail countdown, real link, and expired notice (4.5s)
-[WebServer] (node:7372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-(node:8276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `node --trace-warnings ...` to show where the warning was created)
-(node:8488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-(Use `node --trace-warnings ...` to show where the warning was created)
-  ok 62 [desktop] › tests\ui\accessibility.spec.ts:34:5 › secondary controls provide 44px hit areas (2.0s)
-[WebServer] (node:22000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 61 [desktop] › tests\ui\accessibility.spec.ts:5:5 › public pages pass automated WCAG A and AA checks (3.1s)
-[WebServer] (node:5152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 64 [desktop] › tests\ui\admin.spec.ts:2:5 › admin review and team previews are responsive; real routes protected (1.1s)
-  ok 65 [desktop] › tests\ui\api.spec.ts:2:5 › public API and discovery feeds expose current public fields only (191ms)
-[WebServer] (node:4312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:12744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 66 [desktop] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown (3.3s)
-  ok 63 [desktop] › tests\ui\accessibility.spec.ts:57:5 › mobile sticky apply shares countdown state and leaves final content visible (6.0s)
-[WebServer] (node:19428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 67 [desktop] › tests\ui\application.spec.ts:23:5 › email applications reveal the address and mail link after the configured countdown (3.5s)
-  ok 68 [desktop] › tests\ui\application.spec.ts:64:5 › URL applications preserve the configured countdown and safe new-tab link (4.1s)
-  ok 69 [desktop] › tests\ui\application.spec.ts:80:5 › combined form input accepts an email without native URL-only validation (1.2s)
-[WebServer] (node:18356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 70 [desktop] › tests\ui\auth.spec.ts:2:5 › admin routes require auth and login is accessible (1.7s)
-  ok 71 [desktop] › tests\ui\auth.spec.ts:22:5 › OTP steps preserve email and offer explicit resend and change actions (1.8s)
-  ok 73 [desktop] › tests\ui\branding.spec.ts:50:5 › public API, structured data and discovery metadata use the new brand (219ms)
-  ok 74 [desktop] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled (814ms)
-[WebServer] (node:27132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:23120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 75 [desktop] › tests\ui\dashboard.spec.ts:9:5 › read-only dashboard and job form fit each viewport (2.2s)
-[WebServer] (node:9892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 72 [desktop] › tests\ui\branding.spec.ts:3:5 › startajob branding is consistent across public, authentication and admin preview pages (5.0s)
-[WebServer] (node:10528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 76 [desktop] › tests\ui\dashboard.spec.ts:39:5 › job fields survive a server validation error and form reset (1.8s)
-  ok 77 [desktop] › tests\ui\dashboard.spec.ts:75:5 › empty optional sections are hidden on the public job page (918ms)
-  ok 79 [desktop] › tests\ui\job-card.spec.ts:37:5 › cards support keyboard navigation and long content without overflow (1.7s)
-[WebServer] (node:23132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:25136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 80 [desktop] › tests\ui\landing.spec.ts:2:5 › landing pages have counts, matching jobs, breadcrumbs and empty-page noindex (1.9s)
-[WebServer] (node:21592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:20936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 81 [desktop] › tests\ui\locations.spec.ts:3:5 › API-backed locations cascade, clear dependent selections, and allow blank city and state (2.0s)
-  ok 78 [desktop] › tests\ui\job-card.spec.ts:3:5 › whole job cards are links across public layouts (6.5s)
-[WebServer] (node:22244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 82 [desktop] › tests\ui\locations.spec.ts:62:5 › failed location requests can be retried without blocking optional fields (1.1s)
-  ok 83 [desktop] › tests\ui\portal.spec.ts:2:5 › home loads without horizontal overflow (1.1s)
-[WebServer] (node:7940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 84 [desktop] › tests\ui\portal.spec.ts:12:5 › search and shareable filters work; expired jobs are hidden (2.9s)
-  ok 85 [desktop] › tests\ui\portal.spec.ts:29:5 › required widths have no overflow (3.4s)
-[WebServer] (node:21580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 87 [desktop] › tests\ui\report.spec.ts:2:5 › report flow is clear and demo never claims to save (1.6s)
-  ok 88 [desktop] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers (173ms)
-  ok 89 [desktop] › tests\ui\security.spec.ts:17:5 › click endpoint rejects cross-origin requests before logging (28ms)
-[WebServer] (node:20148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:6800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-  ok 86 [desktop] › tests\ui\portal.spec.ts:38:5 › detail countdown, real link, and expired notice (4.5s)
-  ok 90 [desktop] › tests\ui\seo.spec.ts:2:5 › trust pages, robots and structured data are server rendered (1.8s)
-[WebServer] (node:9516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-
-  90 passed (1.8m)
+  99 passed (2.8m)

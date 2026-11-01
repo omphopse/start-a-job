@@ -1,0 +1,22 @@
+{
+  "pages": 65,
+  "overflows": [],
+  "axe": [
+    {
+      "page": "home",
+      "violations": []
+    },
+    {
+      "page": "jobs",
+      "violations": []
+    },
+    {
+      "page": "detail",
+      "violations": []
+    },
+    {
+      "page": "login",
+      "violations": []
+    }
+  ]
+}
