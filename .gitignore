@@ -11,7 +11,11 @@ test-results/
 .netlify/
 .DS_Store
 *.pem
+*.key
+*.p12
+*.pfx
 *service-account*.json
+*service_account*.json
 screenshots/
 *.tsbuildinfo
 verification/lighthouse-*.html
