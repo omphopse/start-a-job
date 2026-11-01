@@ -1,3 +1,4 @@
+import { blockedApplyHosts } from './publishing-rules';
 import { z } from 'zod';
 
 export const applicationFormatMessage =
@@ -22,12 +23,7 @@ export const applicationUrl = z
       return;
     }
     const blocked = [
-      'wa.me',
-      't.me',
-      'telegram.me',
-      'whatsapp.com',
-      'bit.ly',
-      'tinyurl.com',
+      ...blockedApplyHosts,
       ...(process.env.APPLY_HOST_BLOCKLIST || '')
         .split(',')
         .map((host) => host.trim().toLowerCase())

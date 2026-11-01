@@ -65,3 +65,20 @@ Screenshots are saved in `screenshots/`; final reference PNGs are committed in t
 
 ### Anonymous boundary verification (Windows PowerShell 5.1)
 Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in the current process, then run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-live-anon.ps1`. This explicitly contacts that project; check the printed project ref first. Never use a service-role key. The script prints only fixed probe names, HTTP status, sanitized error codes and a bounded summary, never row values or credentials. HTTP 200 (including `[]`) is readable; 401/403 or SQLSTATE 42501 is denied; configuration/network failures stop the run immediately. Application emails are public by design. List and similar jobs share the search RPC; the probes exercise their filters plus detail and expired detail, long/special input and pagination abuse. The PostgREST project maximum is expected to be at most 1,000 rows; no row contents are printed.
+
+### Publishing safety net and local migration order
+`202611010009_published_required.sql` is generated from `lib/publishing-rules.ts`; Zod uses the same text limits and enums. Regenerate with `npx tsx scripts/generate-publishing-migration.ts` before applying it. Once applied, change rules with a new migration. The SQL check is a database safety net for direct/service-role writes as well as app publishing; custom `APPLY_HOST_BLOCKLIST` entries are additionally enforced by the app. Invalid existing published rows become `unpublished`, retaining all their content for admin review. The rollback removes the constraint/function but deliberately does not republish those rows.
+
+Do not rename previously applied files to manufacture sequential version numbers. The actual ordered migration history is:
+1. `202610300001_initial`
+2. `202610300002_categories_experience`
+3. `202611010001_application_email`
+4. `202611010003_job_country`
+5. `202611010004_public_job_privacy`
+6. `202611010005_click_rpc_access`
+7. `202611010006_poster_job_privacy`
+8. `202611010007_tombstone_privacy`
+9. `202611010008_public_search_boundary`
+10. `202611010009_published_required`
+
+There is no `202611010002`; the first two migrations precede the November sequence. This is ten files ending at 009, rather than nine files numbered 001..009. On an isolated local Supabase stack, `supabase start` then `supabase db reset --local` verifies the full chain. Never substitute `--linked` for this test.

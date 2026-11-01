@@ -1,19 +1,20 @@
+import { publishText, workModes, jobTypes } from './publishing-rules';
 import { experienceLevels } from './job-options';
 import { z } from 'zod';
 import { applicationInput, applicationUrl, applicationEmail } from './application-method';
 const text = (min = 1, max = 200) => z.string().trim().min(min).max(max);
 const jobFields = {
-  title: text(3, 120),
-  company_name: text(2, 120),
-  location: text(0, 100).default(''),
-  state: text(0, 100).default(''),
-  country: text(2, 100).default('India'),
-  work_mode: z.enum(['office', 'hybrid', 'remote']),
-  qualification: text(2, 120),
+  title: text(...publishText.title),
+  company_name: text(...publishText.company_name),
+  location: text(...publishText.location).default(''),
+  state: text(...publishText.state).default(''),
+  country: text(...publishText.country).default('India'),
+  work_mode: z.enum(workModes),
+  qualification: text(...publishText.qualification),
   experience_level: z.enum(experienceLevels),
-  category: text(2, 80),
-  job_type: z.enum(['full-time', 'part-time', 'internship', 'contract']),
-  salary_text: text(1, 120),
+  category: text(...publishText.category),
+  job_type: z.enum(jobTypes),
+  salary_text: text(...publishText.salary_text),
   vacancies: z.preprocess(
     (v) => (v === '' || v == null ? null : Number(v)),
     z.number().int().min(1).max(1000000).nullable(),
@@ -22,10 +23,10 @@ const jobFields = {
     .date()
     .or(z.literal(''))
     .transform((v) => v || null),
-  summary: text(50, 20000),
-  eligibility: z.string().trim().max(5000).default(''),
-  documents_needed: z.string().trim().max(5000).default(''),
-  how_to_apply: z.string().trim().max(5000).default(''),
+  summary: text(...publishText.summary),
+  eligibility: text(...publishText.eligibility).default(''),
+  documents_needed: text(...publishText.documents_needed).default(''),
+  how_to_apply: text(...publishText.how_to_apply).default(''),
   official_confirmed: z.literal('on'),
   no_fees: z.literal('on'),
 };
@@ -71,7 +72,7 @@ export const filtersSchema = z.object({
     .enum(['full-time', 'part-time', 'internship', 'contract'])
     .optional()
     .catch(undefined),
-  work_mode: z.enum(['office', 'hybrid', 'remote']).optional().catch(undefined),
+  work_mode: z.enum(workModes).optional().catch(undefined),
   sort: z.enum(['newest', 'last_date']).optional().catch(undefined),
   page: z
     .string()
