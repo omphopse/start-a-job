@@ -62,8 +62,8 @@ export function makeSlug(title: string, company: string, city: string, id: strin
 const queryText = (max = 100) => z.string().trim().max(max).optional().catch(undefined);
 export const filtersSchema = z.object({
   q: queryText(120),
-  state: queryText(80),
-  location: queryText(80),
+  state: queryText(100),
+  location: queryText(100),
   qualification: queryText(120),
   experience_level: z.enum(experienceLevels).optional().catch(undefined),
   category: queryText(80),
@@ -75,7 +75,7 @@ export const filtersSchema = z.object({
   sort: z.enum(['newest', 'last_date']).optional().catch(undefined),
   page: z
     .string()
-    .regex(/^[1-9]\d{0,3}$/)
+    .regex(/^(?:[1-9]\d{0,3}|10000)$/)
     .optional()
     .catch(undefined),
 });

@@ -5,7 +5,7 @@ import { site } from './config';
 export const apiQuery = z
   .object({
     q: z.string().max(120).optional(),
-    state: z.string().max(80).optional(),
+    state: z.string().max(100).optional(),
     category: z.string().max(80).optional(),
     experience_level: z.enum(experienceLevels).optional(),
     job_type: z.enum(['full-time', 'part-time', 'internship', 'contract']).optional(),

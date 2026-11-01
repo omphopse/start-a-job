@@ -79,6 +79,12 @@ export async function listJobs(
       ? query.order('last_date', { ascending: true, nullsFirst: false })
       : query.order('published_at', { ascending: false });
   const { data, count, error } = await query.range((page - 1) * pageSize, page * pageSize - 1);
+  if (error?.code === 'PGRST103' && page > 1) {
+    // PostgREST returns 416 for an offset beyond the matching total. Preserve
+    // filters/count instead of treating it as an outage or returning page 1.
+    const firstPage = await listJobs({ ...f, page: '1' }, 1);
+    return { jobs: [], count: firstPage.count };
+  }
   if (error) throw error;
   return { jobs: data as unknown as PublicJob[], count: count || 0 };
 }
