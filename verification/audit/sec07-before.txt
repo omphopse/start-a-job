@@ -1,0 +1,38 @@
+✖ common private-key containers and service accounts are ignored while the env template is trackable (52.8109ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 358.1504
+
+✖ failing tests:
+
+test at tests\unit\repository-hygiene.test.ts:5:1
+✖ common private-key containers and service accounts are ignored while the env template is trackable (52.8109ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + Set(1) {
+  - Set(5) {
+      '.env.audit',
+  -   'audit-private.key',
+  -   'audit-private.p12',
+  -   'audit-private.pfx',
+  -   'audit-service_account.json'
+    }
+  
+      at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\repository-hygiene.test.ts:9:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Set(1) { '.env.audit' },
+    expected: Set(5) { 'audit-private.key', 'audit-private.p12', 'audit-private.pfx', 'audit-service_account.json', '.env.audit' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

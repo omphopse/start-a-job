@@ -1,0 +1,35 @@
+[WebServer] (node:19652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:19068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [mobile] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers (118ms)
+
+
+  1) [mobile] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      4 |   const response = await request.get('/');
+      5 |   const headers = response.headers();
+    > 6 |   expect(headers['content-security-policy']).toContain("object-src 'none'");
+        |                                              ^
+      7 |   expect(headers['content-security-policy']).toContain("base-uri 'self'");
+      8 |   expect(headers['content-security-policy']).toContain("frame-ancestors 'none'");
+      9 |   expect(headers['content-security-policy']).toContain("form-action 'self'");
+        at C:\Users\Asus\Documents\DeskJobs\tests\ui\security.spec.ts:6:46
+
+    Error Context: test-results\security-responses-include-e0214--transport-security-headers-mobile\error-context.md
+
+  1 failed
+    [mobile] › tests\ui\security.spec.ts:3:5 › responses include baseline CSP and transport security headers 

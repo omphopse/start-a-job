@@ -151,3 +151,36 @@ Inspected five contact sheets containing all 25 screenshots, plus automated geom
 - Resolve 12-vs10 timer and AI-placeholder checklist drift explicitly; current recent 10-second user instruction remains authoritative. Review every residual PARTIAL/NOT VERIFIED row before GO.
 
 Phase A final verdict: **NO-GO** until high database issues are fixed/applied, current release is reproducible, and production authentication/hosting checks are completed. This audit cannot guarantee absence of all vulnerabilities.
+
+## Phase B — verified source fixes
+
+Each fix below has its own Conventional Commit. Every gate was run before its commit: lint, typecheck, full unit suite, all three Playwright projects, and production build. Expected failing-before regressions and unsuccessful infrastructure attempts remain in the evidence directory. No existing test was skipped or deleted. The original RLS assertions were preserved before applying the new privacy migration; additional post-migration checks assert stronger restrictions.
+
+| Finding | Commit | Regression / final gate evidence |
+| --- | --- | --- |
+| SEC-01 anonymous table and expired-RPC metadata | 79de04b | sec01-before.txt fails private-column denial; sec01-{lint,types,unit,build,playwright}.txt: 24 unit / 69 browser PASS. |
+| SEC-02 direct RPC limiter bypass + SEC-06 cross-origin clicks | b3f39b1 | sec02-before.txt fails execute-privilege assertion; sec02-* final gates: 25 unit / 72 browser PASS. RPC now server role only; HTTP checks origin/UUID/limiter. |
+| SEC-08 malformed URL exception and normalized embedded controls (found during Phase B) | 3d2974e | sec08-before.txt, sec08-unit.txt record failures; sec08-*-final.txt: 26 unit / 72 browser PASS. 26 rejected URL cases + 3 valid cases. |
+| SEC-09 authenticated cross-poster metadata (found during Phase B) | cba7d2f | sec09-before.txt returns another poster's private row, then source fix denies it and preserves owner access. 26 unit / 72 browser PASS. First 4-worker run had a Next dev-server JSON parsing error; unchanged 2-worker rerun passed, both logs retained. |
+| QA-01 contrast, QA-02 control hit areas and sticky footer overlap | 7b99e82 | qa01-before.txt: all three new tests fail; qa01-targeted.txt retains remaining popular-link failure; final qa01-* gates: 26 unit / 81 browser PASS. Explicit axe-core test dependency added. |
+| SEC-03 baseline CSP and HSTS | 3de59b1 | sec03-before.txt fails header assertions; sec03-* gates: 26 unit / 84 browser PASS. CSP protects objects/base/framing/form destinations; it does not restrict script execution. Strict script CSP/real advertising remains unverified. |
+| QA-04 disabled AI placeholder | 9e77eda | qa04-before.txt fails absence; qa04-* gates: 26 unit / 87 browser PASS. Added explicitly disabled “AI summary (coming soon)”; existing legacy-control absence assertion unchanged. The earlier checklist conflict is resolved without claiming a working generator. |
+| SEC-07 secret-file containers | 8edf5e2 | sec07-before.txt proves four paths not ignored; sec07-* gates: 27 unit / 87 browser PASS. key/p12/pfx and underscore service-account patterns added; .env.example remains trackable. |
+| QA-05 email apply click not recorded (found during Phase B) | 704e40c | qa05-before.txt fails expected click request; qa05-* gates: 27 unit / 90 browser PASS. Test intercepts request, prevents external mail app launch and asserts only job_id is sent. |
+| QA-06 SEO checker assumed immediate emails and mandatory city (found during Phase B) | 4b3709e | qa06-before.txt: 2 failures/1 pass with real rendered HTML/schema; qa06-* gates: 30 unit / 90 browser PASS. URL href/rel checks retained and target check added; email requires disabled countdown and no immediate mailto; empty city requires omitted locality. |
+
+The previously uncommitted implementation was preserved separately in 7b65411 rather than hidden inside security commits. Phase A report commit is 8624819.
+
+### Final local SQL and real-service observations
+
+`AUDIT_PHASE=phase-final npx tsx verification/audit/db-probe.ts` passed: all 8 local public tables have RLS; anonymous private-column access is denied; 40 direct anonymous click attempts are denied; expired RPC fields omit creator/reviewer/rejection/search metadata; a deactivated owner's write to an otherwise editable draft affects zero rows. Existing click/report rows are seeded for meaningful private-read checks. These are actual PostgreSQL-engine queries with simulated claims, not real signed JWTs.
+
+`AUDIT_PHASE=phase-final node verification/audit/live-anon.mjs` made read-only HTTP requests against the configured owner project. Draft, pending, rejected, unpublished and expired queries all returned zero rows. **The live project's unrestricted published-job query still returned internal column names**, so SEC-01 is fixed locally but remains a known deployed exposure until the owner applies the security migrations. No live mutation, OTP delivery or production schema change was performed.
+
+`node` fetch to the real CountriesNow state endpoint returned HTTP200 / 37 states. This proves the local Node runtime can reach the provider, not that Netlify outbound access is configured.
+
+Environment scan now covers app/components/lib/scripts plus next.config.ts, proxy.ts and Playwright config. All application/tool variables are documented; NODE_ENV is explicitly documented as framework-managed. Python3.11 `tomllib.load(netlify.toml)` parsed build command/publish directory/Node24 successfully. Actual Netlify deployment remains unverified.
+
+Final source/history/bundle pattern scan: no matching working-tree/history secret, no service key name or exact value in 17 production JS chunks. Scope now includes tracked/untracked nonignored text artifacts, separately scans ignored local env and production static chunks. Ignored local env credentials are expected and were not committed. Regex scanning is not equivalent to dedicated gitleaks/trufflehog or a proof of absence.
+
+Final clean-clone verification, refreshed production screenshots/Lighthouse and the complete before/after matrix will be appended after those commands finish. Until then, this remains **NO-GO**.

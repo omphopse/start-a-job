@@ -1,0 +1,38 @@
+
+> desk-jobs@0.1.0 test:unit
+> tsx --test tests/unit/*.test.ts
+
+✔ API limits and field allowlist protect private data (4.3871ms)
+✔ shared public query projections exclude private moderation and identity fields (0.5227ms)
+✔ application input trims URLs and normalizes only the email domain (7.9425ms)
+✔ create/edit form values always replace both application columns (9.5428ms)
+✔ email links encode recipient and subject without prefilled private data (2.7389ms)
+✔ email and URL applications render their configured countdown (19.9862ms)
+✔ malformed and malicious application URLs return validation errors without throwing (25.302ms)
+✔ site URL is absolute (3.2278ms)
+✔ current visibility excludes expired and unpublished jobs (57.9454ms)
+✔ sample data is visibly fictional and uses example.com (0.7415ms)
+✔ migration includes DB-level poster guard and RLS on every table (1.7424ms)
+✔ job form accepts a country with blank city and state (11.6201ms)
+✔ location API validates requests, normalizes provider options and handles failures (83.0732ms)
+✔ SEO notifications do nothing without configuration and tolerate failure (52.315ms)
+✔ performance tracing is opt-in and never logs request secrets (77.2022ms)
+✔ PostgreSQL RLS: anonymous cannot read drafts; poster cannot publish (5352.4879ms)
+✔ click logging can only be executed by the rate-limited server role (5438.7154ms)
+✔ anonymous table and expired RPC reads cannot select private job metadata (3521.2857ms)
+✔ JobPosting exactly matches visible job fields and excludes invented salary (3.3499ms)
+✔ empty optional sections and deadline are omitted from structured data (0.814ms)
+✔ public tombstone cache coalesces concurrent reads, expires and evicts (3.5056ms)
+✔ failed tombstone reads are retried rather than cached as public access (2.7098ms)
+✔ job inputs reject unsafe URLs and missing safety confirmations (13.0213ms)
+✔ slug is lowercase and includes role, company, city, short id (0.5188ms)
+✔ public filter validation handles duplicate/oversized inputs (3.966ms)
+✔ optional job fields accept blanks; expanded experience and custom category are valid (1.465ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11893.4091

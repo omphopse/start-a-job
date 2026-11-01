@@ -1,0 +1,124 @@
+{
+  "rls": [
+    {
+      "tablename": "apply_clicks",
+      "rowsecurity": true
+    },
+    {
+      "tablename": "categories",
+      "rowsecurity": true
+    },
+    {
+      "tablename": "deleted_jobs",
+      "rowsecurity": true
+    },
+    {
+      "tablename": "job_reports",
+      "rowsecurity": true
+    },
+    {
+      "tablename": "jobs",
+      "rowsecurity": true
+    },
+    {
+      "tablename": "landing_pages",
+      "rowsecurity": true
+    },
+    {
+      "tablename": "profiles",
+      "rowsecurity": true
+    },
+    {
+      "tablename": "request_limits",
+      "rowsecurity": true
+    }
+  ],
+  "anonJobColumns": [
+    "id",
+    "slug",
+    "title",
+    "company_name",
+    "location",
+    "state",
+    "work_mode",
+    "qualification",
+    "experience_level",
+    "category",
+    "job_type",
+    "salary_text",
+    "vacancies",
+    "last_date",
+    "apply_url",
+    "summary",
+    "eligibility",
+    "documents_needed",
+    "how_to_apply",
+    "status",
+    "rejection_reason",
+    "created_by",
+    "approved_by",
+    "published_at",
+    "created_at",
+    "updated_at",
+    "search_document",
+    "application_email",
+    "country"
+  ],
+  "clicksViaDirectAnonRPC": {
+    "n": 40
+  },
+  "expiredRPCColumns": [
+    "id",
+    "slug",
+    "title",
+    "company_name",
+    "location",
+    "state",
+    "work_mode",
+    "qualification",
+    "experience_level",
+    "category",
+    "job_type",
+    "salary_text",
+    "vacancies",
+    "last_date",
+    "apply_url",
+    "summary",
+    "eligibility",
+    "documents_needed",
+    "how_to_apply",
+    "status",
+    "rejection_reason",
+    "created_by",
+    "approved_by",
+    "published_at",
+    "created_at",
+    "updated_at",
+    "search_document",
+    "application_email",
+    "country"
+  ],
+  "poster": {
+    "selfPromote": {
+      "rows": 0,
+      "affected": 0
+    },
+    "changeActive": {
+      "rows": 0,
+      "affected": 0
+    },
+    "changeReview": {
+      "rows": 0,
+      "affected": 0
+    },
+    "readClicks": {
+      "rows": 0,
+      "affected": 0
+    },
+    "readReports": {
+      "rows": 0,
+      "affected": 0
+    }
+  },
+  "inactiveWrite": 0
+}

@@ -1,0 +1,111 @@
+{
+  "environment": "configured Supabase project; anonymous read-only SDK queries from this machine; not deployed request timings",
+  "retries": false,
+  "samples": [
+    {
+      "operation": "query.deletedJob",
+      "attempt": 1,
+      "duration_ms": 4545.3841999999995,
+      "ok": true,
+      "rows": 0
+    },
+    {
+      "operation": "query.publicJob",
+      "attempt": 1,
+      "duration_ms": 4655.3298,
+      "ok": true,
+      "rows": 1
+    },
+    {
+      "operation": "query.similarJobs",
+      "attempt": 1,
+      "duration_ms": 3240.5738999999994,
+      "ok": true,
+      "rows": 2
+    },
+    {
+      "operation": "query.deletedJob",
+      "attempt": 2,
+      "duration_ms": 1371.6000999999997,
+      "ok": true,
+      "rows": 0
+    },
+    {
+      "operation": "query.publicJob",
+      "attempt": 2,
+      "duration_ms": 2959.4845000000005,
+      "ok": true,
+      "rows": 1
+    },
+    {
+      "operation": "query.similarJobs",
+      "attempt": 2,
+      "duration_ms": 1307.8138999999974,
+      "ok": true,
+      "rows": 2
+    },
+    {
+      "operation": "query.deletedJob",
+      "attempt": 3,
+      "duration_ms": 1542.7716,
+      "ok": true,
+      "rows": 0
+    },
+    {
+      "operation": "query.publicJob",
+      "attempt": 3,
+      "duration_ms": 1698.9367999999995,
+      "ok": true,
+      "rows": 1
+    },
+    {
+      "operation": "query.similarJobs",
+      "attempt": 3,
+      "duration_ms": 1372.719799999999,
+      "ok": true,
+      "rows": 2
+    },
+    {
+      "operation": "query.deletedJob",
+      "attempt": 4,
+      "duration_ms": 1629.694099999997,
+      "ok": true,
+      "rows": 0
+    },
+    {
+      "operation": "query.publicJob",
+      "attempt": 4,
+      "duration_ms": 1297.503499999999,
+      "ok": true,
+      "rows": 1
+    },
+    {
+      "operation": "query.similarJobs",
+      "attempt": 4,
+      "duration_ms": 1351.9127999999982,
+      "ok": true,
+      "rows": 2
+    },
+    {
+      "operation": "query.deletedJob",
+      "attempt": 5,
+      "duration_ms": 1582.2747000000018,
+      "ok": true,
+      "rows": 0
+    },
+    {
+      "operation": "query.publicJob",
+      "attempt": 5,
+      "duration_ms": 1375.5161000000007,
+      "ok": true,
+      "rows": 1
+    },
+    {
+      "operation": "query.similarJobs",
+      "attempt": 5,
+      "duration_ms": 1601.3408999999992,
+      "ok": true,
+      "rows": 2
+    }
+  ]
+}

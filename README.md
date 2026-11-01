@@ -44,7 +44,7 @@ The feature verification sequence is `scripts/verify.ps1` on Windows. CI runs th
 - `lib/supabase/public.ts` uses an anonymous client; `server.ts` creates the cookie-aware SSR client and a server-only service client.
 - Database policy definitions and comments are in `supabase/migrations`. Apply them once, in filename order. No migrations run automatically during a build.
 - Public pages use RLS. An expired-only RPC supports friendly archived detail pages; deleted slugs are retained as tombstones and return HTTP 410.
-- Apply links are real HTTPS anchors in initial HTML. JavaScript supplies a countdown, click prevention during the wait, and anonymous click logging. Without JavaScript the original link works immediately.
+- Website application links are real HTTPS anchors in initial HTML. JavaScript supplies a countdown, click prevention during the wait, and anonymous click logging. Without JavaScript the website link works immediately. Email applications require JavaScript to reveal the address and mailto action after the countdown; their click logs also contain only the job ID.
 - Full-text search uses PostgreSQL's English index. Category/location pages have editable original introductions and safe fallbacks.
 - Public API responses contain an explicit field allowlist. RSS, OpenAPI and llms.txt are public. No account emails, review feedback or analytics are included.
 - OTP/report/API rate limits use an atomic database function in production. Only deployment-provided Netlify/Cloudflare IP headers are used. Local demo limits use memory and reset with the server. Hosts without those trusted headers share the fallback bucket; adapt the identity adapter before deploying elsewhere.

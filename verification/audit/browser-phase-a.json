@@ -1,0 +1,3274 @@
+{
+  "base": "http://localhost:3100",
+  "pages": [
+    {
+      "name": "home",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Data entry",
+          "width": 46,
+          "height": 32
+        },
+        {
+          "label": "Customer support",
+          "width": 79,
+          "height": 32
+        },
+        {
+          "label": "Internships",
+          "width": 49,
+          "height": 32
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 235,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "jobs",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "↵",
+          "width": 29,
+          "height": 46
+        },
+        {
+          "label": "Reset all",
+          "width": 43,
+          "height": 18
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Junior Back Office Executive↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Recruitment Coordinator↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Public Office Assistant↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "detail",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 27,
+          "height": 16
+        },
+        {
+          "label": "Jobs",
+          "width": 21,
+          "height": 16
+        },
+        {
+          "label": "Customer support",
+          "width": 79,
+          "height": 16
+        },
+        {
+          "label": "Read our promise ↗",
+          "width": 124,
+          "height": 39
+        },
+        {
+          "label": "Browse all current jobs →",
+          "width": 160,
+          "height": 39
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "about",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "privacy",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "disclaimer",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "404",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "location",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 245,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "report",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "← Back to job",
+          "width": 87,
+          "height": 39
+        },
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Data entry",
+          "width": 46,
+          "height": 32
+        },
+        {
+          "label": "Customer support",
+          "width": 79,
+          "height": 32
+        },
+        {
+          "label": "Internships",
+          "width": 49,
+          "height": 32
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 265,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "jobs",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "↵",
+          "width": 29,
+          "height": 46
+        },
+        {
+          "label": "Reset all",
+          "width": 43,
+          "height": 18
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Junior Back Office Executive↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Recruitment Coordinator↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Public Office Assistant↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "detail",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 27,
+          "height": 16
+        },
+        {
+          "label": "Jobs",
+          "width": 21,
+          "height": 16
+        },
+        {
+          "label": "Customer support",
+          "width": 79,
+          "height": 16
+        },
+        {
+          "label": "Read our promise ↗",
+          "width": 124,
+          "height": 39
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 265,
+          "height": 29
+        },
+        {
+          "label": "Browse all current jobs →",
+          "width": 160,
+          "height": 39
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "about",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "privacy",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "disclaimer",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "404",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "location",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 275,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "report",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "← Back to job",
+          "width": 87,
+          "height": 39
+        },
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        },
+        {
+          "label": "startajob ↗",
+          "width": 128,
+          "height": 37
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Data entry",
+          "width": 55,
+          "height": 32
+        },
+        {
+          "label": "Customer support",
+          "width": 95,
+          "height": 32
+        },
+        {
+          "label": "Internships",
+          "width": 59,
+          "height": 32
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 678,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 310,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 310,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 310,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 310,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "jobs",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "↵",
+          "width": 29,
+          "height": 46
+        },
+        {
+          "label": "Reset all",
+          "width": 43,
+          "height": 18
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Junior Back Office Executive↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Recruitment Coordinator↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Public Office Assistant↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "detail",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Customer support",
+          "width": 95,
+          "height": 19
+        },
+        {
+          "label": "Read our promise ↗",
+          "width": 124,
+          "height": 39
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 678,
+          "height": 29
+        },
+        {
+          "label": "Browse all current jobs →",
+          "width": 160,
+          "height": 39
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "about",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "privacy",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "disclaimer",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "404",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "location",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 596,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "report",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "← Back to job",
+          "width": 87,
+          "height": 39
+        },
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 156,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 156,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Data entry",
+          "width": 55,
+          "height": 32
+        },
+        {
+          "label": "Customer support",
+          "width": 95,
+          "height": 32
+        },
+        {
+          "label": "Internships",
+          "width": 59,
+          "height": 32
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 870,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 372,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 372,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 372,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 372,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "jobs",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Reset all",
+          "width": 43,
+          "height": 18
+        },
+        {
+          "label": "↵",
+          "width": 29,
+          "height": 46
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Junior Back Office Executive↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Recruitment Coordinator↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "Public Office Assistant↗",
+          "width": 610,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "detail",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Customer support",
+          "width": 95,
+          "height": 19
+        },
+        {
+          "label": "Read our promise ↗",
+          "width": 124,
+          "height": 39
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 870,
+          "height": 29
+        },
+        {
+          "label": "Browse all current jobs →",
+          "width": 160,
+          "height": 39
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "about",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "privacy",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "disclaimer",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "404",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 852,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 852,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "location",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 852,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "report",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "← Back to job",
+          "width": 87,
+          "height": 39
+        },
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 220,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 220,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Data entry",
+          "width": 55,
+          "height": 32
+        },
+        {
+          "label": "Customer support",
+          "width": 95,
+          "height": 32
+        },
+        {
+          "label": "Internships",
+          "width": 59,
+          "height": 32
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 1076,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 484,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 484,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 484,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 484,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "jobs",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Reset all",
+          "width": 43,
+          "height": 18
+        },
+        {
+          "label": "↵",
+          "width": 29,
+          "height": 46
+        },
+        {
+          "label": "Customer Support Associate↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Data Entry Executive↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "HR Operations Intern↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Office Administration Trainee↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Junior Back Office Executive↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Recruitment Coordinator↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "Public Office Assistant↗",
+          "width": 791,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "detail",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Customer support",
+          "width": 95,
+          "height": 19
+        },
+        {
+          "label": "Read our promise ↗",
+          "width": 124,
+          "height": 39
+        },
+        {
+          "label": "Customer Experience Executive↗",
+          "width": 1076,
+          "height": 29
+        },
+        {
+          "label": "Browse all current jobs →",
+          "width": 160,
+          "height": 39
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "dashboard-preview",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "about",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "privacy",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "omphopse96@gmail.com",
+          "width": 182,
+          "height": 17
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "disclaimer",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "404",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 876,
+          "height": 29
+        },
+        {
+          "label": "Accounts Trainee↗",
+          "width": 876,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "location",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "Home",
+          "width": 32,
+          "height": 19
+        },
+        {
+          "label": "Jobs",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "label": "Junior Accounts Assistant↗",
+          "width": 876,
+          "height": 29
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "name": "report",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": [
+        {
+          "label": "s.startajob↗",
+          "width": 191,
+          "height": 42
+        },
+        {
+          "label": "← Back to job",
+          "width": 87,
+          "height": 39
+        },
+        {
+          "label": "website",
+          "width": 22,
+          "height": 48
+        },
+        {
+          "label": "startajob ↗",
+          "width": 147,
+          "height": 42
+        },
+        {
+          "label": "Browse jobs",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "About startajob",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Contact us",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Privacy policy",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Disclaimer",
+          "width": 276,
+          "height": 36
+        },
+        {
+          "label": "Poster sign in",
+          "width": 276,
+          "height": 36
+        }
+      ]
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "home",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".lead"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #68746d, background color: #f2f6ee, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".popular > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #68746d, background color: #f2f6ee, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "a[href=\"/jobs?category=Data+entry\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #68746d, background color: #f2f6ee, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".popular > a:nth-child(3)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #68746d, background color: #f2f6ee, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "a[href=\"/jobs?job_type=internship\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #68746d, background color: #f2f6ee, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "div:nth-child(2) > p:nth-child(3)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.35 (foreground color: #68746d, background color: #eef4e8, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "passes": 22
+    },
+    {
+      "name": "jobs",
+      "violations": [],
+      "passes": 24
+    },
+    {
+      "name": "detail",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".countdown-message"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.34 (foreground color: #68746d, background color: #edf4e7, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "passes": 21
+    },
+    {
+      "name": "login",
+      "violations": [],
+      "passes": 22
+    }
+  ],
+  "headers": {
+    "cache-control": "no-store",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Sun, 01 Nov 2026 09:21:51 GMT",
+    "keep-alive": "timeout=5",
+    "permissions-policy": "camera=(), microphone=(), geolocation=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "transfer-encoding": "chunked",
+    "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY"
+  }
+}

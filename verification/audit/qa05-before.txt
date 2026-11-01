@@ -1,0 +1,46 @@
+[WebServer] (node:23236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:21760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [mobile] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown (9.7s)
+
+
+  1) [mobile] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "job_id": "00000000-0000-4000-8000-000000000100",
+    -   },
+    - ]
+    + Array []
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      16 |   await send.evaluate((element) => element.addEventListener('click', (event) => event.preventDefault()));
+      17 |   await send.click();
+    > 18 |   await expect.poll(() => clicks).toEqual([{ job_id: '00000000-0000-4000-8000-000000000100' }]);
+         |                                   ^
+      19 | });
+      20 |
+      21 | test('email applications reveal the address and mail link after the configured countdown', async ({
+        at C:\Users\Asus\Documents\DeskJobs\tests\ui\application.spec.ts:18:35
+
+    Error Context: test-results\application-email-applicat-4dcd7--job-ID-after-the-countdown-mobile\error-context.md
+
+  1 failed
+    [mobile] › tests\ui\application.spec.ts:3:5 › email applications log only the job ID after the countdown 

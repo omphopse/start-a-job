@@ -1,0 +1,44 @@
+{
+  "used": [
+    "ADS_TXT",
+    "ALLOW_AI_TRAINING_BOTS",
+    "APPLY_HOST_BLOCKLIST",
+    "CONTACT_EMAIL",
+    "CRON_SECRET",
+    "DEMO_MODE",
+    "GOOGLE_INDEXING_SA_JSON",
+    "INDEXNOW_KEY",
+    "NEXT_PUBLIC_ADSENSE_CLIENT",
+    "NEXT_PUBLIC_APPLY_DELAY_SECONDS",
+    "NEXT_PUBLIC_SITE_NAME",
+    "NEXT_PUBLIC_SITE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NODE_ENV",
+    "PERF_REQUESTS",
+    "PLAYWRIGHT_TEST",
+    "SEO_BASE_URL",
+    "SUPABASE_SERVICE_ROLE_KEY"
+  ],
+  "undocumented": [
+    "NODE_ENV"
+  ],
+  "unused": [],
+  "working": [],
+  "localSecrets": [
+    {
+      "source": ".env.local (ignored)",
+      "line": 3,
+      "type": "jwt"
+    },
+    {
+      "source": ".env.local (ignored)",
+      "line": 4,
+      "type": "jwt"
+    }
+  ],
+  "history": [],
+  "bundle": [],
+  "bundleFiles": 17,
+  "trackedSensitive": []
+}

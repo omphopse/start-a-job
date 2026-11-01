@@ -1,0 +1,29 @@
+✔ click logging can only be executed by the rate-limited server role (1924.3103ms)
+✖ anonymous table and expired RPC reads cannot select private job metadata (1440.1083ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4053.6708
+
+✖ failing tests:
+
+test at tests\unit\security-boundaries.test.ts:45:1
+✖ anonymous table and expired RPC reads cannot select private job metadata (1440.1083ms)
+  AssertionError [ERR_ASSERTION]: a different poster cannot read internal metadata even on a published row
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\security-boundaries.test.ts:78:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

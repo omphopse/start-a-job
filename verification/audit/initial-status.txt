@@ -1,0 +1,102 @@
+ M .env.example
+ M README.md
+ M REPORT.md
+ M SETUP.md
+ M app/[info]/page.tsx
+ M app/admin/jobs/[id]/page.tsx
+ M app/admin/jobs/actions.ts
+ M app/admin/login/page.tsx
+ M app/admin/page.tsx
+ M app/demo/[view]/page.tsx
+ M app/globals.css
+ M app/jobs/[slug]/page.tsx
+ M app/jobs/page.tsx
+ M app/layout.tsx
+ M app/openapi.json/route.ts
+ M app/page.tsx
+ M components/filters.tsx
+ M components/job-card.tsx
+ M components/job-form.tsx
+ M components/review-queue.tsx
+ M lib/auth.ts
+ M lib/config.ts
+ M lib/data.ts
+ M lib/jobs.ts
+ M lib/landing.ts
+ M lib/public-api.ts
+ M lib/revalidate.ts
+ M lib/sample-jobs.ts
+ M lib/seo/metadata.ts
+ M lib/seo/schema.ts
+ M lib/supabase/public.ts
+ M lib/supabase/server.ts
+ M lib/validation.ts
+ M next.config.ts
+ M playwright.config.ts
+ M proxy.ts
+ M screenshots/dashboard-desktop.png
+ M screenshots/dashboard-mobile.png
+ M screenshots/dashboard-tablet.png
+ M screenshots/detail-desktop.png
+ M screenshots/detail-mobile.png
+ M screenshots/detail-tablet.png
+ M screenshots/home-desktop.png
+ M screenshots/home-mobile.png
+ M screenshots/home-tablet.png
+ M screenshots/jobs-desktop.png
+ M screenshots/jobs-mobile.png
+ M screenshots/jobs-tablet.png
+ M screenshots/login-desktop.png
+ M screenshots/login-mobile.png
+ M screenshots/login-tablet.png
+ M scripts/seo-check.ts
+ M tests/ui/api.spec.ts
+ M tests/ui/dashboard.spec.ts
+ M tests/ui/seo.spec.ts
+ M tests/unit/api.test.ts
+ M tests/unit/jobs.test.ts
+ M tests/unit/rls.test.ts
+ M tests/unit/seo.test.ts
+ M tests/unit/validation.test.ts
+?? PERFORMANCE.md
+?? PUBLIC-PERFORMANCE.md
+?? app/admin/jobs/category-actions.ts
+?? app/api/locations/
+?? components/application-panel.tsx
+?? components/category-form.tsx
+?? components/email-apply-panel.tsx
+?? components/location-fields.tsx
+?? lib/application-method.ts
+?? lib/categories.ts
+?? lib/deleted-job-cache.ts
+?? lib/job-options.ts
+?? lib/performance.ts
+?? lib/public-job-cache.ts
+?? lib/public-job-fields.ts
+?? lib/request-performance.ts
+?? lib/tombstone-cache.ts
+?? scripts/benchmark-public-jobs.ts
+?? scripts/profile-public-job.ts
+?? supabase/migrations/202610300002_categories_experience.sql
+?? supabase/migrations/202611010001_application_email.sql
+?? supabase/migrations/202611010003_job_country.sql
+?? tests/ui/application.spec.ts
+?? tests/ui/branding.spec.ts
+?? tests/ui/job-card.spec.ts
+?? tests/ui/locations.spec.ts
+?? tests/unit/application-method.test.ts
+?? tests/unit/locations.test.ts
+?? tests/unit/performance.test.ts
+?? tests/unit/tombstone-cache.test.ts
+?? verification/audit/
+?? verification/public-network-health.json
+?? verification/public-network.json
+?? verification/public-performance-after.json
+?? verification/public-performance-after.log
+?? verification/public-performance-application-methods.json
+?? verification/public-performance-application-methods.log
+?? verification/public-performance-before.json
+?? verification/public-performance-before.log
+?? verification/public-performance-rebrand.json
+?? verification/public-performance-rebrand.log
+?? verification/rebrand-turbopack-build.log

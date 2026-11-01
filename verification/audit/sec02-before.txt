@@ -1,0 +1,29 @@
+✖ click logging can only be executed by the rate-limited server role (2241.6579ms)
+✔ anonymous table and expired RPC reads cannot select private job metadata (1522.1607ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4475.2249
+
+✖ failing tests:
+
+test at tests\unit\security-boundaries.test.ts:7:1
+✖ click logging can only be executed by the rate-limited server role (2241.6579ms)
+  AssertionError [ERR_ASSERTION]: anon must not bypass the server limiter
+  
+  true !== false
+  
+      at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\security-boundaries.test.ts:16:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

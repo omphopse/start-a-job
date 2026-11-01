@@ -1,0 +1,94 @@
+{
+  "label": "after",
+  "environment": "local next build/start with synthetic anonymous Supabase fixture; not production infrastructure",
+  "backend_delay_ms": 100,
+  "cold": {
+    "status": 200,
+    "ttfb_ms": 543.1107000000047,
+    "response_ms": 548.2784000000029,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "coldCounts": {
+    "deleted_jobs": 1,
+    "jobs": 2
+  },
+  "warmCounts": {
+    "deleted_jobs": 1,
+    "jobs": 2
+  },
+  "warm_samples": 20,
+  "forced_miss_samples": 10,
+  "forced_misses": {
+    "ttfb_median_ms": 265.14020000000164,
+    "ttfb_p95_ms": 280.14309999999386,
+    "response_median_ms": 265.8580000000002,
+    "response_p95_ms": 281.2635999999984
+  },
+  "warm": {
+    "ttfb_median_ms": 14.617299999998068,
+    "ttfb_p95_ms": 27.86210000000574,
+    "response_median_ms": 15.28469999999652,
+    "response_p95_ms": 31.18119999999908,
+    "cache_statuses": [
+      "HIT"
+    ]
+  },
+  "updated": {
+    "status": 200,
+    "ttfb_ms": 258.90750000000116,
+    "response_ms": 259.9495999999999,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "unpublished": {
+    "status": 404,
+    "ttfb_ms": 274.60439999999653,
+    "response_ms": 275.2233999999953,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "expired": {
+    "status": 200,
+    "ttfb_ms": 423.17659999999887,
+    "response_ms": 424.05719999999565,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "republished": {
+    "status": 200,
+    "ttfb_ms": 262.27189999999973,
+    "response_ms": 262.8925999999992,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "deleted": {
+    "status": 410,
+    "ttfb_ms": 127.71100000000297,
+    "response_ms": 128.1264999999985,
+    "cache": null,
+    "cacheControl": null,
+    "setCookie": false
+  },
+  "deletedImmediately": {
+    "status": 404,
+    "ttfb_ms": 274.1342999999979,
+    "response_ms": 274.96360000000277,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "admin": {
+    "status": 307,
+    "ttfb_ms": 17.080999999998312,
+    "response_ms": 17.233199999995122,
+    "cache": null,
+    "cacheControl": null,
+    "setCookie": false
+  }
+}

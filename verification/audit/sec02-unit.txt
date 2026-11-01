@@ -1,0 +1,37 @@
+
+> desk-jobs@0.1.0 test:unit
+> tsx --test tests/unit/*.test.ts
+
+✔ API limits and field allowlist protect private data (8.6864ms)
+✔ shared public query projections exclude private moderation and identity fields (1.8703ms)
+✔ application input trims URLs and normalizes only the email domain (9.1164ms)
+✔ create/edit form values always replace both application columns (13.2032ms)
+✔ email links encode recipient and subject without prefilled private data (2.1536ms)
+✔ email and URL applications render their configured countdown (24.0268ms)
+✔ site URL is absolute (1.4955ms)
+✔ current visibility excludes expired and unpublished jobs (43.7818ms)
+✔ sample data is visibly fictional and uses example.com (1.4818ms)
+✔ migration includes DB-level poster guard and RLS on every table (0.5806ms)
+✔ job form accepts a country with blank city and state (25.2587ms)
+✔ location API validates requests, normalizes provider options and handles failures (97.5486ms)
+✔ SEO notifications do nothing without configuration and tolerate failure (59.2648ms)
+✔ performance tracing is opt-in and never logs request secrets (47.0525ms)
+✔ PostgreSQL RLS: anonymous cannot read drafts; poster cannot publish (4084.7893ms)
+✔ click logging can only be executed by the rate-limited server role (4017.5189ms)
+✔ anonymous table and expired RPC reads cannot select private job metadata (2221.7345ms)
+✔ JobPosting exactly matches visible job fields and excludes invented salary (3.245ms)
+✔ empty optional sections and deadline are omitted from structured data (0.7722ms)
+✔ public tombstone cache coalesces concurrent reads, expires and evicts (3.6046ms)
+✔ failed tombstone reads are retried rather than cached as public access (2.5565ms)
+✔ job inputs reject unsafe URLs and missing safety confirmations (7.989ms)
+✔ slug is lowercase and includes role, company, city, short id (0.4973ms)
+✔ public filter validation handles duplicate/oversized inputs (3.0074ms)
+✔ optional job fields accept blanks; expanded experience and custom category are valid (1.4253ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8394.7191

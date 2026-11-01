@@ -1,0 +1,110 @@
+{
+  "label": "rebrand",
+  "environment": "local next build/start with synthetic anonymous Supabase fixture; not production infrastructure",
+  "backend_delay_ms": 100,
+  "cold": {
+    "status": 200,
+    "ttfb_ms": 475.47959999999875,
+    "response_ms": 479.5729999999967,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "coldCounts": {
+    "deleted_jobs": 1,
+    "jobs": 2
+  },
+  "warmCounts": {
+    "deleted_jobs": 1,
+    "jobs": 2
+  },
+  "warm_samples": 20,
+  "forced_miss_samples": 10,
+  "forced_misses": {
+    "ttfb_median_ms": 268.4910999999993,
+    "ttfb_p95_ms": 372.7946000000011,
+    "response_median_ms": 271.0345000000016,
+    "response_p95_ms": 374.3870999999999
+  },
+  "warm": {
+    "ttfb_median_ms": 14.000400000004447,
+    "ttfb_p95_ms": 21.625899999999092,
+    "response_median_ms": 14.676299999999173,
+    "response_p95_ms": 23.381099999998696,
+    "cache_statuses": [
+      "HIT"
+    ]
+  },
+  "updated": {
+    "status": 200,
+    "ttfb_ms": 294.97439999999915,
+    "response_ms": 295.8652000000002,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "emailApplication": {
+    "status": 200,
+    "ttfb_ms": 259.91969999999856,
+    "response_ms": 260.52969999999914,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "urlApplication": {
+    "status": 200,
+    "ttfb_ms": 262.5980999999956,
+    "response_ms": 263.1029999999955,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "unpublished": {
+    "status": 404,
+    "ttfb_ms": 280.56150000000343,
+    "response_ms": 283.6126000000004,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "expired": {
+    "status": 200,
+    "ttfb_ms": 460.4300000000003,
+    "response_ms": 461.3706999999995,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "republished": {
+    "status": 200,
+    "ttfb_ms": 300.303700000004,
+    "response_ms": 301.19420000000537,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "deleted": {
+    "status": 410,
+    "ttfb_ms": 131.9152000000031,
+    "response_ms": 133.49820000000182,
+    "cache": null,
+    "cacheControl": null,
+    "setCookie": false
+  },
+  "deletedImmediately": {
+    "status": 404,
+    "ttfb_ms": 297.8194000000003,
+    "response_ms": 298.8300999999992,
+    "cache": "MISS",
+    "cacheControl": "s-maxage=60",
+    "setCookie": false
+  },
+  "admin": {
+    "status": 307,
+    "ttfb_ms": 15.997499999997672,
+    "response_ms": 16.358000000000175,
+    "cache": null,
+    "cacheControl": null,
+    "setCookie": false
+  }
+}

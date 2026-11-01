@@ -1,3 +1,7 @@
+# Historical implementation notes
+
+The claims below describe earlier implementation work. Use AUDIT_REPORT.md for the independent audit, current evidence, unresolved findings and launch verdict; these notes are not a security certification.
+
 # Phase 1 delivery report
 
 The local application implements the twelve requested feature groups: SSR public discovery, PostgreSQL/RLS, detailed official-site application flow, trust/SEO pages, email OTP and role protection, poster submissions, admin review and account management, reports/clicks/ad preparation, public machine-readable feeds, editable landing pages and optional indexing notifications, plus setup documentation and CI/hooks.

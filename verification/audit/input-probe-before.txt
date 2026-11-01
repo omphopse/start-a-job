@@ -1,0 +1,175 @@
+{
+  "rejectedURLCases": [
+    {
+      "value": "\"javascript:alert(1)\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"JaVaScRiPt:alert(1)\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"data:text/html,<script>alert(1)</script>\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"http://company.com/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"//company.com/jobs\"",
+      "rejected": false,
+      "threw": true
+    },
+    {
+      "value": "\"ftp://company.com/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://user:pass@company.com/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://user@company.com/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://company.com:8443/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://127.0.0.1/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://2130706433/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://0x7f000001/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://[::1]/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://localhost/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://server.local/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://bit.ly/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://sub.bit.ly/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://tinyurl.com/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://wa.me/123\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://t.me/job\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://telegram.me/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://whatsapp.com/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https:\\\\company.com/jobs\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://company.com/a b\"",
+      "rejected": true,
+      "threw": false
+    },
+    {
+      "value": "\"https://company.com/\\nfoo\"",
+      "rejected": false,
+      "threw": false
+    },
+    {
+      "value": "\"https://company.com/\\u0000foo\"",
+      "rejected": true,
+      "threw": false
+    }
+  ],
+  "validURLCases": 3,
+  "xssFields": [
+    "title",
+    "company_name",
+    "location",
+    "state",
+    "qualification",
+    "salary_text",
+    "summary",
+    "eligibility",
+    "documents_needed",
+    "how_to_apply"
+  ],
+  "result": "PASS bounded renderer/schema checks; not full live persisted-field XSS coverage"
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(outcomes.every((value) => value.rejected && !value.threw))
+
+    at assert (C:\Users\Asus\Documents\DeskJobs\verification\audit\input-probe.ts:40:8)
+    at Object.<anonymous> (C:\Users\Asus\Documents\DeskJobs\verification\audit\input-probe.ts:40:68)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object.transformer (C:\Users\Asus\Documents\DeskJobs\node_modules\tsx\dist\register-B1c7OH6V.cjs:22:2188)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:372:15)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:244:9)
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.20.0

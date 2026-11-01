@@ -1,0 +1,32 @@
+{
+  "pages": 65,
+  "overflows": [],
+  "axe": [
+    {
+      "page": "home",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious"
+        }
+      ]
+    },
+    {
+      "page": "jobs",
+      "violations": []
+    },
+    {
+      "page": "detail",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious"
+        }
+      ]
+    },
+    {
+      "page": "login",
+      "violations": []
+    }
+  ]
+}

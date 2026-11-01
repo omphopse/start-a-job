@@ -1,0 +1,77 @@
+✔ SEO verifier accepts a real server-rendered URL apply anchor (8.5676ms)
+✖ SEO verifier accepts delayed email disclosure without demanding an immediate mailto link (2.3446ms)
+✖ SEO verifier accepts an omitted optional city in actual JobPosting markup (0.8687ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 625.7352
+
+✖ failing tests:
+
+test at tests\unit\seo-html.test.ts:16:1
+✖ SEO verifier accepts delayed email disclosure without demanding an immediate mailto link (2.3446ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Real apply anchor missing"
+      at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\seo-html.test.ts:18:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: Real apply anchor missing
+        at verifyApplicationHtml (C:\Users\Asus\Documents\DeskJobs\lib\seo\verify-job-html.ts:7:10)
+        at <anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\seo-html.test.ts:18:29)
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\seo-html.test.ts:18:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tests\unit\seo-html.test.ts:21:1
+✖ SEO verifier accepts an omitted optional city in actual JobPosting markup (0.8687ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Expected values to be strictly equal:
+  
+  undefined !== ''
+  "
+      at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\seo-html.test.ts:23:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    undefined !== ''
+    
+        at verifyLocationSchema (C:\Users\Asus\Documents\DeskJobs\lib\seo\verify-job-html.ts:12:10)
+        at <anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\seo-html.test.ts:23:29)
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\seo-html.test.ts:23:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

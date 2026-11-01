@@ -1,0 +1,136 @@
+[WebServer] (node:22680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:14948) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [mobile] › tests\ui\accessibility.spec.ts:5:5 › public pages pass automated WCAG A and AA checks (1.6s)
+(node:16184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [mobile] › tests\ui\accessibility.spec.ts:19:5 › secondary controls provide 44px hit areas (882ms)
+(node:23708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 [mobile] › tests\ui\accessibility.spec.ts:30:5 › mobile sticky apply shares countdown state and leaves final content visible (4.9s)
+
+
+  1) [mobile] › tests\ui\accessibility.spec.ts:5:5 › public pages pass automated WCAG A and AA checks 
+
+    Error: /
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 26
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "targets": Array [
+    +       Array [
+    +         ".lead",
+    +       ],
+    +       Array [
+    +         ".popular > span",
+    +       ],
+    +       Array [
+    +         "a[href=\"/jobs?category=Data+entry\"]",
+    +       ],
+    +       Array [
+    +         ".popular > a:nth-child(3)",
+    +       ],
+    +       Array [
+    +         "a[href=\"/jobs?job_type=internship\"]",
+    +       ],
+    +       Array [
+    +         "div:nth-child(2) > p:nth-child(3)",
+    +       ],
+    +     ],
+    +   },
+    + ]
+
+      13 |       return result.violations.map(({ id, impact, nodes }) => ({ id, impact, targets: nodes.map((node) => node.target) }));
+      14 |     });
+    > 15 |     expect(violations, path).toEqual([]);
+         |                              ^
+      16 |   }
+      17 | });
+      18 |
+        at C:\Users\Asus\Documents\DeskJobs\tests\ui\accessibility.spec.ts:15:30
+
+    Error Context: test-results\accessibility-public-pages-033d9-omated-WCAG-A-and-AA-checks-mobile\error-context.md
+
+  2) [mobile] › tests\ui\accessibility.spec.ts:19:5 › secondary controls provide 44px hit areas ────
+
+    Error: /
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "height": 32,
+    +     "text": "Data entry",
+    +     "width": 46.140625,
+    +   },
+    +   Object {
+    +     "height": 32,
+    +     "text": "Customer support",
+    +     "width": 79.484375,
+    +   },
+    +   Object {
+    +     "height": 32,
+    +     "text": "Internships",
+    +     "width": 48.921875,
+    +   },
+    +   Object {
+    +     "height": 36.796875,
+    +     "text": "startajob ↗",
+    +     "width": 128.359375,
+    +   },
+    + ]
+
+      24 |       return rect.width > 0 && rect.height > 0 && (rect.width < 44 || rect.height < 44) ? [{ text: element.textContent?.trim(), width: rect.width, height: rect.height }] : [];
+      25 |     }));
+    > 26 |     expect(small, path).toEqual([]);
+         |                         ^
+      27 |   }
+      28 | });
+      29 |
+        at C:\Users\Asus\Documents\DeskJobs\tests\ui\accessibility.spec.ts:26:25
+
+    Error Context: test-results\accessibility-secondary-controls-provide-44px-hit-areas-mobile\error-context.md
+
+  3) [mobile] › tests\ui\accessibility.spec.ts:30:5 › mobile sticky apply shares countdown state and leaves final content visible 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      42 |     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      43 |     const clear = await page.evaluate(() => document.querySelector('.footer-bottom')!.getBoundingClientRect().bottom <= document.querySelector('.mobile-apply')!.getBoundingClientRect().top);
+    > 44 |     expect(clear).toBe(true);
+         |                   ^
+      45 |   }
+      46 | });
+      47 |
+        at C:\Users\Asus\Documents\DeskJobs\tests\ui\accessibility.spec.ts:44:19
+
+    Error Context: test-results\accessibility-mobile-stick-89aad-eaves-final-content-visible-mobile\error-context.md
+
+  3 failed
+    [mobile] › tests\ui\accessibility.spec.ts:5:5 › public pages pass automated WCAG A and AA checks 
+    [mobile] › tests\ui\accessibility.spec.ts:19:5 › secondary controls provide 44px hit areas ─────
+    [mobile] › tests\ui\accessibility.spec.ts:30:5 › mobile sticky apply shares countdown state and leaves final content visible 

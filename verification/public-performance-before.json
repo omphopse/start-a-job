@@ -1,0 +1,63 @@
+{
+  "label": "before",
+  "environment": "local next build/start with synthetic anonymous Supabase fixture; not production infrastructure",
+  "backend_delay_ms": 100,
+  "cold": {
+    "status": 200,
+    "ttfb_ms": 384.82240000000456,
+    "response_ms": 705.8192000000054,
+    "cache": null,
+    "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate",
+    "setCookie": false
+  },
+  "coldCounts": {
+    "deleted_jobs": 1,
+    "jobs": 2
+  },
+  "warmCounts": {
+    "deleted_jobs": 21,
+    "jobs": 42
+  },
+  "warm_samples": 20,
+  "warm": {
+    "ttfb_median_ms": 143.68799999999464,
+    "ttfb_p95_ms": 177.13560000000143,
+    "response_median_ms": 366.2523999999976,
+    "response_p95_ms": 421.6258000000016,
+    "cache_statuses": [
+      null
+    ]
+  },
+  "updated": {
+    "status": 200,
+    "ttfb_ms": 129.19029999999475,
+    "response_ms": 353.07109999999375,
+    "cache": null,
+    "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate",
+    "setCookie": false
+  },
+  "unpublished": {
+    "status": 200,
+    "ttfb_ms": 146.77069999999367,
+    "response_ms": 374.74179999999615,
+    "cache": null,
+    "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate",
+    "setCookie": false
+  },
+  "deleted": {
+    "status": 410,
+    "ttfb_ms": 123.94640000000072,
+    "response_ms": 124.7722999999969,
+    "cache": null,
+    "cacheControl": null,
+    "setCookie": false
+  },
+  "admin": {
+    "status": 307,
+    "ttfb_ms": 15.367399999995541,
+    "response_ms": 15.539499999998952,
+    "cache": null,
+    "cacheControl": null,
+    "setCookie": false
+  }
+}

@@ -1,0 +1,293 @@
+▲ Next.js 16.4.3 (webpack)
+- Environments: .env.local
+✓ Running next.config.ts took 34ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.2s
+  Running TypeScript ...
+  Finished TypeScript in 4.8s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/11) ...
+  Generating static pages using 7 workers (2/11) 
+  Generating static pages using 7 workers (5/11) 
+  Generating static pages using 7 workers (8/11) 
+✓ Generating static pages using 7 workers (11/11) in 884ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├   /[info]
+│ ├ ● /about
+│ ├ ● /contact
+│ ├ ● /privacy-policy
+│ └ ● /disclaimer
+├ ƒ /admin
+├ ƒ /admin/jobs/[id]
+├ ƒ /admin/landing-pages
+├ ○ /admin/login
+├ ƒ /admin/reports
+├ ƒ /admin/users
+├ ƒ /ads.txt
+├ ƒ /api/apply-click
+├ ƒ /api/internal/expire
+├ ƒ /api/public/jobs.json
+├ ƒ /api/public/jobs/[file]
+├ ƒ /demo/[view]
+├ ƒ /feed.xml
+├ ƒ /indexnow-key.txt
+├ ƒ /jobs
+├ ● /jobs/[slug]
+├ ƒ /jobs/[slug]/report
+├ ƒ /jobs/category/[category]
+├ ƒ /jobs/category/[category]/location/[location]
+├ ƒ /jobs/location/[location]
+├ ƒ /llms.txt
+├ ƒ /openapi.json
+├ ƒ /robots.txt
+├ ƒ /sitemap.xml
+└ ƒ /sitemaps/[file]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+▲ Next.js 16.4.3
+- Local:         http://localhost:3118
+- Network:       http://10.44.242.43:3118
+✓ Ready in 279ms
+✓ Running next.config.ts took 46ms
+{"type":"request-performance","scope":"public-tombstone-cache-fill","trace":"706a1902-2354-4516-b317-fede9147b38e","operation":"http.deletedJobs","duration_ms":121.27,"status":200}
+{"type":"request-performance","scope":"public-tombstone-cache-fill","trace":"706a1902-2354-4516-b317-fede9147b38e","operation":"query.deletedJob","duration_ms":128.37}
+{"type":"request-performance","scope":"public-proxy","trace":"af29e2d3-56e6-4565-9c49-29855174d9ae","operation":"public.tombstone.read","duration_ms":128.6}
+{"type":"request-performance","scope":"public-proxy","trace":"af29e2d3-56e6-4565-9c49-29855174d9ae","operation":"total","duration_ms":128.7}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"daaacc64-cdb1-46cb-8323-dc3ddde8ab6a","operation":"http.jobs","duration_ms":119.8,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"daaacc64-cdb1-46cb-8323-dc3ddde8ab6a","operation":"query.publicJob","duration_ms":122.78}
+{"type":"request-performance","scope":"server-render","trace":"b66700de-4263-4000-855c-00be58f6280a","operation":"public.job.read","duration_ms":133.83}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"05ee734b-56f6-4223-8119-3cec2a064fcc","operation":"http.jobs","duration_ms":105.85,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"05ee734b-56f6-4223-8119-3cec2a064fcc","operation":"query.similarJobs","duration_ms":107.5}
+{"type":"request-performance","scope":"server-render","trace":"b66700de-4263-4000-855c-00be58f6280a","operation":"public.similar.read","duration_ms":111}
+{"type":"request-performance","scope":"server-render","trace":"b66700de-4263-4000-855c-00be58f6280a","operation":"public.transform","duration_ms":0.89}
+{"type":"request-performance","scope":"server-render","trace":"b66700de-4263-4000-855c-00be58f6280a","operation":"total","duration_ms":295.8}
+{"type":"request-performance","scope":"public-proxy","trace":"c2e2a849-8db0-4d91-9aed-035e3a530971","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"c2e2a849-8db0-4d91-9aed-035e3a530971","operation":"total","duration_ms":0.15}
+{"type":"request-performance","scope":"public-proxy","trace":"3c94dd35-4945-47c7-8eae-3c015810fa56","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"3c94dd35-4945-47c7-8eae-3c015810fa56","operation":"total","duration_ms":0.1}
+{"type":"request-performance","scope":"public-proxy","trace":"6aab6641-69f5-41c3-bcdd-ec37ba65fb20","operation":"public.tombstone.read","duration_ms":0.03}
+{"type":"request-performance","scope":"public-proxy","trace":"6aab6641-69f5-41c3-bcdd-ec37ba65fb20","operation":"total","duration_ms":0.16}
+{"type":"request-performance","scope":"public-proxy","trace":"fe07d3d2-569c-478d-aaed-85bd5ae3eaf8","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"fe07d3d2-569c-478d-aaed-85bd5ae3eaf8","operation":"total","duration_ms":0.17}
+{"type":"request-performance","scope":"public-proxy","trace":"3d61eda1-4b28-44f3-9b86-27bedcacae16","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"3d61eda1-4b28-44f3-9b86-27bedcacae16","operation":"total","duration_ms":0.14}
+{"type":"request-performance","scope":"public-proxy","trace":"b8bbbb8e-a3d9-4185-b1bf-5e809cf50e0a","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"b8bbbb8e-a3d9-4185-b1bf-5e809cf50e0a","operation":"total","duration_ms":0.12}
+{"type":"request-performance","scope":"public-proxy","trace":"598e36a5-f4d9-466f-8d68-990321cad4af","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"598e36a5-f4d9-466f-8d68-990321cad4af","operation":"total","duration_ms":0.1}
+{"type":"request-performance","scope":"public-proxy","trace":"6710d3f2-3f7d-47b7-ac38-898c20e48104","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"6710d3f2-3f7d-47b7-ac38-898c20e48104","operation":"total","duration_ms":0.12}
+{"type":"request-performance","scope":"public-proxy","trace":"7dd10d26-b1a0-4f41-8a85-9291573599a2","operation":"public.tombstone.read","duration_ms":0.04}
+{"type":"request-performance","scope":"public-proxy","trace":"7dd10d26-b1a0-4f41-8a85-9291573599a2","operation":"total","duration_ms":0.27}
+{"type":"request-performance","scope":"public-proxy","trace":"6b81d5e8-45c1-40d9-aaaf-bfb1f864e4d5","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"6b81d5e8-45c1-40d9-aaaf-bfb1f864e4d5","operation":"total","duration_ms":0.17}
+{"type":"request-performance","scope":"public-proxy","trace":"bfd80b43-9869-4b9c-ba60-9a33c2cbb3af","operation":"public.tombstone.read","duration_ms":0.04}
+{"type":"request-performance","scope":"public-proxy","trace":"bfd80b43-9869-4b9c-ba60-9a33c2cbb3af","operation":"total","duration_ms":0.41}
+{"type":"request-performance","scope":"public-proxy","trace":"78f03c1a-9d01-47bc-ad79-611e43cd6879","operation":"public.tombstone.read","duration_ms":0.03}
+{"type":"request-performance","scope":"public-proxy","trace":"78f03c1a-9d01-47bc-ad79-611e43cd6879","operation":"total","duration_ms":0.26}
+{"type":"request-performance","scope":"public-proxy","trace":"b9aee8a2-52a4-4e7a-bd9b-685e95f5af6a","operation":"public.tombstone.read","duration_ms":0.03}
+{"type":"request-performance","scope":"public-proxy","trace":"b9aee8a2-52a4-4e7a-bd9b-685e95f5af6a","operation":"total","duration_ms":0.18}
+{"type":"request-performance","scope":"public-proxy","trace":"57e662f1-2f6d-4c67-8da2-e0726cf97f0a","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"57e662f1-2f6d-4c67-8da2-e0726cf97f0a","operation":"total","duration_ms":0.12}
+{"type":"request-performance","scope":"public-proxy","trace":"310df5a8-1aef-4edd-b67c-6a4f9e8e789d","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"310df5a8-1aef-4edd-b67c-6a4f9e8e789d","operation":"total","duration_ms":0.1}
+{"type":"request-performance","scope":"public-proxy","trace":"ec92e6e4-a6c7-428b-a021-382e0b625bde","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"ec92e6e4-a6c7-428b-a021-382e0b625bde","operation":"total","duration_ms":0.13}
+{"type":"request-performance","scope":"public-proxy","trace":"033de800-1665-4a69-bab7-02a6226aa18e","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"033de800-1665-4a69-bab7-02a6226aa18e","operation":"total","duration_ms":0.11}
+{"type":"request-performance","scope":"public-proxy","trace":"25da6a8c-c335-45c9-9194-c9184a99cb21","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"25da6a8c-c335-45c9-9194-c9184a99cb21","operation":"total","duration_ms":0.08}
+{"type":"request-performance","scope":"public-proxy","trace":"df57a3ac-9685-43fb-b67b-fb95220b6e2a","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"df57a3ac-9685-43fb-b67b-fb95220b6e2a","operation":"total","duration_ms":0.09}
+{"type":"request-performance","scope":"public-proxy","trace":"c99c5eff-e422-4333-9dea-248703c5bac6","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"c99c5eff-e422-4333-9dea-248703c5bac6","operation":"total","duration_ms":0.09}
+{"type":"request-performance","scope":"public-proxy","trace":"9ebe16ba-ad58-4e4c-aa61-702fe220b942","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"9ebe16ba-ad58-4e4c-aa61-702fe220b942","operation":"total","duration_ms":0.09}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"0a58209c-27b5-49d2-903a-8f7ccd82d442","operation":"http.jobs","duration_ms":119.08,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"0a58209c-27b5-49d2-903a-8f7ccd82d442","operation":"query.publicJob","duration_ms":119.88}
+{"type":"request-performance","scope":"server-render","trace":"3c1ab524-9bbe-4068-80d9-794ec0b46261","operation":"public.job.read","duration_ms":120.63}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"006e4734-7ae2-4eea-a925-848306dd2ebe","operation":"http.jobs","duration_ms":109.23,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"006e4734-7ae2-4eea-a925-848306dd2ebe","operation":"query.similarJobs","duration_ms":110.93}
+{"type":"request-performance","scope":"server-render","trace":"3c1ab524-9bbe-4068-80d9-794ec0b46261","operation":"public.similar.read","duration_ms":111.86}
+{"type":"request-performance","scope":"server-render","trace":"3c1ab524-9bbe-4068-80d9-794ec0b46261","operation":"public.transform","duration_ms":1}
+{"type":"request-performance","scope":"server-render","trace":"3c1ab524-9bbe-4068-80d9-794ec0b46261","operation":"total","duration_ms":248.52}
+{"type":"request-performance","scope":"public-proxy","trace":"d9ff95ad-847b-47db-ac02-86c53688e862","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"d9ff95ad-847b-47db-ac02-86c53688e862","operation":"total","duration_ms":0.17}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"60f777a6-1608-4a35-9d48-f1a8acc4cde8","operation":"http.jobs","duration_ms":117.71,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"60f777a6-1608-4a35-9d48-f1a8acc4cde8","operation":"query.publicJob","duration_ms":118.77}
+{"type":"request-performance","scope":"server-render","trace":"f8c64af1-ffc5-40a7-bdb2-12800f1df43b","operation":"public.job.read","duration_ms":119.99}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"e8a8295f-68f0-4c2e-9735-59679fdd1f5c","operation":"http.jobs","duration_ms":105.54,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"e8a8295f-68f0-4c2e-9735-59679fdd1f5c","operation":"query.similarJobs","duration_ms":107.37}
+{"type":"request-performance","scope":"server-render","trace":"f8c64af1-ffc5-40a7-bdb2-12800f1df43b","operation":"public.similar.read","duration_ms":108.36}
+{"type":"request-performance","scope":"server-render","trace":"f8c64af1-ffc5-40a7-bdb2-12800f1df43b","operation":"public.transform","duration_ms":0.53}
+{"type":"request-performance","scope":"server-render","trace":"f8c64af1-ffc5-40a7-bdb2-12800f1df43b","operation":"total","duration_ms":247.76}
+{"type":"request-performance","scope":"public-proxy","trace":"76d7419d-189d-43da-9c20-4c02774063e3","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"76d7419d-189d-43da-9c20-4c02774063e3","operation":"total","duration_ms":0.12}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"0e55051a-6667-4fb0-aa77-b0c7cebe4942","operation":"http.jobs","duration_ms":117.83,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"0e55051a-6667-4fb0-aa77-b0c7cebe4942","operation":"query.publicJob","duration_ms":118.62}
+{"type":"request-performance","scope":"server-render","trace":"82a7f4d5-d1a2-40de-9909-b2dd822e31f2","operation":"public.job.read","duration_ms":119.64}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"12480fd4-c792-441e-a4b0-f56706e25430","operation":"http.jobs","duration_ms":106.27,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"12480fd4-c792-441e-a4b0-f56706e25430","operation":"query.similarJobs","duration_ms":107.13}
+{"type":"request-performance","scope":"server-render","trace":"82a7f4d5-d1a2-40de-9909-b2dd822e31f2","operation":"public.similar.read","duration_ms":107.79}
+{"type":"request-performance","scope":"server-render","trace":"82a7f4d5-d1a2-40de-9909-b2dd822e31f2","operation":"public.transform","duration_ms":0.51}
+{"type":"request-performance","scope":"server-render","trace":"82a7f4d5-d1a2-40de-9909-b2dd822e31f2","operation":"total","duration_ms":246.06}
+{"type":"request-performance","scope":"public-proxy","trace":"7c3b6826-bbb6-4d4b-8829-32d7c811fe80","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"7c3b6826-bbb6-4d4b-8829-32d7c811fe80","operation":"total","duration_ms":0.08}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"3a38ac77-9264-405f-9bd2-0d7acf1de39a","operation":"http.jobs","duration_ms":122.3,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"3a38ac77-9264-405f-9bd2-0d7acf1de39a","operation":"query.publicJob","duration_ms":123.31}
+{"type":"request-performance","scope":"server-render","trace":"b4aff79a-81b2-4ae5-bd70-22204c007ca1","operation":"public.job.read","duration_ms":124.3}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"3f62c90f-7258-41dd-92ab-b7a8e6f203c3","operation":"http.jobs","duration_ms":106.2,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"3f62c90f-7258-41dd-92ab-b7a8e6f203c3","operation":"query.similarJobs","duration_ms":108.38}
+{"type":"request-performance","scope":"server-render","trace":"b4aff79a-81b2-4ae5-bd70-22204c007ca1","operation":"public.similar.read","duration_ms":110.31}
+{"type":"request-performance","scope":"server-render","trace":"b4aff79a-81b2-4ae5-bd70-22204c007ca1","operation":"public.transform","duration_ms":0.94}
+{"type":"request-performance","scope":"server-render","trace":"b4aff79a-81b2-4ae5-bd70-22204c007ca1","operation":"total","duration_ms":267.3}
+{"type":"request-performance","scope":"public-proxy","trace":"8d744351-52c8-4b92-bbd9-1beffc8545d8","operation":"public.tombstone.read","duration_ms":0.03}
+{"type":"request-performance","scope":"public-proxy","trace":"8d744351-52c8-4b92-bbd9-1beffc8545d8","operation":"total","duration_ms":0.32}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"e11796fe-33ed-4029-8830-1353fe0ce3ae","operation":"http.jobs","duration_ms":119.11,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"e11796fe-33ed-4029-8830-1353fe0ce3ae","operation":"query.publicJob","duration_ms":120.82}
+{"type":"request-performance","scope":"server-render","trace":"9c7ecd88-d008-4bec-b201-b06e001ab72c","operation":"public.job.read","duration_ms":122.45}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"1f3301ac-1750-46b4-ab5e-f1b2077b2d9f","operation":"http.jobs","duration_ms":118.15,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"1f3301ac-1750-46b4-ab5e-f1b2077b2d9f","operation":"query.similarJobs","duration_ms":120.12}
+{"type":"request-performance","scope":"server-render","trace":"9c7ecd88-d008-4bec-b201-b06e001ab72c","operation":"public.similar.read","duration_ms":121.43}
+{"type":"request-performance","scope":"server-render","trace":"9c7ecd88-d008-4bec-b201-b06e001ab72c","operation":"public.transform","duration_ms":0.31}
+{"type":"request-performance","scope":"server-render","trace":"9c7ecd88-d008-4bec-b201-b06e001ab72c","operation":"total","duration_ms":256.63}
+{"type":"request-performance","scope":"public-proxy","trace":"8c99fbf8-9d19-482c-8d7b-c654726d945b","operation":"public.tombstone.read","duration_ms":0.04}
+{"type":"request-performance","scope":"public-proxy","trace":"8c99fbf8-9d19-482c-8d7b-c654726d945b","operation":"total","duration_ms":10.52}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"2860007e-e8d0-45df-8474-bb0485b0e547","operation":"http.jobs","duration_ms":105.52,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"2860007e-e8d0-45df-8474-bb0485b0e547","operation":"query.publicJob","duration_ms":106.58}
+{"type":"request-performance","scope":"server-render","trace":"7d7537ea-43c3-4db6-a5f3-303dc4109ed5","operation":"public.job.read","duration_ms":108.46}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"31a96523-3a21-4671-b20a-302318bc0ce4","operation":"http.jobs","duration_ms":104.79,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"31a96523-3a21-4671-b20a-302318bc0ce4","operation":"query.similarJobs","duration_ms":107.71}
+{"type":"request-performance","scope":"server-render","trace":"7d7537ea-43c3-4db6-a5f3-303dc4109ed5","operation":"public.similar.read","duration_ms":109.45}
+{"type":"request-performance","scope":"server-render","trace":"7d7537ea-43c3-4db6-a5f3-303dc4109ed5","operation":"public.transform","duration_ms":0.54}
+{"type":"request-performance","scope":"server-render","trace":"7d7537ea-43c3-4db6-a5f3-303dc4109ed5","operation":"total","duration_ms":248.93}
+{"type":"request-performance","scope":"public-proxy","trace":"8e4273d8-3968-4e5f-b6cf-5895ae473bd5","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"8e4273d8-3968-4e5f-b6cf-5895ae473bd5","operation":"total","duration_ms":0.13}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"976b57cf-4d5f-4c61-b1a0-0bf02b8a6b52","operation":"http.jobs","duration_ms":113.43,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"976b57cf-4d5f-4c61-b1a0-0bf02b8a6b52","operation":"query.publicJob","duration_ms":113.97}
+{"type":"request-performance","scope":"server-render","trace":"d9f3e26f-4850-4c98-8c3a-96575009387f","operation":"public.job.read","duration_ms":114.53}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"ec58a2d9-d3ab-4d25-9aa7-e56cee5b4936","operation":"http.jobs","duration_ms":127.13,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"ec58a2d9-d3ab-4d25-9aa7-e56cee5b4936","operation":"query.similarJobs","duration_ms":128.5}
+{"type":"request-performance","scope":"server-render","trace":"d9f3e26f-4850-4c98-8c3a-96575009387f","operation":"public.similar.read","duration_ms":129.32}
+{"type":"request-performance","scope":"server-render","trace":"d9f3e26f-4850-4c98-8c3a-96575009387f","operation":"public.transform","duration_ms":4.11}
+{"type":"request-performance","scope":"server-render","trace":"d9f3e26f-4850-4c98-8c3a-96575009387f","operation":"total","duration_ms":322.82}
+{"type":"request-performance","scope":"public-proxy","trace":"07b40b1e-494b-4fb7-a6e3-e47d607b7bc1","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"07b40b1e-494b-4fb7-a6e3-e47d607b7bc1","operation":"total","duration_ms":0.17}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"fd5246f0-9460-44fe-8f00-ea9b006ebef6","operation":"http.jobs","duration_ms":114.98,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"fd5246f0-9460-44fe-8f00-ea9b006ebef6","operation":"query.publicJob","duration_ms":116.32}
+{"type":"request-performance","scope":"server-render","trace":"3c447953-8380-431a-8059-c369ab8c6ad2","operation":"public.job.read","duration_ms":117.62}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"1a44e486-39b4-4d8a-912e-ac2cdc5e5694","operation":"http.jobs","duration_ms":104.38,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"1a44e486-39b4-4d8a-912e-ac2cdc5e5694","operation":"query.similarJobs","duration_ms":105.5}
+{"type":"request-performance","scope":"server-render","trace":"3c447953-8380-431a-8059-c369ab8c6ad2","operation":"public.similar.read","duration_ms":106.37}
+{"type":"request-performance","scope":"server-render","trace":"3c447953-8380-431a-8059-c369ab8c6ad2","operation":"public.transform","duration_ms":0.5}
+{"type":"request-performance","scope":"server-render","trace":"3c447953-8380-431a-8059-c369ab8c6ad2","operation":"total","duration_ms":252.34}
+{"type":"request-performance","scope":"public-proxy","trace":"c4fed5ad-69fb-49f3-87dc-34aa32d492c0","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"c4fed5ad-69fb-49f3-87dc-34aa32d492c0","operation":"total","duration_ms":0.36}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"e496a9b2-1c0d-4c29-bc25-788732963136","operation":"http.jobs","duration_ms":103.77,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"e496a9b2-1c0d-4c29-bc25-788732963136","operation":"query.publicJob","duration_ms":104.74}
+{"type":"request-performance","scope":"server-render","trace":"d36bd6bd-e5e0-43fb-9aa3-99c980929e13","operation":"public.job.read","duration_ms":106.07}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"1229668a-00f9-4d9d-9dbd-73d5f62ad9e9","operation":"http.jobs","duration_ms":105.96,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"1229668a-00f9-4d9d-9dbd-73d5f62ad9e9","operation":"query.similarJobs","duration_ms":107.17}
+{"type":"request-performance","scope":"server-render","trace":"d36bd6bd-e5e0-43fb-9aa3-99c980929e13","operation":"public.similar.read","duration_ms":108.19}
+{"type":"request-performance","scope":"server-render","trace":"d36bd6bd-e5e0-43fb-9aa3-99c980929e13","operation":"public.transform","duration_ms":0.49}
+{"type":"request-performance","scope":"server-render","trace":"d36bd6bd-e5e0-43fb-9aa3-99c980929e13","operation":"total","duration_ms":252.83}
+{"type":"request-performance","scope":"public-proxy","trace":"adf404f3-fe0a-43d0-9936-490aae4fa7a0","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"adf404f3-fe0a-43d0-9936-490aae4fa7a0","operation":"total","duration_ms":0.14}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"aeae1d3c-a761-4776-aab2-46b6678e82cf","operation":"http.jobs","duration_ms":116.75,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"aeae1d3c-a761-4776-aab2-46b6678e82cf","operation":"query.publicJob","duration_ms":117.5}
+{"type":"request-performance","scope":"server-render","trace":"2ddaf551-4e2e-4804-82ee-cfbec2f69c85","operation":"public.job.read","duration_ms":118.46}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"0c8edf58-65ed-475a-8e82-3611d2a6bc7a","operation":"http.jobs","duration_ms":106.05,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"0c8edf58-65ed-475a-8e82-3611d2a6bc7a","operation":"query.similarJobs","duration_ms":106.77}
+{"type":"request-performance","scope":"server-render","trace":"2ddaf551-4e2e-4804-82ee-cfbec2f69c85","operation":"public.similar.read","duration_ms":107.36}
+{"type":"request-performance","scope":"server-render","trace":"2ddaf551-4e2e-4804-82ee-cfbec2f69c85","operation":"public.transform","duration_ms":0.42}
+{"type":"request-performance","scope":"server-render","trace":"2ddaf551-4e2e-4804-82ee-cfbec2f69c85","operation":"total","duration_ms":239.48}
+{"type":"request-performance","scope":"public-tombstone-cache-fill","trace":"ffac2b8a-4119-4a37-ace6-4cfbfc0b080e","operation":"http.deletedJobs","duration_ms":125.01,"status":200}
+{"type":"request-performance","scope":"public-tombstone-cache-fill","trace":"ffac2b8a-4119-4a37-ace6-4cfbfc0b080e","operation":"query.deletedJob","duration_ms":125.94}
+{"type":"request-performance","scope":"public-proxy","trace":"3adf7d85-c4d5-46c5-b679-20548324f034","operation":"public.tombstone.read","duration_ms":126.09}
+{"type":"request-performance","scope":"public-proxy","trace":"3adf7d85-c4d5-46c5-b679-20548324f034","operation":"total","duration_ms":126.12}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"1132fc87-43b5-49df-ad82-16c40353b0bd","operation":"http.jobs","duration_ms":116.45,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"1132fc87-43b5-49df-ad82-16c40353b0bd","operation":"query.publicJob","duration_ms":117.08}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"1132fc87-43b5-49df-ad82-16c40353b0bd","operation":"http.expiredJob","duration_ms":124.4,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"1132fc87-43b5-49df-ad82-16c40353b0bd","operation":"query.expiredPublicJob","duration_ms":125.55}
+{"type":"request-performance","scope":"server-render","trace":"562e5e71-3979-4ec3-ad30-841da28e1f9c","operation":"public.job.read","duration_ms":244.56}
+{"type":"request-performance","scope":"server-render","trace":"562e5e71-3979-4ec3-ad30-841da28e1f9c","operation":"public.similar.read","duration_ms":0.64}
+{"type":"request-performance","scope":"server-render","trace":"562e5e71-3979-4ec3-ad30-841da28e1f9c","operation":"public.transform","duration_ms":0.28}
+{"type":"request-performance","scope":"server-render","trace":"562e5e71-3979-4ec3-ad30-841da28e1f9c","operation":"total","duration_ms":312.06}
+{"type":"request-performance","scope":"public-proxy","trace":"591ba2b0-cbbe-46f5-b56d-89d3b171d7a6","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"591ba2b0-cbbe-46f5-b56d-89d3b171d7a6","operation":"total","duration_ms":0.11}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"dedce664-8132-4aa3-aee2-def45f6c7555","operation":"http.jobs","duration_ms":117.75,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"dedce664-8132-4aa3-aee2-def45f6c7555","operation":"query.publicJob","duration_ms":118.39}
+{"type":"request-performance","scope":"server-render","trace":"4eb01568-8009-4291-967d-33400d581d45","operation":"public.job.read","duration_ms":119.05}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"8489aeba-68e2-4c18-808f-acc0f2751244","operation":"http.jobs","duration_ms":107.82,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"8489aeba-68e2-4c18-808f-acc0f2751244","operation":"query.similarJobs","duration_ms":109.52}
+{"type":"request-performance","scope":"server-render","trace":"4eb01568-8009-4291-967d-33400d581d45","operation":"public.similar.read","duration_ms":110.99}
+{"type":"request-performance","scope":"server-render","trace":"4eb01568-8009-4291-967d-33400d581d45","operation":"public.transform","duration_ms":1.19}
+{"type":"request-performance","scope":"server-render","trace":"4eb01568-8009-4291-967d-33400d581d45","operation":"total","duration_ms":280.39}
+{"type":"request-performance","scope":"public-proxy","trace":"1024e020-c284-4add-8a20-0519592f068d","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"1024e020-c284-4add-8a20-0519592f068d","operation":"total","duration_ms":0.09}
+{"type":"request-performance","scope":"public-proxy","trace":"45ffc290-c063-4295-ba78-8fbe9031b312","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"45ffc290-c063-4295-ba78-8fbe9031b312","operation":"total","duration_ms":0.07}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"3d352642-4020-4b07-be85-4184c24d2565","operation":"http.jobs","duration_ms":119.54,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"3d352642-4020-4b07-be85-4184c24d2565","operation":"query.publicJob","duration_ms":120.12}
+{"type":"request-performance","scope":"server-render","trace":"6f48004b-59f0-4bf0-8b60-c5ddb1cbbac1","operation":"public.job.read","duration_ms":120.83}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"650f9681-442e-4aa7-98fc-b6fd134ea206","operation":"http.jobs","duration_ms":108.38,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"650f9681-442e-4aa7-98fc-b6fd134ea206","operation":"query.similarJobs","duration_ms":109.16}
+{"type":"request-performance","scope":"server-render","trace":"6f48004b-59f0-4bf0-8b60-c5ddb1cbbac1","operation":"public.similar.read","duration_ms":109.67}
+{"type":"request-performance","scope":"server-render","trace":"6f48004b-59f0-4bf0-8b60-c5ddb1cbbac1","operation":"public.transform","duration_ms":0.53}
+{"type":"request-performance","scope":"server-render","trace":"6f48004b-59f0-4bf0-8b60-c5ddb1cbbac1","operation":"total","duration_ms":242.22}
+{"type":"request-performance","scope":"public-proxy","trace":"a8996048-a5db-4bad-b4c4-e17447c06fab","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"a8996048-a5db-4bad-b4c4-e17447c06fab","operation":"total","duration_ms":0.07}
+{"type":"request-performance","scope":"public-proxy","trace":"24f459f0-b229-44c6-ab39-a19efd267a67","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"24f459f0-b229-44c6-ab39-a19efd267a67","operation":"total","duration_ms":0.18}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"e18d248a-0a06-4686-b2e3-b85f75ff5748","operation":"http.jobs","duration_ms":120.04,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"e18d248a-0a06-4686-b2e3-b85f75ff5748","operation":"query.publicJob","duration_ms":120.84}
+{"type":"request-performance","scope":"server-render","trace":"94f03948-4e5c-425f-8bee-c043f18cf364","operation":"public.job.read","duration_ms":121.7}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"fddd7e6a-a7d7-4685-9987-4bdfe66b0079","operation":"http.jobs","duration_ms":106.11,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"fddd7e6a-a7d7-4685-9987-4bdfe66b0079","operation":"query.similarJobs","duration_ms":107.21}
+{"type":"request-performance","scope":"server-render","trace":"94f03948-4e5c-425f-8bee-c043f18cf364","operation":"public.similar.read","duration_ms":108.04}
+{"type":"request-performance","scope":"server-render","trace":"94f03948-4e5c-425f-8bee-c043f18cf364","operation":"public.transform","duration_ms":0.49}
+{"type":"request-performance","scope":"server-render","trace":"94f03948-4e5c-425f-8bee-c043f18cf364","operation":"total","duration_ms":243.02}
+{"type":"request-performance","scope":"public-proxy","trace":"e67f85a6-c88b-42d8-9766-bb4ba9505a0f","operation":"public.tombstone.read","duration_ms":0.06}
+{"type":"request-performance","scope":"public-proxy","trace":"e67f85a6-c88b-42d8-9766-bb4ba9505a0f","operation":"total","duration_ms":0.83}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"67e593cd-7ed9-4ac9-bce1-72c14d1e49cf","operation":"http.jobs","duration_ms":109.22,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"67e593cd-7ed9-4ac9-bce1-72c14d1e49cf","operation":"query.publicJob","duration_ms":110.21}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"67e593cd-7ed9-4ac9-bce1-72c14d1e49cf","operation":"http.expiredJob","duration_ms":123.4,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"67e593cd-7ed9-4ac9-bce1-72c14d1e49cf","operation":"query.expiredPublicJob","duration_ms":124.09}
+{"type":"request-performance","scope":"server-render","trace":"ce76f5d1-72a0-4a0b-b710-5153eaf5c565","operation":"public.job.read","duration_ms":235.36}
+{"type":"request-performance","scope":"server-render","trace":"ce76f5d1-72a0-4a0b-b710-5153eaf5c565","operation":"total","duration_ms":270.42}
+{"type":"request-performance","scope":"public-proxy","trace":"bfcd38e8-29f9-4f60-994a-ce5da456e5a3","operation":"public.tombstone.read","duration_ms":0.02}
+{"type":"request-performance","scope":"public-proxy","trace":"bfcd38e8-29f9-4f60-994a-ce5da456e5a3","operation":"total","duration_ms":0.16}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"27e9fc1d-076c-4449-a264-7809c68ea274","operation":"http.jobs","duration_ms":127.2,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"27e9fc1d-076c-4449-a264-7809c68ea274","operation":"query.publicJob","duration_ms":128.28}
+{"type":"request-performance","scope":"server-render","trace":"038322b6-9eeb-4c72-a620-e249bb7d4e01","operation":"public.job.read","duration_ms":129.61}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"978a06ae-4965-4b17-bb65-021968274e13","operation":"http.jobs","duration_ms":114.01,"status":200}
+{"type":"request-performance","scope":"similar-jobs-cache-fill","trace":"978a06ae-4965-4b17-bb65-021968274e13","operation":"query.similarJobs","duration_ms":115.53}
+{"type":"request-performance","scope":"server-render","trace":"038322b6-9eeb-4c72-a620-e249bb7d4e01","operation":"public.similar.read","duration_ms":117.95}
+{"type":"request-performance","scope":"server-render","trace":"038322b6-9eeb-4c72-a620-e249bb7d4e01","operation":"public.transform","duration_ms":0.28}
+{"type":"request-performance","scope":"server-render","trace":"038322b6-9eeb-4c72-a620-e249bb7d4e01","operation":"total","duration_ms":275.53}
+{"type":"request-performance","scope":"public-proxy","trace":"11846bfd-9c0f-4fb7-8ac6-089b40f3abfd","operation":"public.tombstone.read","duration_ms":0.01}
+{"type":"request-performance","scope":"public-proxy","trace":"11846bfd-9c0f-4fb7-8ac6-089b40f3abfd","operation":"total","duration_ms":0.2}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"b3a26c7e-15c6-40a6-96b1-0c333681cc40","operation":"http.jobs","duration_ms":108.94,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"b3a26c7e-15c6-40a6-96b1-0c333681cc40","operation":"query.publicJob","duration_ms":110.12}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"b3a26c7e-15c6-40a6-96b1-0c333681cc40","operation":"http.expiredJob","duration_ms":115.22,"status":200}
+{"type":"request-performance","scope":"public-job-cache-fill","trace":"b3a26c7e-15c6-40a6-96b1-0c333681cc40","operation":"query.expiredPublicJob","duration_ms":116.78}
+{"type":"request-performance","scope":"server-render","trace":"21c7015f-0eeb-4967-bb4b-d8bb0adf5030","operation":"public.job.read","duration_ms":229.3}
+{"type":"request-performance","scope":"server-render","trace":"21c7015f-0eeb-4967-bb4b-d8bb0adf5030","operation":"total","duration_ms":285.25}
+{"type":"request-performance","scope":"public-tombstone-cache-fill","trace":"11176e70-588e-48b1-b674-843fdaa9d4b0","operation":"http.deletedJobs","duration_ms":114.8,"status":200}
+{"type":"request-performance","scope":"public-tombstone-cache-fill","trace":"11176e70-588e-48b1-b674-843fdaa9d4b0","operation":"query.deletedJob","duration_ms":116.67}
+{"type":"request-performance","scope":"public-proxy","trace":"f2b9cf04-8652-44e7-bc45-188123e300bc","operation":"public.tombstone.read","duration_ms":116.8}
+{"type":"request-performance","scope":"public-proxy","trace":"f2b9cf04-8652-44e7-bc45-188123e300bc","operation":"total","duration_ms":116.85}
+{"type":"request-performance","scope":"admin-proxy","trace":"75a95617-23b0-4f88-8277-ba3560ad2062","operation":"auth.refreshSession","duration_ms":0.71}
+{"type":"request-performance","scope":"admin-proxy","trace":"75a95617-23b0-4f88-8277-ba3560ad2062","operation":"total","duration_ms":5.14}

@@ -1,0 +1,35 @@
+{
+  "environment": "configured Supabase same-host health endpoint from this machine; not SQL or deployed page timings",
+  "samples": [
+    {
+      "operation": "http.health",
+      "attempt": 1,
+      "status": 200,
+      "duration_ms": 2913.4063
+    },
+    {
+      "operation": "http.health",
+      "attempt": 2,
+      "status": 200,
+      "duration_ms": 1547.0596
+    },
+    {
+      "operation": "http.health",
+      "attempt": 3,
+      "status": 200,
+      "duration_ms": 1604.9952000000003
+    },
+    {
+      "operation": "http.health",
+      "attempt": 4,
+      "status": 200,
+      "duration_ms": 1230.2244
+    },
+    {
+      "operation": "http.health",
+      "attempt": 5,
+      "status": 200,
+      "duration_ms": 1307.109199999999
+    }
+  ]
+}

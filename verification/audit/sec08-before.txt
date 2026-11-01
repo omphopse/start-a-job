@@ -1,0 +1,38 @@
+✖ malformed and malicious application URLs return validation errors without throwing (2.6216ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 508.2415
+
+✖ failing tests:
+
+test at tests\unit\application-url-edge.test.ts:5:1
+✖ malformed and malicious application URLs return validation errors without throwing (2.6216ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Invalid URL"
+      at TestContext.<anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\application-url-edge.test.ts:18:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Invalid URL
+        at new URL (node:internal/url:840:25)
+        at <anonymous> (C:\Users\Asus\Documents\DeskJobs\lib\application-method.ts:11:15)
+        at Internals.check (C:\Users\Asus\Documents\DeskJobs\node_modules\zod\v4\core\api.cjs:1141:16)
+        at runChecks (C:\Users\Asus\Documents\DeskJobs\node_modules\zod\v4\core\schemas.cjs:94:35)
+        at inst._zod.run (C:\Users\Asus\Documents\DeskJobs\node_modules\zod\v4\core\schemas.cjs:161:20)
+        at inst._zod.parse (C:\Users\Asus\Documents\DeskJobs\node_modules\zod\v4\core\schemas.cjs:2355:34)
+        at Object.safeParse (C:\Users\Asus\Documents\DeskJobs\node_modules\zod\v4\core\parse.cjs:71:32)
+        at _.safeParse (C:\Users\Asus\Documents\DeskJobs\node_modules\zod\v4\classic\schemas.cjs:269:22)
+        at <anonymous> (C:\Users\Asus\Documents\DeskJobs\tests\unit\application-url-edge.test.ts:19:35)
+        at getActual (node:assert:611:5),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

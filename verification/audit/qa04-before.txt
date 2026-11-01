@@ -1,0 +1,43 @@
+[WebServer] (node:15300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:8040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [mobile] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled (7.0s)
+
+
+  1) [mobile] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled ─────
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('button', { name: 'AI summary (coming soon)', exact: true })
+    Expected: ""
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('button', { name: 'AI summary (coming soon)', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'AI summary (coming soon)', exact: true })
+
+
+      3 | test('AI summary placeholder is explicitly disabled', async ({ page }) => {
+      4 |   await page.goto('/demo/job-form');
+    > 5 |   await expect(page.getByRole('button', { name: 'AI summary (coming soon)', exact: true })).toHaveAttribute('disabled', '');
+        |                                                                                             ^
+      6 | });
+      7 | test('read-only dashboard and job form fit each viewport', async ({ page }, info) => {
+      8 |   await page.goto('/demo/dashboard');
+        at C:\Users\Asus\Documents\DeskJobs\tests\ui\dashboard.spec.ts:5:93
+
+    Error Context: test-results\dashboard-AI-summary-placeholder-is-explicitly-disabled-mobile\error-context.md
+
+  1 failed
+    [mobile] › tests\ui\dashboard.spec.ts:3:5 › AI summary placeholder is explicitly disabled ──────

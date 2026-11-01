@@ -1,0 +1,14 @@
+{
+  "base": "http://localhost:3100",
+  "pages": [
+    {
+      "name": "home",
+      "width": 360,
+      "status": 200,
+      "overflow": false,
+      "smallTargets": []
+    }
+  ],
+  "accessibility": [],
+  "headers": {}
+}

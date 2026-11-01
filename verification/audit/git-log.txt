@@ -1,0 +1,10 @@
+518f10d fix: preserve job form values after validation errors
+2e815e2 fix: separate OTP request and verification steps
+1d0252f chore: release v0.1.0
+ef7f1bf docs: add launch checklist and verified reference screenshots
+79617d4 fix: generate route types before clean typechecks
+2846ef5 fix: harden query validation and polish portal source
+d446417 feat: add SEO landing pages and indexing notifications
+4f2e6e0 feat: expose safe public job feeds and API documentation
+31d6056 feat: add anonymous reports clicks and ad preparation
+8df9adf feat: add admin moderation and poster management
