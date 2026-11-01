@@ -23,3 +23,5 @@ verification/lighthouse-home.json
 verification/lighthouse-listing.json
 verification/lighthouse-job.json
 verification/*.html.snapshot
+
+supabase/.temp/
