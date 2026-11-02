@@ -152,3 +152,13 @@ The installed Next.js guide at `node_modules/next/dist/docs/01-app/03-api-refere
 If a hosted database was initialized by pasting SQL into the dashboard, reconcile its migration history with the actual schema before using CLI push. Use `supabase migration list --linked` only after verifying the linked ref; do not blindly replay existing migrations or mark an unapplied migration as applied. In particular, never mark 009 applied before running and checking it. The local CLI configuration is not proof of any hosted project's migration history or Auth settings.
 
 Public job searches ignore legacy `qualification` and `experience_level` parameters. These fields remain available on job details and in authoring forms.
+
+## Public location filters (v0.1.4)
+
+The admin/poster form's `/api/locations` adapter uses CountriesNow (`countriesnow.space`) on the server. Provider names, authoring inputs and public URL parameters share `lib/location-names.ts` (NFC, whitespace, case-insensitive aliases). The provider request has a two-second timeout, daily Next.js revalidation and a bounded seven-day stale-name fallback. Visitors never contact CountriesNow directly. Public filters use database facets and require no provider request, including during provider outages.
+
+Migration `202611020010_public_location_filters.sql` adds `public_job_location_facets(p_limit)` with only `country,state,city,job_count`, fixed search_path, published/non-expired rows and a hard cap of 500 distinct location groups (negative limits clamp to one). Counts describe all current jobs in each returned location, independent of keyword/category filters. At larger scale the first 500 groups are offered; a valid shared URL can still filter an unlisted location. Remote counts come from the existing public search projection. No job column grants are widened.
+
+`search_public_jobs` now accepts `p_query,p_country,p_state,p_city`; old calls with only `p_query` still work. Matching is parameterized, normalized and case-insensitive. Country/state/city are exposed as shareable URL and JSON API filters; old `state` links and the `location` alias remain valid. Unknown names return zero results. More than two active filters or zero matches are noindex,follow with the parent canonical. Job qualification and experience remain public job attributes, not search filters.
+
+Rollback: `supabase/rollbacks/202611020010_public_location_filters.sql` removes the new functions and restores the previous search RPC. Roll back application code together with the SQL signature.

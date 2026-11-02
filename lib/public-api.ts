@@ -1,3 +1,4 @@
+import { locationName } from './location-names';
 import { getApplicationMethod } from './application-method';
 import { z } from 'zod';
 import type { PublicJob } from './public-job-fields';
@@ -5,7 +6,11 @@ import { site } from './config';
 const currentApiQuery = z
   .object({
     q: z.string().max(120).optional(),
-    state: z.string().max(100).optional(),
+    country: locationName.optional(),
+    state: locationName.optional(),
+    city: locationName.optional(),
+    work_mode: z.enum(['office', 'hybrid', 'remote']).optional(),
+    sort: z.enum(['newest', 'last_date']).optional(),
     category: z.string().max(80).optional(),
     job_type: z.enum(['full-time', 'part-time', 'internship', 'contract']).optional(),
     page: z.coerce.number().int().min(1).max(10000).default(1),

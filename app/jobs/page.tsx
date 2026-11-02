@@ -1,3 +1,5 @@
+import { locationFacets } from '@/lib/location-facets';
+import { resolveLocationFilters } from '@/lib/location-names';
 import { listCategories } from '@/lib/categories';
 import { parseFilters } from '@/lib/validation';
 import { Fragment } from 'react';
@@ -9,7 +11,8 @@ import { JobCard } from '@/components/job-card';
 import { FiltersForm } from '@/components/filters';
 export const dynamic = 'force-dynamic';
 export async function generateMetadata({ searchParams }: { searchParams: Promise<Filters> }) {
-  const f = parseFilters(await searchParams);
+  const { rows } = await locationFacets();
+  const f = resolveLocationFilters(parseFilters(await searchParams), rows);
   const filters = Object.entries(f).filter(([k, v]) => v && !['page', 'sort'].includes(k));
   const qs = new URLSearchParams(f).toString();
   const noindex = filters.length > 2 || (await listJobs(f)).count === 0;
@@ -21,7 +24,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   );
 }
 export default async function Jobs({ searchParams }: { searchParams: Promise<Filters> }) {
-  const f = parseFilters(await searchParams);
+  const { rows, remoteCount } = await locationFacets();
+  const f = resolveLocationFilters(parseFilters(await searchParams), rows);
   const { jobs, count } = await listJobs(f);
   const categories = await listCategories();
   const page = Math.max(1, Number(f.page) || 1);
@@ -56,7 +60,13 @@ export default async function Jobs({ searchParams }: { searchParams: Promise<Fil
       </section>
       <div className="container results-layout">
         <aside className="desktop-filters">
-          <FiltersForm filters={f} categories={categories} />
+          <FiltersForm
+            key={JSON.stringify(f)}
+            filters={f}
+            categories={categories}
+            facets={rows}
+            remoteCount={remoteCount}
+          />
           <div className="trust-mini">
             <span>♧</span>
             <strong>Your search, made safer.</strong>
@@ -93,7 +103,13 @@ export default async function Jobs({ searchParams }: { searchParams: Promise<Fil
           <details className="mobile-filters">
             <summary>☷ Filter opportunities</summary>
             <div className="filter-drawer">
-              <FiltersForm filters={f} categories={categories} />
+              <FiltersForm
+                key={JSON.stringify(f)}
+                filters={f}
+                categories={categories}
+                facets={rows}
+                remoteCount={remoteCount}
+              />
             </div>
           </details>
           {jobs.length ? (
@@ -110,7 +126,7 @@ export default async function Jobs({ searchParams }: { searchParams: Promise<Fil
                 Try a broader keyword or clear a filter. A new beginning might be one search away.
               </p>
               <Link href="/jobs" className="button">
-                Clear filters
+                Reset all
               </Link>
             </div>
           )}

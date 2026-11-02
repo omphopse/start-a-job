@@ -19,7 +19,7 @@ test('migration 009 stays synchronized with the shared publishing definition', (
     .sort();
   assert.deepEqual(
     names.map((n) => n.slice(8, 12)),
-    ['0001', '0002', '0001', '0003', '0004', '0005', '0006', '0007', '0008', '0009'],
+    ['0001', '0002', '0001', '0003', '0004', '0005', '0006', '0007', '0008', '0009', '0010'],
   );
 });
 

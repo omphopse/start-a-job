@@ -1,3 +1,4 @@
+import { normalizeLocationName } from './location-names';
 import { listCategories } from './categories';
 import 'server-only';
 import { listJobs, type Filters } from './data';
@@ -14,12 +15,19 @@ export async function landingData(
   const categories = await listCategories();
   const category = categorySlug ? categories.find((c) => slugify(c) === categorySlug) : undefined;
   if (categorySlug && !category) return null;
-  const locations = [...new Set(all.flatMap((j) => [j.location, j.state]))];
+  const locations = [
+    ...new Set(
+      all.flatMap((j) => [normalizeLocationName(j.location), normalizeLocationName(j.state)]),
+    ),
+  ];
   const location = locationSlug
     ? locations.find((l) => slugify(l) === locationSlug) ||
-      locationSlug.replaceAll('-', ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+      normalizeLocationName(
+        locationSlug.replaceAll('-', ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+      )
     : undefined;
-  const locationField = location && all.some((j) => j.state === location) ? 'state' : 'location';
+  const locationField =
+    location && all.some((j) => normalizeLocationName(j.state) === location) ? 'state' : 'city';
   const base: Filters = {
     ...(category ? { category } : {}),
     ...(location ? { [locationField]: location } : {}),

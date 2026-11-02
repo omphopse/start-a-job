@@ -62,13 +62,15 @@ export function GET() {
         get: {
           summary: 'List current jobs',
           parameters: [
-            ...['q', 'state', 'category', 'job_type'].map((name) => ({
-              in: 'query',
-              name,
-              schema: {
-                type: 'string',
-              },
-            })),
+            ...['q', 'country', 'state', 'city', 'category', 'job_type', 'work_mode', 'sort'].map(
+              (name) => ({
+                in: 'query',
+                name,
+                schema: {
+                  type: 'string',
+                },
+              }),
+            ),
             { in: 'query', name: 'page', schema: { type: 'integer', minimum: 1, default: 1 } },
             {
               in: 'query',

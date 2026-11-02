@@ -20,7 +20,7 @@ test('public filter boundaries match the accepted page cap and job location leng
   assert.equal(parseFilters({ page: '10000' }).page, '10000');
   assert.equal(parseFilters({ page: '10001' }).page, undefined);
   assert.equal(parseFilters({ state: text, location: text }).state, text);
-  assert.equal(parseFilters({ state: text, location: text }).location, text);
+  assert.equal(parseFilters({ state: text, location: text }).city, text);
   assert.equal(parseFilters({ state: text + 'X' }).state, undefined);
   assert.equal(apiQuery.safeParse({ state: text }).success, true);
   assert.equal(apiQuery.safeParse({ state: text + 'X' }).success, false);

@@ -1,3 +1,4 @@
+import { normalizeLocationName } from './location-names';
 import { parseFilters } from './validation';
 import 'server-only';
 import { cache } from 'react';
@@ -15,6 +16,8 @@ import {
 import { requestPerformance } from './request-performance';
 export type Filters = {
   q?: string;
+  country?: string;
+  city?: string;
   state?: string;
   location?: string;
   job_type?: string;
@@ -32,8 +35,18 @@ export function filterJobs(jobs: Job[], f: Filters) {
       [j.title, j.company_name, j.location, j.category].join(' ').toLowerCase().includes(q),
     );
   }
-  for (const key of ['state', 'location', 'job_type', 'category', 'work_mode'] as const) {
+  for (const key of ['job_type', 'category', 'work_mode'] as const) {
     if (f[key]) result = result.filter((j) => j[key].toLowerCase() === f[key]!.toLowerCase());
+  }
+  for (const field of ['country', 'state', 'city'] as const) {
+    const value = f[field];
+    if (value)
+      result = result.filter(
+        (job) =>
+          normalizeLocationName(
+            field === 'city' ? job.location : job[field] || (field === 'country' ? 'India' : ''),
+          ).toLowerCase() === normalizeLocationName(value).toLowerCase(),
+      );
   }
   return result.sort((a, b) =>
     f.sort === 'last_date'
@@ -57,9 +70,18 @@ export async function listJobs(
   if (!configured) return { jobs: [], count: 0 };
   const db = publicDb();
   let query = db
-    .rpc('search_public_jobs', { p_query: f.q || null }, { count: 'exact' })
+    .rpc(
+      'search_public_jobs',
+      {
+        p_query: f.q || null,
+        p_country: f.country || null,
+        p_state: f.state || null,
+        p_city: f.city || null,
+      },
+      { count: 'exact' },
+    )
     .select(PUBLIC_JOB_COLUMNS);
-  for (const key of ['state', 'location', 'job_type', 'category', 'work_mode'] as const)
+  for (const key of ['job_type', 'category', 'work_mode'] as const)
     if (f[key]) query = query.ilike(key, f[key]!.replace(/[%_]/g, ''));
   query =
     f.sort === 'last_date'

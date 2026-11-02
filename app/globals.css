@@ -2138,3 +2138,7 @@ button:disabled {
     font-size: 34px;
   }
 }
+
+/* Keep native location controls comfortable for touch and narrow screens. */
+.filters-form select { min-height: 44px; width: 100%; min-width: 0; }
+.filters-form select:disabled { opacity: .65; cursor: not-allowed; }

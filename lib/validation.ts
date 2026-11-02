@@ -1,3 +1,4 @@
+import { normalizeLocationName, locationName } from './location-names';
 import { publishText, workModes, jobTypes } from './publishing-rules';
 import { experienceLevels } from './job-options';
 import { z } from 'zod';
@@ -6,9 +7,15 @@ const text = (min = 1, max = 200) => z.string().trim().min(min).max(max);
 const jobFields = {
   title: text(...publishText.title),
   company_name: text(...publishText.company_name),
-  location: text(...publishText.location).default(''),
-  state: text(...publishText.state).default(''),
-  country: text(...publishText.country).default('India'),
+  location: text(...publishText.location)
+    .transform(normalizeLocationName)
+    .default(''),
+  state: text(...publishText.state)
+    .transform(normalizeLocationName)
+    .default(''),
+  country: text(...publishText.country)
+    .transform(normalizeLocationName)
+    .default('India'),
   work_mode: z.enum(workModes),
   qualification: text(...publishText.qualification),
   experience_level: z.enum(experienceLevels),
@@ -72,8 +79,10 @@ export function makeSlug(title: string, company: string, city: string, id: strin
 const queryText = (max = 100) => z.string().trim().max(max).optional().catch(undefined);
 export const filtersSchema = z.object({
   q: queryText(120),
-  state: queryText(100),
-  location: queryText(100),
+  country: locationName.optional().catch(undefined),
+  state: locationName.optional().catch(undefined),
+  city: locationName.optional().catch(undefined),
+  location: locationName.optional().catch(undefined),
   category: queryText(80),
   job_type: z
     .enum(['full-time', 'part-time', 'internship', 'contract'])
@@ -87,4 +96,10 @@ export const filtersSchema = z.object({
     .optional()
     .catch(undefined),
 });
-export const parseFilters = (input: unknown) => filtersSchema.parse(input);
+export function parseFilters(input: unknown) {
+  const { location, ...filters } = filtersSchema.parse(input);
+  for (const key of Object.keys(filters) as (keyof typeof filters)[]) {
+    if (!filters[key]) delete filters[key];
+  }
+  return { ...filters, ...(filters.city || location ? { city: filters.city || location } : {}) };
+}

@@ -8,6 +8,7 @@ const requests = [];
 globalThis.fetch = async (input, init) => {
   const url = new URL(String(input));
   requests.push(url);
+  assert.equal(JSON.parse(init.body).p_state, 'Maharashtra');
   assert.equal(url.pathname, '/rest/v1/rpc/search_public_jobs');
   assert.equal(new Headers(init?.headers).get('Prefer')?.includes('count=exact'), true);
   for (const field of ['status', 'created_at', 'updated_at', 'search_document']) {
@@ -29,8 +30,8 @@ const listJobs = dataModule.listJobs || dataModule.default?.listJobs;
 const result = await listJobs({ page: '10000', state: 'Maharashtra' }, 20);
 assert.deepEqual(result, { jobs: [], count: 10 });
 assert.equal(requests.length, 2);
-assert.equal(requests[0].searchParams.get('state'), 'ilike.Maharashtra');
-assert.equal(requests[1].searchParams.get('state'), 'ilike.Maharashtra');
+assert.equal(requests[0].searchParams.has('state'), false);
+assert.equal(requests[1].searchParams.has('state'), false);
 assert.equal(requests[1].searchParams.get('offset'), '0');
 console.log(
   'PASS PostgREST out-of-range fallback preserves filters and total without returning first-page jobs',
