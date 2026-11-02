@@ -162,3 +162,12 @@ Migration `202611020010_public_location_filters.sql` adds `public_job_location_f
 `search_public_jobs` now accepts `p_query,p_country,p_state,p_city`; old calls with only `p_query` still work. Matching is parameterized, normalized and case-insensitive. Country/state/city are exposed as shareable URL and JSON API filters; old `state` links and the `location` alias remain valid. Unknown names return zero results. More than two active filters or zero matches are noindex,follow with the parent canonical. Job qualification and experience remain public job attributes, not search filters.
 
 Rollback: `supabase/rollbacks/202611020010_public_location_filters.sql` removes the new functions and restores the previous search RPC. Roll back application code together with the SQL signature.
+
+## v0.1.4 manual staging gate
+
+1. Confirm the linked project is **STAGING**, using your dashboard and local project configuration. Apply `202611020010_public_location_filters.sql` there. If you use your chosen full reset approach, run `supabase db reset --linked` **only after verifying the linked target is STAGING**. This is your manual operation; the local verification harness never runs it.
+2. Re-run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-live-anon.ps1` using that staging project's URL and public anon credential in your process environment. Do not print credentials. Require PASS for the existing column/RPC probes and the new facet cap, projection, invalid type, location parameter and retired-argument probes.
+3. Publish several non-expired jobs in different states and cities (for example Maharashtra/Pune/Mumbai and Karnataka/Bengaluru). Compare option counts and results, reload a shared URL, try old state/qualification/experience links, and check empty results and canonicals. Add another country and a remote job to exercise the visible country select and Remote / anywhere option. Check admin saved names against filter options.
+4. Confirm draft/pending/rejected/unpublished/expired jobs are absent from both public results and facets. Check the database fallback while the location provider is unavailable.
+
+Do **not** apply migration 010 to production until staging passes. **Never run `supabase db reset` against production.** The local PostgreSQL tests do not replace staging PostgREST and privilege verification. For rollback use the matching SQL script and the previous application version together.

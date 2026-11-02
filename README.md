@@ -80,8 +80,9 @@ Do not rename previously applied files to manufacture sequential version numbers
 8. `202611010007_tombstone_privacy`
 9. `202611010008_public_search_boundary`
 10. `202611010009_published_required`
+11. `202611020010_public_location_filters`
 
-There is no `202611010002`; the first two migrations precede the November sequence. This is ten files ending at 009, rather than nine files numbered 001..009. On an isolated local Supabase stack, `supabase start` then `supabase db reset --local` verifies the full chain. Never substitute `--linked` for this test.
+There is no `202611010002`; the first two migrations precede the November sequence. This is eleven files ending at 010, rather than a contiguous sequence numbered 001..010. On an isolated local Supabase stack, `supabase start` then `supabase db reset --local` verifies the full chain. Never substitute `--linked` for this test.
 
 ### Closing dates and expired/deleted pages
 An empty closing date is saved as today's India calendar date plus `JOB_DEFAULT_VALID_DAYS` (default 30). Set `JOB_DEFAULT_VALID_DAYS=0` to disable the fallback; only then does an undated detail show “No closing date”. The form displays the fallback and lets posters/admins select another date. Past dates trigger a visible warning and remain saveable. Admin approval also supplies a fallback for undated older submissions. Expired badges and the Expired filter apply to both admin and poster dashboards independently of moderation status.
@@ -103,3 +104,5 @@ Migration `202611020010_public_location_filters.sql` adds `public_job_location_f
 `search_public_jobs` now accepts `p_query,p_country,p_state,p_city`; old calls with only `p_query` still work. Matching is parameterized, normalized and case-insensitive. Country/state/city are exposed as shareable URL and JSON API filters; old `state` links and the `location` alias remain valid. Unknown names return zero results. More than two active filters or zero matches are noindex,follow with the parent canonical. Job qualification and experience remain public job attributes, not search filters.
 
 Rollback: `supabase/rollbacks/202611020010_public_location_filters.sql` removes the new functions and restores the previous search RPC. Roll back application code together with the SQL signature.
+
+Verify v0.1.4 locally with `node scripts/verify-filters-local.mjs release` (Windows). The harness explicitly preserves empty credential environment entries, checks the expected demo fixture, runs lint/typecheck/unit/build/three-viewport Playwright/SEO, and saves logs under the OS temporary directory. See [the v0.1.4 handoff](verification/v0.1.4/REPORT.md) for staging steps and verification limits. No hosted database is needed for these checks.

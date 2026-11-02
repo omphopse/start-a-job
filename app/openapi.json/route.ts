@@ -8,6 +8,7 @@ export function GET() {
       'company',
       'location',
       'state',
+      'country',
       'work_mode',
       'qualification',
       'experience_level',
@@ -53,7 +54,7 @@ export function GET() {
     openapi: '3.1.0',
     info: {
       title: `${site.name} public jobs`,
-      version: '0.1.3',
+      version: '0.1.4',
       description: `Published, non-expired jobs only. Content must be attributed as Source: ${site.name} and linked to each job’s canonical_url. No authentication required.`,
     },
     servers: [{ url: site.url }],
@@ -71,7 +72,11 @@ export function GET() {
                 },
               }),
             ),
-            { in: 'query', name: 'page', schema: { type: 'integer', minimum: 1, default: 1 } },
+            {
+              in: 'query',
+              name: 'page',
+              schema: { type: 'integer', minimum: 1, maximum: 10000, default: 1 },
+            },
             {
               in: 'query',
               name: 'limit',
