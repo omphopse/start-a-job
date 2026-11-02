@@ -91,3 +91,5 @@ An expired published job's slug returns **HTTP 200**, with a friendly notice, cu
 
 ### Brand configuration
 `lib/config.ts` is the source of the current display name, tagline, domain, contact address and brand mark. Set `NEXT_PUBLIC_SITE_NAME`, `NEXT_PUBLIC_SITE_URL` and `CONTACT_EMAIL` for a deployment and rebuild. The existing default name is unchanged; the Supabase project display name is independent. Generate the matching OTP email body with `npx tsx scripts/email-template.ts`, then paste it into Supabase Auth templates. Documentation refers to config values rather than duplicating a product name. Historical audit reports and captured verification output retain the names they recorded; the hard-coded-brand guard covers current app, components, library, scripts, tests and current setup/configuration documentation.
+
+Public job searches ignore legacy `qualification` and `experience_level` parameters. These fields remain available on job details and in authoring forms.

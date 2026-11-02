@@ -15,7 +15,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const noindex = filters.length > 2 || (await listJobs(f)).count === 0;
   return metadata(
     'Fresher and entry-level jobs in India',
-    'Browse office and desk jobs by location, qualification, category and experience. Apply on official websites.',
+    'Browse office and desk jobs by location, category, job type and work mode. Apply on official websites.',
     '/jobs' + (noindex ? '' : qs ? '?' + qs : ''),
     noindex,
   );

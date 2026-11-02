@@ -1,19 +1,25 @@
 import { getApplicationMethod } from './application-method';
-import { experienceLevels } from './job-options';
 import { z } from 'zod';
 import type { PublicJob } from './public-job-fields';
 import { site } from './config';
-export const apiQuery = z
+const currentApiQuery = z
   .object({
     q: z.string().max(120).optional(),
     state: z.string().max(100).optional(),
     category: z.string().max(80).optional(),
-    experience_level: z.enum(experienceLevels).optional(),
     job_type: z.enum(['full-time', 'part-time', 'internship', 'contract']).optional(),
     page: z.coerce.number().int().min(1).max(10000).default(1),
     limit: z.coerce.number().int().min(1).max(100).default(20),
   })
   .strict();
+// Retired parameters are ignored even when their values are malformed.
+export const apiQuery = z.preprocess((input) => {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return input;
+  const { qualification, experience_level, ...current } = input as Record<string, unknown>;
+  void qualification;
+  void experience_level;
+  return current;
+}, currentApiQuery);
 export function publicJob(j: PublicJob) {
   const method = getApplicationMethod(j);
   return {

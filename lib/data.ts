@@ -17,8 +17,6 @@ export type Filters = {
   q?: string;
   state?: string;
   location?: string;
-  qualification?: string;
-  experience_level?: string;
   job_type?: string;
   category?: string;
   work_mode?: string;
@@ -34,15 +32,7 @@ export function filterJobs(jobs: Job[], f: Filters) {
       [j.title, j.company_name, j.location, j.category].join(' ').toLowerCase().includes(q),
     );
   }
-  for (const key of [
-    'state',
-    'location',
-    'qualification',
-    'experience_level',
-    'job_type',
-    'category',
-    'work_mode',
-  ] as const) {
+  for (const key of ['state', 'location', 'job_type', 'category', 'work_mode'] as const) {
     if (f[key]) result = result.filter((j) => j[key].toLowerCase() === f[key]!.toLowerCase());
   }
   return result.sort((a, b) =>
@@ -69,15 +59,7 @@ export async function listJobs(
   let query = db
     .rpc('search_public_jobs', { p_query: f.q || null }, { count: 'exact' })
     .select(PUBLIC_JOB_COLUMNS);
-  for (const key of [
-    'state',
-    'location',
-    'qualification',
-    'experience_level',
-    'job_type',
-    'category',
-    'work_mode',
-  ] as const)
+  for (const key of ['state', 'location', 'job_type', 'category', 'work_mode'] as const)
     if (f[key]) query = query.ilike(key, f[key]!.replace(/[%_]/g, ''));
   query =
     f.sort === 'last_date'

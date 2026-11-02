@@ -1,4 +1,4 @@
-import { defaultCategories, experienceLevels } from '@/lib/job-options';
+import { defaultCategories } from '@/lib/job-options';
 import Link from 'next/link';
 import type { Filters } from '@/lib/data';
 const options = {
@@ -13,16 +13,12 @@ const options = {
     'West Bengal',
     'Rajasthan',
   ],
-  qualification: ['Any graduate', '12th pass', '10th pass', 'Diploma', 'B.Com', 'B.Tech'],
-  experience_level: experienceLevels,
   job_type: ['full-time', 'part-time', 'internship', 'contract'],
   category: defaultCategories,
   work_mode: ['office', 'hybrid', 'remote'],
 };
 const labels = {
   state: 'Location / state',
-  qualification: 'Qualification',
-  experience_level: 'Experience level',
   job_type: 'Job type',
   category: 'Category',
   work_mode: 'Work mode',
@@ -49,11 +45,7 @@ export function FiltersForm({
             <option value="">All {labels[key].toLowerCase()}</option>
             {choices[key].map((o) => (
               <option key={o} value={o}>
-                {o === 'fresher'
-                  ? 'Fresher'
-                  : key === 'experience_level'
-                    ? `${o} years`
-                    : o.replace('-', ' ')}
+                {o.replace('-', ' ')}
               </option>
             ))}
           </select>

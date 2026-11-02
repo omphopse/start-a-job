@@ -1,4 +1,3 @@
-import { experienceLevels } from '@/lib/job-options';
 import { site } from '@/lib/config';
 export function GET() {
   const properties = Object.fromEntries(
@@ -63,12 +62,11 @@ export function GET() {
         get: {
           summary: 'List current jobs',
           parameters: [
-            ...['q', 'state', 'category', 'experience_level', 'job_type'].map((name) => ({
+            ...['q', 'state', 'category', 'job_type'].map((name) => ({
               in: 'query',
               name,
               schema: {
                 type: 'string',
-                ...(name === 'experience_level' ? { enum: experienceLevels } : {}),
               },
             })),
             { in: 'query', name: 'page', schema: { type: 'integer', minimum: 1, default: 1 } },

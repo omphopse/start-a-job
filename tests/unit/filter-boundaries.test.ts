@@ -36,3 +36,13 @@ test('public filter boundaries match the accepted page cap and job location leng
     true,
   );
 });
+
+test('retired public filters are silently ignored, including malformed values', () => {
+  for (const legacy of [
+    { qualification: 'Any graduate', experience_level: 'fresher' },
+    { qualification: "'; drop table jobs;--", experience_level: 'x'.repeat(1000) },
+  ]) {
+    assert.deepEqual(parseFilters({ ...legacy, state: 'Delhi' }), { state: 'Delhi' });
+    assert.deepEqual(apiQuery.parse(legacy), { page: 1, limit: 20 });
+  }
+});

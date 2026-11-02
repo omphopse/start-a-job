@@ -74,8 +74,6 @@ export const filtersSchema = z.object({
   q: queryText(120),
   state: queryText(100),
   location: queryText(100),
-  qualification: queryText(120),
-  experience_level: z.enum(experienceLevels).optional().catch(undefined),
   category: queryText(80),
   job_type: z
     .enum(['full-time', 'part-time', 'internship', 'contract'])
