@@ -16,6 +16,8 @@ import { providerLocations } from '../../lib/location-provider';
 
 test('shared location names normalize authoring, URLs, aliases and database facets', () => {
   assert.equal(normalizeLocationName('  BANGALORE  '), 'Bengaluru');
+  assert.equal(normalizeLocationName('constructor'), 'constructor');
+  assert.deepEqual(parseFilters({ state: '<script>', city: '' }), {});
   assert.deepEqual(parseFilters({ country: ' india ', state: ' maharashtra ', city: ' bombay ' }), {
     country: 'India',
     state: 'Maharashtra',
@@ -65,6 +67,10 @@ test('migration 010 facets and list RPC preserve publication and column boundari
   try {
     await db.exec(
       `create role anon; create role authenticated; create role service_role bypassrls; create schema auth; create table auth.users(id uuid primary key); create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$; create function auth.role() returns text language sql stable as $$ select current_setting('request.jwt.claim.role',true) $$; grant usage on schema public,auth to anon,authenticated,service_role;`,
+    );
+    // Supabase may grant service_role EXECUTE through default privileges.
+    await db.exec(
+      'alter default privileges in schema public grant execute on functions to service_role',
     );
     for (const file of readdirSync('supabase/migrations')
       .filter((name) => name.endsWith('.sql'))
@@ -152,11 +158,74 @@ test('migration 010 facets and list RPC preserve publication and column boundari
       db.query('select created_by from public_job_location_facets(1)'),
       /does not exist/,
     );
+    // Unknown named inputs are rejected at the function boundary, never interpreted as SQL.
+    for (const name of ['qualification', 'experience_level']) {
+      await assert.rejects(
+        db.query(`select * from search_public_jobs(p_${name} => $1)`, ['ignored']),
+        (error: unknown) => (error as { code: string }).code === '42883',
+      );
+    }
     await db.exec('reset role');
+    const columns = [...Object.keys(sampleJobs[0]), 'country'];
+    const values = columns.map((key) =>
+      key === 'id'
+        ? "('10000000-0000-4000-8000-' || lpad(g::text,12,'0'))::uuid"
+        : key === 'slug'
+          ? "'facet-cap-' || g"
+          : key === 'location'
+            ? "'Fixture City ' || g"
+            : `j.${key}`,
+    );
+    await db.exec(
+      `select set_config('request.jwt.claim.role','service_role',false); insert into jobs(${columns.join(',')}) select ${values.join(',')} from jobs j cross join generate_series(1,510) g where j.slug='location-fixture-0'; set role anon;`,
+    );
+    for (const [limit, expected] of [
+      [null, 500],
+      [1, 1],
+      [0, 1],
+      [-99, 1],
+      [2147483647, 500],
+      [20, 20],
+    ]) {
+      const capped = await db.query<Record<string, unknown>>(
+        'select * from public_job_location_facets($1)',
+        [limit],
+      );
+      assert.equal(capped.rows.length, expected);
+      assert.deepEqual(Object.keys(capped.rows[0]).sort(), [
+        'city',
+        'country',
+        'job_count',
+        'state',
+      ]);
+    }
+    await assert.rejects(
+      db.query('select * from public_job_location_facets($1)', ['1; select created_by from jobs']),
+      (error: unknown) => (error as { code: string }).code === '22P02',
+    );
+    await db.exec('reset role; create role facet_outsider; set role facet_outsider');
+    await assert.rejects(
+      db.query('select * from public_job_location_facets()'),
+      /permission denied/,
+    );
+    await db.exec(
+      "reset role; set role authenticated; select set_config('request.jwt.claim.role','authenticated',false)",
+    );
+    assert.equal((await db.query('select * from public_job_location_facets()')).rows.length, 500);
+    await db.exec("reset role; delete from jobs where slug like 'facet-cap-%'");
+    const settings = await db.query<{ prosecdef: boolean; proconfig: string[] }>(
+      "select prosecdef,proconfig from pg_proc where oid='public.public_job_location_facets(integer)'::regprocedure",
+    );
+    assert.equal(settings.rows[0].prosecdef, true);
+    assert.deepEqual(settings.rows[0].proconfig, ['search_path=pg_catalog, pg_temp']);
     const privileges = await db.query<{ role: string; allowed: boolean }>(
       `select rolname as role, has_function_privilege(rolname,'public.public_job_location_facets(integer)','execute') as allowed from pg_roles where rolname in ('anon','authenticated')`,
     );
     assert.ok(privileges.rows.every((row) => row.allowed));
+    const servicePrivilege = await db.query<{ allowed: boolean }>(
+      "select has_function_privilege('service_role','public.public_job_location_facets(integer)','execute') as allowed",
+    );
+    assert.equal(servicePrivilege.rows[0].allowed, false);
     await db.exec(
       readFileSync('supabase/rollbacks/202611020010_public_location_filters.sql', 'utf8'),
     );

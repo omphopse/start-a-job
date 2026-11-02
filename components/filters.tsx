@@ -90,11 +90,11 @@ export function FiltersForm({
           setCity('');
         })
       )}
-      {locationSelect('state', state, !country && !filters.state, (value) => {
+      {locationSelect('state', state, !country && !state, (value) => {
         setState(value);
         setCity('');
       })}
-      {locationSelect('city', city, !state && !filters.city, setCity)}
+      {locationSelect('city', city, !state && !city, setCity)}
       {(Object.keys(choices) as (keyof typeof choices)[]).map((key) => (
         <label key={key}>
           {labels[key]}

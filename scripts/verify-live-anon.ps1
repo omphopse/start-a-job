@@ -29,6 +29,17 @@ function Invoke-AnonProbe($Path, $Body = $null) {
   if ($code -notmatch '^[A-Za-z0-9_]{0,32}$') { $code = 'UNRECOGNIZED' }
   return @{ Status = $status; Code = $code; Kind = (Get-ProbeClassification $status $code); Data = $data }
 }
+function Test-ProbeRows($Data, [string[]]$Columns, [int]$Cap) {
+  $rows = @($Data | Where-Object { $null -ne $_ })
+  if ($rows.Count -gt $Cap) { return $false }
+  foreach ($row in $rows) {
+    if (@($row.PSObject.Properties.Name).Count -ne $Columns.Count) { return $false }
+    foreach ($property in $row.PSObject.Properties.Name) {
+      if ($property -notin $Columns) { return $false }
+    }
+  }
+  return $true
+}
 if ($LibraryOnly) { return }
 $script:url = $env:NEXT_PUBLIC_SUPABASE_URL
 $script:key = $env:NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -83,6 +94,53 @@ if (-not $stop) {
       if ($r.Kind -eq 'CONFIG/NETWORK ERROR' -and -not $expectedRejection) { $stop = $true; break }
     }
     if ($stop) { break }
+  }
+}
+# New RPC signatures are validated without printing response bodies or input values.
+if (-not $stop) {
+  $facetColumns = @('country','state','city','job_count')
+  $facetCases = @(
+    @{ Name='normal'; Limit=500; Cap=500 },
+    @{ Name='null'; Limit=$null; Cap=500 },
+    @{ Name='negative'; Limit=-99; Cap=1 },
+    @{ Name='large'; Limit=2147483647; Cap=500 },
+    @{ Name='invalid type'; Limit="1; select created_by from jobs"; Cap=0 }
+  )
+  foreach ($case in $facetCases) {
+    $r = Invoke-AnonProbe 'rpc/public_job_location_facets' @{p_limit=$case.Limit}
+    $rejected = $case.Name -eq 'invalid type' -and $r.Status -eq 400 -and $r.Code -eq '22P02'
+    $safe = $r.Status -eq 200 -and (Test-ProbeRows $r.Data $facetColumns $case.Cap)
+    $ok = $safe -or $rejected
+    $results.Add([pscustomobject]@{ Probe="facets/$($case.Name)"; Result=$(if($ok){'PASS'}else{'FAIL'}); Detail="HTTP $($r.Status), code=$($r.Code); bounded projection=$safe" })
+    if (-not $ok) { $stop=$true; break }
+  }
+}
+if (-not $stop) {
+  foreach ($parameter in @('p_country','p_state','p_city')) {
+    foreach ($mode in @('normal','unknown','long','special')) {
+      $body = @{p_query=$null; p_country=$null; p_state=$null; p_city=$null}
+      $body[$parameter] = switch ($mode) {
+        'normal' { if($parameter -eq 'p_country'){'India'} elseif($parameter -eq 'p_state'){'Maharashtra'} else {'Pune'} }
+        'unknown' { 'Verification Nonexistent Location' }
+        'long' { 'x' * 10000 }
+        'special' { "'; drop table jobs;--" }
+      }
+      $r = Invoke-AnonProbe 'rpc/search_public_jobs?limit=20' $body
+      $safe = $r.Status -eq 200 -and (Test-ProbeRows $r.Data $publicColumns 20)
+      if ($mode -ne 'normal' -and @($r.Data | Where-Object { $null -ne $_ }).Count -gt 0) { $safe=$false }
+      $results.Add([pscustomobject]@{ Probe="location/$parameter/$mode"; Result=$(if($safe){'PASS'}else{'FAIL'}); Detail="HTTP $($r.Status), code=$($r.Code); public projection=$safe" })
+      if (-not $safe) { $stop=$true; break }
+    }
+    if ($stop) { break }
+  }
+}
+if (-not $stop) {
+  foreach ($parameter in @('p_qualification','p_experience_level')) {
+    $body = @{p_query=$null}; $body[$parameter]='retired'
+    $r = Invoke-AnonProbe 'rpc/search_public_jobs?limit=1' $body
+    $ok = $r.Status -eq 404 -and $r.Code -eq 'PGRST202'
+    $results.Add([pscustomobject]@{ Probe="retired/$parameter"; Result=$(if($ok){'PASS'}else{'FAIL'}); Detail="HTTP $($r.Status), code=$($r.Code); unsupported RPC argument rejected" })
+    if (-not $ok) { $stop=$true; break }
   }
 }
 $results | Format-Table -AutoSize | Out-String -Width 180 | Write-Output

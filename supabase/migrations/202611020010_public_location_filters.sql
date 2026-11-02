@@ -37,7 +37,7 @@ returns text language sql immutable parallel safe set search_path=pg_catalog, pg
     when 'jaipur' then 'Jaipur'
     else btrim(regexp_replace(normalize(coalesce(p_value,''), NFC), '\s+', ' ', 'g')) end
 $$;
-revoke all on function public.normalize_job_location(text) from public;
+revoke all on function public.normalize_job_location(text) from public, anon, authenticated, service_role;
 -- No table privileges are added. This pure helper is used inside the definer RPCs.
 drop function public.search_public_jobs(text);
 create function public.search_public_jobs(p_query text default null,p_country text default null,p_state text default null,p_city text default null)
@@ -61,7 +61,7 @@ returns table (
     and (p_state is null or (length(p_state) between 1 and 100 and p_state ~ '^[[:alnum:] .,''’()&-]+$' and lower(public.normalize_job_location(j.state))=lower(public.normalize_job_location(p_state))))
     and (p_city is null or (length(p_city) between 1 and 100 and p_city ~ '^[[:alnum:] .,''’()&-]+$' and lower(public.normalize_job_location(j.location))=lower(public.normalize_job_location(p_city))))
 $$;
-revoke all on function public.search_public_jobs(text,text,text,text) from public;
+revoke all on function public.search_public_jobs(text,text,text,text) from public, anon, authenticated, service_role;
 grant execute on function public.search_public_jobs(text,text,text,text) to anon;
 grant execute on function public.search_public_jobs(text,text,text,text) to authenticated;
 create function public.public_job_location_facets(p_limit integer default 500)
@@ -76,7 +76,7 @@ language sql stable security definer set search_path=pg_catalog, pg_temp as $$
   order by 1,2,3
   limit greatest(1,least(coalesce(p_limit,500),500))
 $$;
-revoke all on function public.public_job_location_facets(integer) from public;
+revoke all on function public.public_job_location_facets(integer) from public, anon, authenticated, service_role;
 grant execute on function public.public_job_location_facets(integer) to anon,authenticated;
 notify pgrst, 'reload schema';
 commit;

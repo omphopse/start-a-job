@@ -34,9 +34,10 @@ export async function landingData(
   };
   const filters = { ...extra, ...base };
   const result = await listJobs(filters);
+  const canonicalLocationSlug = location ? slugify(location) : locationSlug;
   const path = categorySlug
-    ? `/jobs/category/${categorySlug}${locationSlug ? `/location/${locationSlug}` : ''}`
-    : `/jobs/location/${locationSlug}`;
+    ? `/jobs/category/${categorySlug}${locationSlug ? `/location/${canonicalLocationSlug}` : ''}`
+    : `/jobs/location/${canonicalLocationSlug}`;
   const title = `${category || 'Fresher'} jobs${location ? ` in ${location}` : ' across India'}`;
   let intro = `Explore ${category ? category.toLowerCase() : 'fresher-friendly desk and office'} opportunities${location ? ` in ${location}` : ' across India'}. Compare qualifications, work arrangements and application deadlines, then follow the official source link. Browsing and applying through ${site.name} is always free.`;
   if (configured) {

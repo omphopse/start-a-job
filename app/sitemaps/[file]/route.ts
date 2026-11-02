@@ -1,3 +1,4 @@
+import { normalizeLocationName } from '@/lib/location-names';
 import { slugify } from '@/lib/validation';
 import { site } from '@/lib/config';
 import { allCurrentJobs } from '@/lib/seo/sitemap';
@@ -20,11 +21,15 @@ export async function GET(_request: Request, { params }: { params: Promise<{ fil
     for (const j of await allCurrentJobs())
       for (const path of [
         `/jobs/category/${slugify(j.category)}`,
-        `/jobs/location/${slugify(j.location)}`,
-        `/jobs/location/${slugify(j.state)}`,
-        `/jobs/category/${slugify(j.category)}/location/${slugify(j.location)}`,
+        `/jobs/location/${slugify(normalizeLocationName(j.location))}`,
+        `/jobs/location/${slugify(normalizeLocationName(j.state))}`,
+        `/jobs/category/${slugify(j.category)}/location/${slugify(normalizeLocationName(j.location))}`,
       ])
-        if (j.published_at && (!paths.has(path) || paths.get(path)! < j.published_at))
+        if (
+          !path.endsWith('/location/') &&
+          j.published_at &&
+          (!paths.has(path) || paths.get(path)! < j.published_at)
+        )
           paths.set(path, j.published_at);
     urls = [...paths].map(([path, updated]) => ({ path, updated }));
   } else return new Response('Not found', { status: 404 });

@@ -41,3 +41,25 @@ if ($r.Kind -ne 'CONFIG/NETWORK ERROR' -or $r.Status -ne 0 -or -not $r.Code) { e
     assert.equal((result.stdout + result.stderr).includes('never-print-this-fixture-key'), false);
   },
 );
+
+test(
+  'facet probe projection guard rejects private fields and rows beyond the cap',
+  { skip: process.platform !== 'win32' },
+  () => {
+    const script = `. ./scripts/verify-live-anon.ps1 -LibraryOnly
+$columns=@('country','state','city','job_count')
+$valid=[pscustomobject]@{country='India';state='Maharashtra';city='Pune';job_count=2}
+if (-not (Test-ProbeRows @($valid) $columns 1)) { exit 1 }
+if (Test-ProbeRows @($valid,$valid) $columns 1) { exit 2 }
+if (Test-ProbeRows @([pscustomobject]@{created_by='private'}) $columns 1) { exit 3 }
+if (-not (Test-ProbeRows @() $columns 500)) { exit 4 }
+if (Test-ProbeRows @([pscustomobject]@{country='India'}) $columns 1) { exit 5 }
+`;
+    const result = spawnSync(
+      'powershell.exe',
+      ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', script],
+      { encoding: 'utf8' },
+    );
+    assert.equal(result.status, 0, result.stderr);
+  },
+);
